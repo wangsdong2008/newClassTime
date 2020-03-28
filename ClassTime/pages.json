@@ -32,8 +32,32 @@
 					}
 				}
 			}
-		},		
-		{
+		},{
+			"path": "pages/users/main/account",
+			"style": {				
+				"navigationBarTitleText": "个人信息"
+			}
+		},{
+			"path": "pages/users/main/modifypassword",
+			"style": {				
+				"navigationBarTitleText": "修改密码"
+			}
+		},{
+			"path": "pages/users/main/modifymobile",
+			"style": {				
+				"navigationBarTitleText": "更换手机"
+			}
+		},{
+			"path": "pages/users/main/messagelist",
+			"style": {				
+				"navigationBarTitleText": "我的消息"
+			}
+		},{
+			"path": "pages/users/main/messageshow",
+			"style": {				
+				"navigationBarTitleText": "消息详情"
+			}
+		},{
 			"path": "pages/parents/parents/index",
 			"style": {
 				"navigationBarTitleText": "今日提醒",
@@ -42,6 +66,33 @@
 						"autoBackButton":"false"
 					}
 				}//隐藏顶部导航栏			
+			}
+		},{
+			"path": "pages/parents/site/index",
+			"style": {
+				"navigationBarTitleText": "设置",
+				"navigationBarBackgroundColor": "#66ccff",
+				"app-plus": {
+				    "titleNView": {
+						"autoBackButton":"false",
+				        "buttons": [ 							
+				            {
+				                "text": "搜索", 
+				                "fontSize":"16",
+				                "float": "right",
+				                "color":"#fff",
+								"right":"50upx",
+								"width":"80upx"
+				            }
+				        ],
+				        "searchInput":{
+				            "align": "left",
+				            "placeholder": "请输入课程名",
+				            "borderRadius":"50upx",
+				            "backgroundColor": "#fff"
+				        }
+				    }					
+				} 
 			}
 		}
 		
