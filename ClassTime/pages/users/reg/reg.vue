@@ -37,12 +37,8 @@
 		padding-top: 20upx;
 		padding-bottom: 10px;
 		border-bottom: 1px solid #eeeeee;		
-	}
-	
-	.m-input{
-		border: 0upx;
-		font-size: 28upx;
-	}
+	}	
+
 	.register-input{		
 		width:90%;
 		height: 70upx;
@@ -84,10 +80,6 @@
 		padding-bottom: 60upx;
 	}
 	
-	.btn1{
-		background-color: #55c5ff;
-		color:#fff;
-	}
 	
 </style>
 
