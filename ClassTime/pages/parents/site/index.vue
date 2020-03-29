@@ -2,7 +2,7 @@
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="contents">
-			<view class="content">
+			<view class="content sites">
 				<view class="title ctitles fz35">系统设置</view>	
 								
 				<uni-list>				
@@ -123,29 +123,25 @@
 
 <style>	
 	.ctitles{		
-		background:url(../../../static/img/system.png) 10upx 10upx no-repeat;
+		background:url(../../../static/img/system.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
 		background-size: 40upx 40upx;
-		padding-left: 65upx;
-		line-height:45upx;
-		height: 30upx;
-	}
 		
-	.contents{
-		background-color: #f8f8f8;
-	}
+	}	
 		
 	.content view,.content uni-list-item{
-		background-color: #fff;
+		background-color: #fff;		
 	}
 	
 	.uni-list{
 		margin-top: 40upx;
 		background-color: #fff;
+		
 	}
 	
 	.uni-list-item{
 		padding-left: 0;
+		padding-left: 20upx;
 	}
 	
 </style>
