@@ -130,5 +130,20 @@
 		padding-left: 0;
 	}
 	
+	/*家长设置*/
+	.contents{
+		background-color: #f8f8f8;
+		width:100%;
+	}
+	.sites{
+		width:95%;
+	}
+	.ctitles{
+		padding-left: 65upx;
+		line-height:45upx;
+		height: 30upx;
+		padding-top: 20upx;
+		background-color: #fff;
+	}
 	
 </style>

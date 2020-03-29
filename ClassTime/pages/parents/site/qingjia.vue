@@ -1,37 +1,40 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="register_account">请假管理</view>
-			<view class="register_account_input">
-				<view class="uni-list-cell-left">
-				    选择孩子
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">请假管理</view>
+				
+				<view class="register_account_input clear">
+					<view class="uni-list-cell-left fz30">选择孩子：</view>
+					<view class="searchinput input-txt">
+						<picker focus @change="ChildPickerChange($event)" :value="child_index" :range="child_dataList">
+							<view class="uni-input fz30">{{child_dataList[child_index]}}</view>
+						</picker>
+					</view>
 				</view>
-				<picker focus @change="ChildPickerChange($event)" :value="child_index" :range="child_dataList">
-					<view class="uni-input">{{child_dataList[child_index]}}</view>
-				</picker>
-			</view>
-			<view class="register_account_input">
-				<view class="uni-list-cell-left">
-				    选择日期
-				</view>		
-				<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
-                    <view class="uni-input">{{date}}</view>
-                </picker>
-			</view>
-			
-			<view class="register_account_input">	
-				<view class="uni-list-cell-left">
-				    选择课程
-				</view>		
-				<picker @change="CoursePickerChange($event)" :value="course_index" :range="course_dataList">
-					<view class="uni-input">{{course_dataList[course_index]}}</view>
-				</picker>
-			</view>
-			
-			
-			<view class="btn-row">
-			    <button type="primary" class="primary" @tap="bindmodify">{{btntxt}}</button>
+				
+				<view class="register_account_input clear">
+					<view class="uni-list-cell-left fz30">选择日期：</view>
+					<view class="searchinput input-txt">
+						<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+							<view class="uni-input fz30">{{date}}</view>
+						</picker>
+					</view>
+				</view>
+				
+				<view class="register_account_input clear">
+					<view class="uni-list-cell-left fz30">选择课程：</view>
+					<view class="searchinput input-txt">
+						<picker @change="CoursePickerChange($event)" :value="course_index" :range="course_dataList">
+							<view class="uni-input fz30">{{course_dataList[course_index]}}</view>
+						</picker>
+					</view>
+				</view>
+				
+				<view class="btn-row">
+					<button type="primary" class="primary btn" @tap="bindmodify">{{btntxt}}</button>
+				</view>
 			</view>
 		</view>
 		<view class="footer">
@@ -232,7 +235,7 @@
 								break;
 							}
 							case 3:{
-								str = '调课成功';
+								str = '请假成功';
 								break;
 							}							
 						}
@@ -306,132 +309,65 @@
 </script>
 
 <style>	
-	.register_account_input view{
-		float: left;
-		margin-bottom: 10upx;
-	}	
-	.content{
-		width:96%;
-		margin: 0 auto;
+	.ctitles{
+		background:url(../../../static/img/qingjia.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
 	}
 	
-	.clear{
-		clear: both;
-	}
-	
-	.btn-row{
-		margin-top: 40upx;	
-		padding: 0upx;
-	}
-	
-	uni-button{
-		border-radius: 50upx;		
-	}
-	uni-button:after{
-		border: 0px;		
-	}
-	.remeber{
-		font-size: 28upx;
-		margin-top: 10upx;		
-	}
-	.remeber checkbox{
+	.pickerlist{
+			width: 98%;
+		}
+		.listq{
+			padding: 20upx 0upx;
+			margin-top: 20upx;
+		}
 		
-	}
-	.content{
-		background-color: #fff;		
-		padding-top: 10upx;
-	}
-	.register_account_input{
-		padding-top: 20upx;
-		padding-bottom: 10px;
-		border-bottom: 1px solid #eeeeee;
-		line-height: 60upx;
-		height: 60upx;
-	}
-	.register_account{
-		font-size: 42upx;
-		font-family: '黑体';
-		margin-top: 30upx;
-		margin-bottom: 20upx;
-	}
-	.m-input{
-		border: 0upx;
-		font-size: 28upx;
-	}
-	.register-input{		
-		width:90%;
-		line-height: 60upx;
-		height: 110upx;
-		padding-left: 90upx;
-	}
-	.register-input-username{
-		background:url(../../../static/img/user.png) no-repeat;
-		-webkit-background-size:30upx 42upx ;
-		background-size:30upx 42upx ;
-	}
-	.register-input-mobile{
-		background:url(../../../static/img/mobile.png) no-repeat;
-	}
-	.register-input-mail{
-		background:url(../../../static/img/mail.png) no-repeat;	
-		width:53%;
-		float: left;
-	}
+		.texts{
+			margin-right: 10upx;
+			float: left;
+			width: 20%;
+		}
+	.left_txt{
+			width:30%;
+			float: left;
+		}	
+		.week-list{
+			padding-left: 20upx;
+			border:1px solid #ccc;
+			border-radius: 25upx;		
+			margin-top: 20upx;
+		}			
+		
 	
-	.register-input-password{
-		background:url(../../../static/img/password.png) no-repeat;		
-	}
-	.login_content{
-	        width: 100%;
-	    }
-	.title{
-		background:url('../../../static/img/login_title.png') #ffffff center 0 no-repeat;
-	    background-size:100% 100%;
-	    padding-bottom:20%
-	}
-	.login_center{
-		width:85%;			
-		margin: 0 auto;
-		padding-bottom: 60upx;
-	}
-	.login_title_txt{
-	    color:#fff;
-	    font-family:'微软雅黑';
-	    font-size:60upx;
-	    padding-top:150upx;
-	}
-	.login_title_txt span{
-	    font-size: 48upx;
-	}
-	.uni-list-cell-left{
-		margin-right: 40upx;
-		width:25%;
-		font-size: 35upx;
-	}
-	picker view{
-		border: 1px solid #66ccff;
-		width:60%;
-		text-align: center;
-	}
-	.cell-right{
-		float: left;
-		border: 1px solid #66ccff;
-		width:60%;
-		text-align: center;		
-	}
-	.btn-row{
-		margin-bottom: 60upx;
-	}
-	.weeks{
-		font-size: 30upx;
-		text-align: left;
-		height: 120upx;
-		border:0upx;
-	}	
-	.weeklist{
-		height: 110upx;
-	}
-	.weeks label{
-		margin-right: 15upx;
-	}
+		
+		.register_account_input view{
+			float: left;
+		}
+		
+	
+		.register_account_input{
+			padding-top: 20upx;
+			padding-bottom: 10px;
+			line-height: 60upx;
+			height: 60upx;
+		}
+		
+	
+		
+		
+		.uni-list-cell-left{
+			margin-right: 40upx;
+			width:25%;
+		}
+		
+		picker view{
+			border: 1px solid #ccc;
+			width:450upx;
+			text-align: center;
+			height: 75upx;
+			line-height: 75upx;
+			border-radius: 50upx;
+		}
+	
 </style> 
