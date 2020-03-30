@@ -12,7 +12,36 @@
 				"app-plus": {"titleNView": false}, //隐藏顶部导航栏
 				"navigationBarTitleText": "首页"
 			}
+		},
+		{
+			"path": "pages/index/index/search",
+			"style": {
+				"navigationBarTitleText": "查找"
+			}
 		},{
+			"path": "pages/index/index/searchresult",
+			"style": {				
+				"navigationBarTitleText": "查找"
+			}
+		},{
+			"path": "pages/index/index/showcourse",
+			"style": {				
+				"navigationBarTitleText": "课程详情"
+			}
+		},{
+			"path": "pages/index/index/showshop",
+			"style": {				
+				"navigationBarTitleText": "机构"
+			}
+		},{
+			"path": "pages/index/index/baoming",
+			"style": {				
+				"navigationBarTitleText": "报名"
+			}
+		},
+		
+		
+		{
 			"path": "pages/users/reg/reg",
 			"style": {				
 				"navigationBarTitleText": "注册新用户"
