@@ -39,8 +39,6 @@
 				"navigationBarTitleText": "报名"
 			}
 		},
-		
-		
 		{
 			"path": "pages/users/reg/reg",
 			"style": {				
@@ -184,8 +182,86 @@
 			"style": {
 				"navigationBarTitleText": "帮助文档"
 			}
+		},
+		{
+			"path": "pages/company/company/index",
+			"style": {
+				"navigationBarTitleText": "机构页面"
+			}
+		},{
+			"path": "pages/company/company/sksign",
+			"style": {
+				"navigationBarTitleText": "上课签到"
+			}
+		},{
+			"path": "pages/company/company/cfsign",
+			"style": {
+				"navigationBarTitleText": "吃饭签到"
+			}
+		},{
+			"path": "pages/company/company/ygsign",
+			"style": {
+				"navigationBarTitleText": "员工签到"
+			}
+		},
+		{
+			"path": "pages/company/company/studentssearch",
+			"style": {
+				"navigationBarTitleText": "学生查询"
+			}
+		},
+		{
+			"path": "pages/company/company/studentsshow",
+			"style": {
+				//"app-plus": {"titleNView": false},
+				"navigationBarTitleText": "学生详情"
+			}
+		},
+		{
+			"path": "pages/company/company/statistics",
+			"style": {
+				"navigationBarTitleText": "统计"
+			}
+		},
+		{
+			"path": "pages/company/company/statisticsstudents",
+			"style": {
+				"navigationBarTitleText": "学生统计"
+			}
+		},
+		{
+			"path": "pages/company/company/statisticsresult",
+			"style": {
+				"navigationBarTitleText": "统计结果"
+			}
+		},
+		{
+			"path": "pages/company/company/statisticscompany",
+			"style": {
+				"navigationBarTitleText": "公司统计"
+			}
+		},{
+			"path": "pages/company/company/statisticcompanysresult",
+			"style": {
+				"navigationBarTitleText": "公司统计结果"
+			}
+		},{
+			"path": "pages/company/company/statisticsmember",
+			"style": {
+				"navigationBarTitleText": "员工选择"
+			}
+		},{
+			"path": "pages/company/company/statisticsmemberresult",
+			"style": {
+				"navigationBarTitleText": "员工统计"
+			}
+		},
+		{
+			"path": "pages/company/company/birthday",
+			"style": {
+				"navigationBarTitleText": "生日提醒"
+			}
 		}
-		
 		
 	],
 	"globalStyle": {
