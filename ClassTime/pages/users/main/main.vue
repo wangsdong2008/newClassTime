@@ -53,12 +53,42 @@
 					{"image":"password.png","text":"修改密码","url":"modifypassword"},
 					{"image":"mobile5.png","text":"更换手机","url":"modifymobile"},					
 					{image:'message.png',text:'我的消息(0)',url:"messagelist"},
+					{image:'system.png',text:'系统升级',url:"download"},
 				],
 				headermsg:'',
-				footer: 'mine'
+				footer: 'mine',
+				version_num:0,
+				version_url:''
 			}
 		},
 		methods:{
+			download:function() { //下载最新安装包
+			debugger;
+				alert('uni-app Runtime version：' + plus.runtime.uniVersion);
+				if( _self.version_url == '') return false;
+				const downloadTask = uni.downloadFile({
+					url: _self.version_url,
+					success: (res) => {
+						if (res.statusCode === 200) {
+							console.log('下载成功');
+						}
+						let that = this;
+						uni.saveFile({
+							tempFilePath: res.tempFilePath,
+								success: function(red) {
+									that.luj = red.savedFilePath
+									console.log(red)
+								}
+							});
+						}
+					});
+		 
+					downloadTask.onProgressUpdate((res) => {
+						console.log('下载进度' + res.progress);
+						console.log('已经下载的数据长度' + res.totalBytesWritten);
+						console.log('预期需要下载的数据总长度' + res.totalBytesExpectedToWrite);
+				});
+			},
 			bindface:function(){
 				//_self.childface = "http://192.168.1.103/uploadfile/users/20200220/f2ebe7a571357bd83c6708cdf702d44b.jpg";
 			},
@@ -95,6 +125,16 @@
 								_self.userinfo = data.userinfo;
 								_self.childface = _self.PicUrl + 'users' + data.userinfo.face;
 								_self.dataList[3].text = "我的消息("+data.messagenum+")";
+								
+								let vlist = data.versionlist; //获取最新版本信息
+								let soft_Version = parseFloat(_self.version); //此软件版本号
+								let version_num = parseFloat(vlist.v_num);
+								if(version_num > soft_Version){
+									_self.dataList[4].text = "系统升级(new)";
+									_self.version_url = vlist.v_url;
+								}
+								
+								
 							}
 						}
 				    }

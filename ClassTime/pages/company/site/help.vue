@@ -1,23 +1,21 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="title">
-				<image src="../../../static/img/help.png" mode=""></image>帮助文档
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">帮助文档</view>				
+				<uni-list>
+					<uni-list-item class="ulist" :show-arrow="false" v-for="(item,index) in dataList" :title="item.article_title"  @tap="bindclick(item.guid)"  :index="index" :key="item.help_id" :thumb="'../../../static/img/step.png'"></uni-list-item>
+				</uni-list>
+				<view>
+					<uni-pagination class="pagination" @change="handlePage" :show-icon="true" :total="total" :current="page" :pageSize="pagesize" />
+				</view>			
+				</view>
+				<view class="footer">
+					<footerNav :msg="footer"></footerNav>
+				</view>
 			</view>
 			
-			<uni-list>
-			    <uni-list-item class="ulist" :show-arrow="false" v-for="(item,index) in dataList" :title="item.article_title"  @tap="bindclick(item.guid)"  :index="index" :key="item.help_id" :thumb="'../../../static/img/step.png'"></uni-list-item>
-			</uni-list>
-			
-			<view>
-				<uni-pagination class="pagination" @change="handlePage" :show-icon="true" :total="total" :current="page" :pageSize="pagesize" />
-			</view>
-			
-			
-		</view>
-		<view class="footer">
-			<footerNav :msg="footer"></footerNav>
 		</view>
 	</view>
 </template>
@@ -115,35 +113,17 @@
 </script>
 
 <style>
+	.ctitles{
+		background:url(../../../static/img/help.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}
+	
 	.uni-pagination{
 		width:100%;
 	}
 	.ulist{
 		padding-left: 0upx;
 	}
-	.newcontent{
-		width: 92%;	
-		margin: 20upx auto;
-		font-size: 30upx;
-		background-color: #fff;
-		line-height: 50upx;
-		padding: 20upx 30upx;
-	}
 	
-	.content{
-		width:96%;
-		margin: 0 auto;
-	}
-	.content .title{
-		border-bottom: 1px solid #66ccff;
-		height: 45upx;
-		line-height: 45upx;
-		margin: 30upx 0upx;
-		padding-bottom: 30upx;
-	}
-	.content .title image{
-		width: 50upx;
-		height: 50upx;
-		margin-right: 20upx;
-	}
 </style>

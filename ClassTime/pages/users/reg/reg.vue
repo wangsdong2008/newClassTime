@@ -1,33 +1,47 @@
 <template>
 	<view class="login_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="login_center content">
-			<view class="register_account">新用户</view>	
-			<view class="register_account_input">				
-				<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="mobile" placeholder="填写手机号码"></m-input>
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">注册新用户</view>	
+				<view class="icenter">
+					<view class="register_account_input">				
+						<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="mobile" placeholder="填写手机号码"></m-input>
+					</view>
+					<view class="register_account_input fz30">
+						<m-input class="m-input register-input register-input-mail" type="text" clearable v-model="code" placeholder="填写验证码"></m-input>
+						<button class="btn fz30 btn1" @tap="send_sms">获取验证码</button>
+					</view>
+					<view class="clear"></view>
+					<view class="register_account_input fz30">
+						<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="password" placeholder="6-20位登录密码"></m-input>
+					</view>
+					<view class="register_account_input fz30">
+						<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="againpassword" placeholder="再次确认密码"></m-input>
+					</view>
+					<view class="register_account_input fz30">
+						<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="recommend" placeholder="推荐人手机号码"></m-input>
+					</view>
+					<view class="btn-row">
+						<button class="btn" type="primary" @tap="register">注册</button>
+					</view>	
+				</view>
 			</view>
-			<view class="register_account_input fz30">
-				<m-input class="m-input register-input register-input-mail" type="text" clearable v-model="code" placeholder="填写验证码"></m-input>
-				<button class="btn fz30 btn1" type="default" @tap="send_sms">获取验证码</button>
-			</view>
-			<view class="clear"></view>
-			<view class="register_account_input fz30">
-				<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="password" placeholder="6-20位登录密码"></m-input>
-			</view>
-			<view class="register_account_input fz30">
-				<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="againpassword" placeholder="再次确认密码"></m-input>
-			</view>
-			<view class="register_account_input fz30">
-				<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="recommend" placeholder="推荐人手机号码"></m-input>
-			</view>
-			<view class="btn-row">
-			    <button class="btn" type="primary" @tap="register">注册</button>
-			</view>			
 		</view>		
 	</view>
 </template>
 
 <style>	
+	.ctitles{
+		background:url(../../../static/img/register.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}	
+	.icenter{
+		width: 95%;
+		margin: 0 auto;
+	}
+	
      .register_account{
 		margin-top: 30upx;
 		margin-bottom: 20upx;
@@ -63,24 +77,6 @@
 	.register-input-password{
 		background:url(../../../static/img/password.png) no-repeat;		
 	}
-	
-	.login_content{
-	        width: 100%;
-	}
-		
-	.title{
-		background:url('../../../static/img/login_title.png') #ffffff center 0 no-repeat;
-	    background-size:100% 100%;
-	    padding-bottom:20%
-	}
-	
-	.login_center{
-		width:85%;
-		margin: 0 auto;
-		padding-bottom: 60upx;
-	}
-	
-	
 </style>
 
 <script>

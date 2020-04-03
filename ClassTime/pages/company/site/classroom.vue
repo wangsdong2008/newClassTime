@@ -1,27 +1,27 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="title">
-				<image src="../../../static/img/classroom.png" mode=""></image>所有教室
-			</view>
-			<view>
-				<!-- 一般用法 -->
-				<uni-collapse>					
-				    <uni-collapse-item v-for="(item,index) in dataList" :title="item.com_name" :open="true" thumb="../../../static/img/company.png" :index="index" :key="item.com_id" >
-						<uni-list>
-							<uni-list-item v-for="(item2,index2) in item.classroomlist" :show-arrow="false" :title="item2.classroom_name" :index="index2" :key="item2.classroom_id" >
-								<view class="statuslist"><span @tap="classroomedit(item2.classroom_id)">修改</span><span @tap="classroomdel(item2.classroom_id)">删除</span></view>
-								</uni-list-item>
-						</uni-list>	
-						
-				    </uni-collapse-item>
-				   
-				</uni-collapse>
-			</view>
-			<view class="button-sp-area">
-				<button type="primary" plain="true" @tap="classroomadd">添加教室</button>
-			</view>
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">全部教室</view>	
+				<view class="icenter">		
+					<!-- 一般用法 -->
+					<uni-collapse>					
+						<uni-collapse-item v-for="(item,index) in dataList" :title="item.com_name" :open="true" thumb="../../../static/img/company.png" :index="index" :key="item.com_id" >
+							<uni-list>
+								<uni-list-item v-for="(item2,index2) in item.classroomlist" :show-arrow="false" :title="item2.classroom_name" :index="index2" :key="item2.classroom_id" >
+									<view class="statuslist"><span @tap="classroomedit(item2.classroom_id)">修改</span><span @tap="classroomdel(item2.classroom_id)">删除</span></view>
+									</uni-list-item>
+							</uni-list>	
+							
+						</uni-collapse-item>
+					   
+					</uni-collapse>
+				</view>
+				<view class="btn-row">
+					<button type="primary" class="btn" @tap="classroomadd">添加教室</button>
+				</view>
+			</view>			
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
@@ -160,6 +160,16 @@
 </script>
 
 <style>
+	.ctitles{
+		background:url(../../../static/img/classroom.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}	
+	.icenter{
+		width: 95%;
+		margin: 0 auto;
+	}
+	
 	.button-sp-area{
 		margin: 40upx 0upx;
 	}
@@ -167,23 +177,7 @@
 		width:96%;
 		margin: 0 auto;
 	}
-	.content .title{
-		border-bottom: 1px solid #66ccff;
-		height: 45upx;
-		line-height: 45upx;
-		margin: 30upx 0upx;
-		padding-bottom: 30upx;
-	}
-	.content .title image{
-		width: 50upx;
-		height: 50upx;
-		margin-right: 20upx;
-	}
-	.uni-grid-item{
-		line-height: 65upx;
-		height: 65upx;	
-		
-	}
+	
 	.statuslist{
 		position:absolute;
 		right: 30upx;

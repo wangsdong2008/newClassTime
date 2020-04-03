@@ -1,26 +1,29 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="title">
-				<image src="../../../static/img/grade.png" mode=""></image>学生所在学校
-			</view>
-			<view>
-				<!-- 一般用法 -->
-				<uni-collapse>					
-				    <uni-collapse-item v-for="(item,index) in dataList" :title="item.com_name" :open="true" thumb="../../../static/img/company.png" :index="index" :key="item.com_id" >
-						<uni-list>
-							<uni-list-item v-for="(item2,index2) in item.schoollist" :show-arrow="false" :title="item2.school_name" :index="index2" :key="item2.school_id" >
-							<view class="statuslist"><span @tap="schooledit(item2.school_id)">修改</span><span @tap="schooldel(item2.school_id)">删除</span></view>
-							</uni-list-item>
-						</uni-list>
-				    </uni-collapse-item>
-				</uni-collapse>
-			</view>
-			<view class="button-sp-area">
-				<button type="primary" plain="true" @tap="schooladd">添加学校</button>
-			</view>
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">全部学校</view>	
+				<view class="icenter">
+					<!-- 一般用法 -->
+					<uni-collapse>					
+						<uni-collapse-item v-for="(item,index) in dataList" :title="item.com_name" :open="true" thumb="../../../static/img/company.png" :index="index" :key="item.com_id" >
+							<uni-list>
+								<uni-list-item v-for="(item2,index2) in item.schoollist" :show-arrow="false" :title="item2.school_name" :index="index2" :key="item2.school_id" >
+								<view class="statuslist fz30"><span @tap="schooledit(item2.school_id)">修改</span><span @tap="schooldel(item2.school_id)">删除</span></view>
+								</uni-list-item>
+							</uni-list>
+						</uni-collapse-item>
+					</uni-collapse>
+				</view>
+				<view class="btn-row">
+					<button type="primary" class="btn" @tap="schooladd">添加学校</button>
+				</view>
+			</view>			
 		</view>
+		<view class="footer">
+				<footerNav :msg="footer"></footerNav>
+			</view>
 	</view>
 </template>
 
@@ -30,12 +33,13 @@
 	import headerNav from "@/components/header/company_header.vue"
 	import uniCollapse from '@/components/uni-collapse/uni-collapse.vue'
 	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'	
+	import footerNav from "@/components/footer/footer_nav.vue"
 	var _self;
 	export default {
 	    components: {
 			uniList,
 			uniListItem,
-			headerNav,
+			headerNav,footerNav,
 			uniCollapse,uniCollapseItem
 		},
 		onLoad(){	
@@ -48,7 +52,8 @@
 		data(){
 			return{
 				dataList:[],				
-				headermsg:'学校管理,School Manage'
+				headermsg:'学校管理,School Manage',
+				footer:''
 			}
 		},
 		methods:{
@@ -153,34 +158,19 @@
 </script>
 
 <style>
-	.button-sp-area{
-		margin: 40upx 0upx;
-	}
-	.content{
-		width:96%;
+	.ctitles{
+		background:url(../../../static/img/school.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}	
+	.icenter{
+		width: 95%;
 		margin: 0 auto;
 	}
-	.content .title{
-		border-bottom: 1px solid #66ccff;
-		height: 45upx;
-		line-height: 45upx;
-		margin: 30upx 0upx;
-		padding-bottom: 30upx;
-	}
-	.content .title image{
-		width: 50upx;
-		height: 50upx;
-		margin-right: 20upx;
-	}
-	.uni-grid-item{
-		line-height: 65upx;
-		height: 65upx;	
-		
-	}
+	
 	.statuslist{
 		position:absolute;
 		right: 30upx;
-		font-size: 30upx;
 		margin-top: 10upx;
 	}
 	.statuslist span{

@@ -1,30 +1,44 @@
 <template>
 	<view class="login_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="login_center content">
-			<view class="register_account">取回密码</view>	
-			<view class="register_account_input fz30">				
-				<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="mobile" placeholder="填写注册的手机号码"></m-input>
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">取回密码</view>	
+				<view class="icenter">	
+					<view class="register_account_input fz30">				
+						<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="mobile" placeholder="填写注册的手机号码"></m-input>
+					</view>
+					<view class="register_account_input fz30">
+						<m-input class="m-input register-input register-input-mail" type="text" clearable v-model="code" placeholder="填写验证码"></m-input>
+						<button class="btn fz30 btn1" @tap="send_sms">获取验证码</button>
+					</view>
+					<view class="clear"></view>
+					<view class="register_account_input fz30">
+						<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="password" placeholder="6-20位新登录密码"></m-input>
+					</view>
+					<view class="register_account_input fz30">
+						<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="againpassword" placeholder="再次确认新密码"></m-input>
+					</view>			
+					<view class="btn-row">
+						<button type="primary" class="btn" @tap="getpassword">取回密码</button>
+					</view>		
+				</view>
 			</view>
-			<view class="register_account_input fz30">
-				<m-input class="m-input register-input register-input-mail" type="text" clearable v-model="code" placeholder="填写验证码"></m-input>
-				<button class="btn fz30 btn1" type="default" @tap="send_sms">获取验证码</button>
-			</view>
-			<view class="clear"></view>
-			<view class="register_account_input fz30">
-				<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="password" placeholder="6-20位新登录密码"></m-input>
-			</view>
-			<view class="register_account_input fz30">
-				<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="againpassword" placeholder="再次确认新密码"></m-input>
-			</view>			
-			<view class="btn-row">
-			    <button type="primary" class="btn" @tap="getpassword">取回密码</button>
-			</view>			
 		</view>		
 	</view>
 </template>
 
 <style>	
+	.ctitles{
+		background:url(../../../static/img/password.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}	
+	.icenter{
+		width: 95%;
+		margin: 0 auto;
+	}
+	
 	.register_account{
 		margin-top: 30upx;
 		margin-bottom: 20upx;
@@ -36,10 +50,6 @@
 		border-bottom: 1px solid #eeeeee;		
 	}
 	
-	.m-input{
-		border: 0upx;
-		font-size: 28upx;
-	}
 	.register-input{		
 		width:90%;
 		height: 70upx;
@@ -68,23 +78,7 @@
 	.login_content{
 	        width: 100%;
 	}
-		
-	.title{
-		background:url('../../../static/img/login_title.png') #ffffff center 0 no-repeat;
-	    background-size:100% 100%;
-	    padding-bottom:20%
-	}
 	
-	.login_center{
-		width:85%;
-		margin: 0 auto;
-		padding-bottom: 60upx;
-	}
-	
-	.btn1{
-		background-color: #55c5ff;
-		color:#fff;
-	}
 </style>
 
 <script>

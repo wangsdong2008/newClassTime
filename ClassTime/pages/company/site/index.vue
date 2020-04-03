@@ -8,9 +8,9 @@
 					<uni-list-item title="公司设置" thumb="../../../static/img/company.png" @tap="bindCompany" />
 					<uni-list-item title="课程分类" thumb="../../../static/img/category.png" @tap="bindCategory" />
 					<uni-list-item title="教室管理" thumb="../../../static/img/classroom.png" @tap="bindClassRoom" />
-					<uni-list-item title="学校管理" thumb="../../../static/img/school.png" @tap="bindShcool" />
-					<uni-list-item title="年级管理" thumb="../../../static/img/grade.png" @tap="bindgrade" />
-					<uni-list-item title="班级管理" thumb="../../../static/img/classs.png" @tap="bindclass" />
+					<uni-list-item title="学校管理(托班)" thumb="../../../static/img/school.png" @tap="bindShcool" />
+					<uni-list-item title="年级管理(托班)" thumb="../../../static/img/grade.png" @tap="bindgrade" />
+					<uni-list-item title="班级管理(托班)" thumb="../../../static/img/classs.png" @tap="bindclass" />
 					<uni-list-item title="学生管理" thumb="../../../static/img/students.png" @tap="bindstudent" />
 					<uni-list-item title="上课安排" thumb="../../../static/img/plan.png" @tap="bindcompanyplan"  />
 				</uni-list>

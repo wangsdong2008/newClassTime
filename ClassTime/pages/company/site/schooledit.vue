@@ -1,32 +1,36 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="register_account">学校信息</view>
-			<view class="register_account_input">
-				<m-input class="m-input" type="text" clearable focus v-model="school_name" placeholder="填写学校名"></m-input>
-			</view>	
-			<view class="register_account_input">
-				<m-input class="m-input" type="text" clearable v-model="school_address" placeholder="填写学校地址"></m-input>
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">全部学校</view>	
+				<view class="icenter">
+					<view class="register_account_input">
+						<m-input class="m-input fz30" type="text" clearable focus v-model="school_name" placeholder="填写学校名"></m-input>
+					</view>	
+					<view class="register_account_input">
+						<m-input class="m-input fz30" type="text" clearable v-model="school_address" placeholder="填写学校地址"></m-input>
+					</view>
+					
+					<view class="register_account_input">
+						<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
+							<view class="uni-input fz30">{{cList[cindex]}}</view>
+						</picker>
+					</view>
+					
+					<view class="register_account_input">
+						<m-input class="m-input fz30" type="text" clearable v-model="school_order" placeholder="填写顺序"></m-input>
+					</view>	
+					
+					
+					<view class="btn-row">
+						<button type="primary" class="primary btn" @tap="bindmodify">修改</button>
+					</view>			
+				</view>
 			</view>
-			
-			<view class="register_account_input">
-				<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
-					<view class="uni-input">{{cList[cindex]}}</view>
-				</picker>
-			</view>
-			
-			<view class="register_account_input">
-				<m-input class="m-input" type="text" clearable v-model="school_order" placeholder="填写顺序"></m-input>
-			</view>	
-			
-			
-			<view class="btn-row">
-			    <button type="primary" class="primary" @tap="bindmodify">修改</button>
-			</view>			
-			
-				
-			</view>
+		</view>
+		<view class="footer">
+			<footerNav :msg="footer"></footerNav>
 		</view>
 	</view>
 </template>
@@ -34,11 +38,12 @@
 	import service from '../../../service.js';
 	import mInput from '../../../components/m-input.vue';
 	import headerNav from "@/components/header/company_header.vue"
+	import footerNav from "@/components/footer/footer_nav.vue"
 	var _self;
 	export default {
 	    components: {
 			service,
-			headerNav,
+			headerNav,footerNav,
 			mInput
 		},
 		onLoad(options){
@@ -70,7 +75,8 @@
 				cList:[],
 				cIDList:[],
 				
-				headermsg:''
+				headermsg:'',
+				footer:''
 			}
 		},
 		methods:{
@@ -204,37 +210,16 @@
 </script>
 
 <style>
-	.content{
-		width:96%;
+	.ctitles{
+		background:url(../../../static/img/school.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}	
+	.icenter{
+		width: 95%;
 		margin: 0 auto;
 	}
 	
-	.clear{
-		clear: both;
-	}
-	
-	.btn-row{
-		margin-top: 40upx;	
-		padding: 0upx;
-	}
-	
-	uni-button{
-		border-radius: 25upx;		
-	}
-	uni-button:after{
-		border: 0px;		
-	}
-	.remeber{
-		font-size: 28upx;
-		margin-top: 10upx;		
-	}
-	.remeber checkbox{
-		
-	}
-	.content{
-		background-color: #fff;		
-		padding-top: 10upx;
-	}
 	.register_account_input{
 		padding-top: 20upx;
 		padding-bottom: 10px;
@@ -252,70 +237,8 @@
 		border: 0upx;
 		font-size: 28upx;
 	}
-	.register-input{		
-		width:90%;
-		line-height: 60upx;
-		height: 110upx;
-		padding-left: 90upx;
-	}
-	.register-input-username{
-		background:url(../../../static/img/user.png) no-repeat;
-		-webkit-background-size:30upx 42upx ;
-		background-size:30upx 42upx ;
-	}
-	.register-input-mobile{
-		background:url(../../../static/img/mobile.png) no-repeat;
-	}
-	.register-input-mail{
-		background:url(../../../static/img/mail.png) no-repeat;	
-		width:53%;
-		float: left;
-		/* border:1px solid #ff0000; */
-	}
-	.btn1{
-		border:0upx;
-		background-color: #ccc;
-		
-	}
-	.btn{
-		float: right;
-		background-color: #eee;
-		color:#225181;
-		font-size: 24upx;
-		align:center;
-		width: 29%;
-		height: 76upx;
-		line-height: 76upx;
-		border-radius: 45upx;
-		top:10upx;
-		
-		
-	}
-	.register-input-password{
-		background:url(../../../static/img/password.png) no-repeat;		
-	}
-	.login_content{
-	        width: 100%;
-	    }
-	.title{
-		background:url('../../../static/img/login_title.png') #ffffff center 0 no-repeat;
-	    background-size:100% 100%;
-	    padding-bottom:20%
-	}
-	.login_center{
-		width:85%;			
-		margin: 0 auto;
-		padding-bottom: 60upx;
-	}
-	.login_title_txt{
-	    color:#fff;
-	    font-family:'微软雅黑';
-	    font-size:60upx;
-	    padding-top:150upx;
-	}
-	.login_title_txt span{
-	    font-size: 48upx;
-	}
+	
+	
 	
 	
 </style>

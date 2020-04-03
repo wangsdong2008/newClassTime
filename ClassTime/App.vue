@@ -68,6 +68,7 @@
 		text-align: center;		
 		color: #ffffff;
 		font-size: 30upx;
+		margin-bottom: 20upx;
 	}
 	
 	.fz30{

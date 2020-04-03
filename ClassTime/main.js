@@ -7,6 +7,9 @@ Vue.config.productionTip = false
 
 Vue.prototype.$store = store
 
+//当前版本号
+Vue.prototype.version = '1.0';
+
 //缓存标识
 Vue.prototype.USERS_KEY = "userinfo";
 Vue.prototype.Temp_KEY = "tempinfo";

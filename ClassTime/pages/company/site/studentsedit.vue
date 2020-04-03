@@ -1,79 +1,85 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="register_account">学生信息</view>
-			<view class="register_account_input">				
-				<m-input class="m-input" type="text" clearable focus v-model="uname" placeholder="填写学生姓名"></m-input>
-			</view>	
-			<view class="register_account_input">				
-				<picker mode="date" fields='day' :value="_self.birthday" @change="getdate($event)">  
-				    <view class="uni-input txt_s">{{value_startTime}}</view>  
-				</picker>  
-				
-			</view>	
-			<view class="register_account_input form">
-				<radio-group @change="sexChange">
-					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in sex_items" :index="index" :key="item.value">
-					<view>
-						<radio class="radios" :value="item.value" :checked="parseInt(item.value) == sex" />
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">学生信息编辑</view>	
+				<view class="icenter">
+					<view class="register_account_input">				
+						<m-input class="m-input fz30" type="text" clearable focus v-model="uname" placeholder="填写学生姓名"></m-input>
+					</view>	
+					<view class="register_account_input">				
+						<picker mode="date" fields='day' :value="_self.birthday" @change="getdate($event)">  
+							<view class="uni-input txt_s fz30">{{value_startTime}}</view>  
+						</picker>
+					</view>	
+					<view class="register_account_input form">
+						<radio-group @change="sexChange">
+							<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in sex_items" :index="index" :key="item.value">
+							<view>
+								<radio class="radios" :value="item.value" :checked="parseInt(item.value) == sex" />
+							</view>
+							<view class="radio_text fz30">{{item.name}}</view>
+							</label>
+							
+						</radio-group>
 					</view>
-					<view class="radio_text">{{item.name}}</view>
-					</label>
-					
-				</radio-group>
-			</view>
-			<view class="register_account_input">
-				<m-input class="m-input" type="text" clearable v-model="teacher" placeholder="班主任"></m-input>
-			</view>	
-			<view class="register_account_input">
-				<m-input class="m-input" type="text" clearable v-model="mparent" placeholder="家长姓名"></m-input>
-			</view>	
-			<view class="register_account_input">
-				<m-input class="m-input" type="text" clearable v-model="mtel" placeholder="联系方式"></m-input>
-			</view>				
-			<view class="register_account_input form">
-				<radio-group @change="statusChange">
-					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index2) in items" :index="index2" :key="item.value">
-					<view>
-						<radio class="radios" :value="item.value" :checked="parseInt(item.value) == is_show" />
+					<view class="register_account_input">
+						<m-input class="m-input fz30" type="text" clearable v-model="teacher" placeholder="班主任"></m-input>
+					</view>	
+					<view class="register_account_input">
+						<m-input class="m-input fz30" type="text" clearable v-model="mparent" placeholder="家长姓名"></m-input>
+					</view>	
+					<view class="register_account_input">
+						<m-input class="m-input fz30" type="text" clearable v-model="mtel" placeholder="联系方式"></m-input>
+					</view>				
+					<view class="register_account_input form">
+						<radio-group @change="statusChange">
+							<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index2) in items" :index="index2" :key="item.value">
+							<view>
+								<radio class="radios" :value="item.value" :checked="parseInt(item.value) == is_show" />
+							</view>
+							<view class="radio_text fz30">{{item.name}}</view>
+							</label>
+							
+						</radio-group>
 					</view>
-					<view class="radio_text">{{item.name}}</view>
-					</label>
-					
-				</radio-group>
+					<view class="register_account_input class-memo">
+						<textarea class="m-textarea fz30" v-model="memo" placeholder="备注信息"></textarea>
+					</view>		
+					<view class="register_account_input class-memo">
+						<textarea class="m-textarea fz30" v-model="fan_jkou" placeholder="忌口"></textarea>
+					</view>
+					<view class="register_account_input">
+						<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
+							<view class="uni-input fz30">{{cList[cindex]}}</view>
+						</picker>
+					</view>			
+					<view class="register_account_input">
+						<picker @change="SchoolPickerChange($event)" :value="school_index" :range="school_dataList">
+							<view class="uni-input fz30">{{school_dataList[school_index]}}</view>
+						</picker>
+					</view>	
+					<view class="register_account_input">
+						<picker @change="GradePickerChange($event)" :value="grade_index" :range="grade_dataList">
+							<view class="uni-input fz30">{{grade_dataList[grade_index]}}</view>
+						</picker>
+					</view>	
+					<view class="register_account_input">
+						<picker @change="ClassPickerChange($event)" :value="class_index" :range="class_dataList">
+							<view class="uni-input fz30">{{class_dataList[class_index]}}</view>
+						</picker>
+					</view>	
+				</view>
+				<view class="btn-row">
+					<view>
+						<button type="primary" class="btn" @tap="bindmodify">{{btntxt}}</button>
+					</view>
+				</view>
 			</view>
-			<view class="register_account_input class-memo">
-				<textarea class="m-textarea" v-model="memo" placeholder="备注信息"></textarea>
-			</view>		
-			<view class="register_account_input class-memo">
-				<textarea class="m-textarea" v-model="fan_jkou" placeholder="忌口"></textarea>
-			</view>
-			<view class="register_account_input">
-				<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
-					<view class="uni-input">{{cList[cindex]}}</view>
-				</picker>
-			</view>			
-			<view class="register_account_input">
-				<picker @change="SchoolPickerChange($event)" :value="school_index" :range="school_dataList">
-					<view class="uni-input">{{school_dataList[school_index]}}</view>
-				</picker>
-			</view>	
-			<view class="register_account_input">
-				<picker @change="GradePickerChange($event)" :value="grade_index" :range="grade_dataList">
-					<view class="uni-input">{{grade_dataList[grade_index]}}</view>
-				</picker>
-			</view>	
-			<view class="register_account_input">
-				<picker @change="ClassPickerChange($event)" :value="class_index" :range="class_dataList">
-					<view class="uni-input">{{class_dataList[class_index]}}</view>
-				</picker>
-			</view>	
 		</view>
-		<view class="button-sp-area">
-			<view>
-				<button type="primary" @tap="bindmodify">{{btntxt}}</button>
-			</view>
+		<view class="footer">
+			<footerNav :msg="footer"></footerNav>
 		</view>
 	</view>
 </template>
@@ -81,11 +87,12 @@
 	import service from '../../../service.js';
 	import mInput from '../../../components/m-input.vue';
 	import headerNav from "@/components/header/company_header.vue"
+	import footerNav from "@/components/footer/footer_nav.vue"
 	var _self;
 	export default {
 	    components: {
 			service,
-			headerNav,
+			headerNav,footerNav,
 			mInput
 		},
 		data(){
@@ -146,7 +153,8 @@
 				memo:'',
 				mparent:'',
 				mtel:'',
-				fan_jkou:''
+				fan_jkou:'',
+				footer:''
 			}
 		},
 		onLoad(options){
@@ -539,66 +547,16 @@
 </script>
 
 <style>
-	picker{
-		height: 60upx;
-		width: 100%;
-	}
-	.button-sp-area{
-		position: fixed;
-		bottom: 0upx;
-		height: 100upx;
-		background-color: #fff;
-		width: 100%;
-	}
-	textarea{
-		border:1upx solid #eee;
-		width: 90%;
-		height: 80upx;
-		padding: 20upx;
-	}
-	.form image{
-		width:80upx;
-		height: 80upx;
-	}
-	.register_account_input view{
-		float: left;
-		margin-bottom: 10upx;		
+	.ctitles{
+		background:url(../../../static/img/students.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
 	}	
-	.radio_text{
-		margin-right: 40upx;
-	}
-	.content{
-		width:90%;
+	.icenter{
+		width: 95%;
 		margin: 0 auto;
-		margin-bottom: 120upx;
-	}
+	}	
 	
-	.clear{
-		clear: both;
-	}
-	
-	.btn-row{
-		margin-top: 40upx;	
-		padding: 0upx;
-	}
-	
-	uni-button{
-		border-radius: 25upx;		
-	}
-	uni-button:after{
-		border: 0px;		
-	}
-	.remeber{
-		font-size: 28upx;
-		margin-top: 10upx;		
-	}
-	.remeber checkbox{
-		
-	}
-	.content{
-		background-color: #fff;		
-		padding-top: 10upx;
-	}
 	.register_account_input{
 		padding-top: 20upx;
 		padding-bottom: 10px;
@@ -616,70 +574,33 @@
 		border: 0upx;
 		font-size: 28upx;
 	}
-	.register-input{		
-		width:90%;
-		line-height: 60upx;
-		height: 110upx;
-		padding-left: 90upx;
+	
+	.radio_text{
+		margin-right: 40upx;
 	}
-	.register-input-username{
-		background:url(../../../static/img/user.png) no-repeat;
-		-webkit-background-size:30upx 42upx ;
-		background-size:30upx 42upx ;
+	
+	picker{
+		height: 60upx;
+		width: 100%;
 	}
-	.register-input-mobile{
-		background:url(../../../static/img/mobile.png) no-repeat;
+	
+	textarea{
+		border:1upx solid #eee;
+		width: 90%;
+		height: 80upx;
+		padding: 20upx;
 	}
-	.register-input-mail{
-		background:url(../../../static/img/mail.png) no-repeat;	
-		width:53%;
+	
+	
+	.form image{
+		width:80upx;
+		height: 80upx;
+	}
+	.register_account_input view{
 		float: left;
-		/* border:1px solid #ff0000; */
-	}
-	.btn1{
-		border:0upx;
-		background-color: #ccc;
-		
-	}
-	.btn{
-		float: right;
-		background-color: #eee;
-		color:#225181;
-		font-size: 24upx;
-		align:center;
-		width: 29%;
-		height: 76upx;
-		line-height: 76upx;
-		border-radius: 45upx;
-		top:10upx;
-		
-		
-	}
-	.register-input-password{
-		background:url(../../../static/img/password.png) no-repeat;		
-	}
-	.login_content{
-	        width: 100%;
-	    }
-	.title{
-		background:url('../../../static/img/login_title.png') #ffffff center 0 no-repeat;
-	    background-size:100% 100%;
-	    padding-bottom:20%
-	}
-	.login_center{
-		width:85%;			
-		margin: 0 auto;
-		padding-bottom: 60upx;
-	}
-	.login_title_txt{
-	    color:#fff;
-	    font-family:'微软雅黑';
-	    font-size:60upx;
-	    padding-top:150upx;
-	}
-	.login_title_txt span{
-	    font-size: 48upx;
-	}
+		margin-bottom: 10upx;		
+	}		
+	
 	.class-memo{
 		height: auto;
 	}

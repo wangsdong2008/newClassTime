@@ -1,34 +1,37 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="title">
-				<image src="../../../static/img/students.png" mode=""></image>全部学生
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">全部学生</view>	
+				<view class="search">		
+						<m-input class="m-input fz30 bdr" type="text" clearable v-model="keyword"  placeholder="搜索学生"></m-input>
+						<view class="register_account_input bdr">
+							<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
+								<view class="uni-input fz30">{{cList[cindex]}}</view>
+							</picker>
+						</view>
+						<button type="primary" class="searchbtn fz30 bdr" plain="true" @tap="searchstudents">搜索</button>
+				</view>
+				<view class="searchlist">
+					<uni-list>
+						<uni-list-item v-for="(item,index) in dataList" :show-arrow="false" :title="item.uname" :index="index" :key="item.uid" :thumb="'../../../static/img/'+(item.sex==1?'boy':'gril')+'.png'" >
+							<view class="statuslist fz30"><span @tap="studentsedit(item.uid)">修改</span><span @tap="studentsdel(item.uid)">删除</span></view>
+							</uni-list-item>
+					</uni-list>	
+				</view>			
+				<view class="example-body">
+					<uni-pagination @change="handlePage" :show-icon="true" :total="total" :current="page" :pageSize="pagesize" title="标题文字" />
+				</view>	
+				<view class="btn-row">			
+				<button type="primary" class="btn" @tap="studentsadd">添加学生</button>
+				
+			</view>		
 			</view>
-			<view class="search">		
-					<m-input class="m-input" type="text" clearable v-model="keyword"  placeholder="搜索学生"></m-input>
-					<view class="register_account_input">
-						<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
-							<view class="uni-input">{{cList[cindex]}}</view>
-						</picker>
-					</view>
-					<button type="primary" class="searchbtn" plain="true" @tap="searchstudents">搜索</button>
-			</view>
-			<view class="searchlist">
-				<uni-list>
-					<uni-list-item v-for="(item,index) in dataList" :show-arrow="false" :title="item.uname" :index="index" :key="item.uid" :thumb="'../../../static/img/'+(item.sex==1?'boy':'gril')+'.png'" >
-						<view class="statuslist"><span @tap="studentsedit(item.uid)">修改</span><span @tap="studentsdel(item.uid)">删除</span></view>
-						</uni-list-item>
-				</uni-list>	
-			</view>			
-			<view class="example-body">
-				<uni-pagination @change="handlePage" :show-icon="true" :total="total" :current="page" :pageSize="pagesize" title="标题文字" />
-			</view>		    
+			
 		</view>
-		<view class="button-sp-area">
-			<view>
-				<button type="primary" @tap="studentsadd">添加学生</button>
-			</view>
+		<view class="footer">
+			<footerNav :msg="footer"></footerNav>
 		</view>
 	</view>
 </template>
@@ -38,14 +41,15 @@
 	import mInput from '@/components/m-input.vue';
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
-	import headerNav from "@/components/header/company_header.vue"
+	import headerNav from "@/components/header/company_header.vue"	
+	import footerNav from "@/components/footer/footer_nav.vue"
 	import uniPagination from '@/components/uni-pagination/uni-pagination.vue'
 	var _self;
 	export default {
 	    components: {
 			uniList,
 			uniListItem,
-			headerNav,
+			headerNav,footerNav,
 			uniPagination,mInput
 		},
 		data(){
@@ -62,7 +66,8 @@
 				cList:[],
 				cIDList:[],
 				cindex:0,
-				btntxt:''
+				btntxt:'',
+				footer:''
 			}
 		},
 		onLoad(options){
@@ -230,16 +235,32 @@
 </script>
 
 <style>
-	.register_account_input{
-		border:1px solid #999;
-		float: left;
-		width: 35%;
-		height: 70upx;
-		line-height:70upx;
+	.ctitles{
+		background:url(../../../static/img/students.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}	
+	.icenter{
+		width: 95%;
+		margin: 0 auto;
+	}	
+	.subcategory{
+		background:url(../../../static/img/school.png) 50upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+		padding-left: 80upx;
+	}
+	.statuslist{
+		position:absolute;
+		right: 30upx;
+		margin-top: 10upx;
+	}
+	.statuslist span{
+		margin-right: 10upx;
+	}	
+	.bdr{
+		border-radius: 15upx;
 		margin-left: 20upx;
-		text-align: center;
-		font-size: 35upx;
-		color:#999;
 	}
 	.search{
 		height: 60upx;
@@ -253,7 +274,6 @@
 		float: left;
 		height: 70upx;
 		line-height:70upx;
-		margin-left: 20upx;
 	}
 	.search .m-input{
 		border:1px solid #999;
@@ -267,57 +287,18 @@
 		clear: both;
 		margin-top: 30upx;
 	}
-	.button-sp-area{
-		position: fixed;
-		bottom: 0upx;
-		height: 100upx;
-		background-color: #fff;
-		width: 100%;
-	}
-	.button-sp-area view{
-	}
-	.example-body {
-		flex-direction: row;
-		flex-wrap: wrap;
-		justify-content: center;
-		padding: 0;
-		font-size: 14rpx;
-		background-color: #ffffff;
-		margin-bottom: 120upx;
-	}	
 	
-	.disable{
-		color:#f00;
+	.register_account_input{
+		border:1px solid #999;		
+		float: left;
+		width: 35%;
+		height: 70upx;
+		line-height:70upx;		
+		text-align: center;
+		font-size: 35upx;
+		color:#999;
 	}
-	.content{
-		width:96%;
-		margin: 0 auto;
-	}
-	.content .title{
-		border-bottom: 1px solid #66ccff;
-		height: 45upx;
-		line-height: 45upx;
-		margin: 30upx 0upx;
-		padding-bottom: 30upx;
-	}
-	.content .title image{
-		width: 50upx;
-		height: 50upx;
-		margin-right: 20upx;
-	}
-	.uni-grid-item{
-		line-height: 65upx;
-		height: 65upx;	
-		
-	}
-	.statuslist{
-		position:absolute;
-		right: 30upx;
-		font-size: 30upx;
-		margin-top: 10upx;
-	}
-	.statuslist span{
-		margin-right: 10upx;
-	}
+	
+	
 	
 </style>

@@ -1,27 +1,30 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="title">
-				<image src="../../../static/img/userHL.png" mode=""></image>所有员工
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">全部员工</view>		
+				<view class="icenter">
+					<!-- 一般用法 -->
+					<uni-collapse>					
+						<uni-collapse-item v-for="(item,index) in dataList" :title="item.com_name" :open="true" thumb="../../../static/img/company.png" :index="index" :key="item.com_id" >
+							<uni-list>
+								<uni-list-item v-for="(item2,index2) in item.memberlist" :show-arrow="false" :title="item2.true_name" :index="index2" :key="item2.id" >
+									<view class="statuslist fz30"><span @tap="memberedit(item2.id)">修改</span><span @tap="memberdel(item2.id)">删除</span></view>
+									</uni-list-item>
+							</uni-list>	
+							
+						</uni-collapse-item>
+					   
+					</uni-collapse>
+				</view>
+				<view class="btn-row">
+					<button type="primary" class="btn" @tap="memberadd">添加员工</button>
+				</view>
 			</view>
-			<view>
-				<!-- 一般用法 -->
-				<uni-collapse>					
-				    <uni-collapse-item v-for="(item,index) in dataList" :title="item.com_name" :open="true" thumb="../../../static/img/company.png" :index="index" :key="item.com_id" >
-						<uni-list>
-							<uni-list-item v-for="(item2,index2) in item.memberlist.list" :show-arrow="false" :title="item2.true_name+'('+item2.username+')'" :index="index2" :key="item2.id" >
-								<view class="statuslist"><span @tap="memberedit(item2.id)">修改</span><span @tap="memberdel(item2.id)">删除</span></view>
-								</uni-list-item>
-						</uni-list>	
-						
-				    </uni-collapse-item>
-				   
-				</uni-collapse>
-			</view>
-			<view class="button-sp-area">
-				<button type="primary" plain="true" @tap="memberadd">添加员工</button>
-			</view>
+		</view>
+		<view class="footer">
+			<footerNav :msg="footer"></footerNav>
 		</view>
 	</view>
 </template>
@@ -30,6 +33,7 @@
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	import headerNav from "@/components/header/company_header.vue"
+	import footerNav from "@/components/footer/footer_nav.vue"
 	import uniCollapse from '@/components/uni-collapse/uni-collapse.vue'
 	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'	
 	var _self;
@@ -37,7 +41,7 @@
 	    components: {
 			uniList,
 			uniListItem,
-			headerNav,
+			headerNav,footerNav,
 			uniCollapse,uniCollapseItem
 		},
 		onLoad(){	
@@ -50,7 +54,8 @@
 		data(){
 			return{
 				dataList:[],				
-				headermsg:'员工管理,Member Manage'
+				headermsg:'员工管理,Member Manage',
+				footer:''
 			}
 		},
 		methods:{
@@ -148,39 +153,30 @@
 	
 </script>
 
-<style>
-	.button-sp-area{
-		margin: 40upx 0upx;
-	}
-	.content{
-		width:96%;
+<style>	
+	.ctitles{
+		background:url(../../../static/img/userHL.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}	
+	.icenter{
+		width: 95%;
 		margin: 0 auto;
-	}
-	.content .title{
-		border-bottom: 1px solid #66ccff;
-		height: 45upx;
-		line-height: 45upx;
-		margin: 30upx 0upx;
-		padding-bottom: 30upx;
-	}
-	.content .title image{
-		width: 50upx;
-		height: 50upx;
-		margin-right: 20upx;
-	}
-	.uni-grid-item{
-		line-height: 65upx;
-		height: 65upx;	
-		
+	}	
+	.subcategory{
+		background:url(../../../static/img/school.png) 50upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+		padding-left: 80upx;
 	}
 	.statuslist{
 		position:absolute;
 		right: 30upx;
-		font-size: 30upx;
-		margin-top: 10upx;
+		margin-top: 0upx;
 	}
 	.statuslist span{
 		margin-right: 10upx;
-	}
+	}	
+	
 	
 </style>

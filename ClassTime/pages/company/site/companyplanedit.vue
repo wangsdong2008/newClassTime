@@ -1,244 +1,240 @@
 <template>
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
-		<view class="center100 content">
-			<view class="register_account">计划信息</view>
-			<view :class="{
-				'register_account_input':true
-				}">
-				<view class="unamecss">
-					<m-input class="m-input" type="text" clearable focus v-model="uname" placeholder="学生姓名"></m-input>
-				</view>
-			</view>
-			<view class="clear"></view>
-			<view class="register_account_input form">
-				<radio-group @change="sexChange">
-					<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in sex_items" :index="index" :key="item.value">
-					<view>
-						<radio class="radios" :value="item.value" :checked="parseInt(item.value) == sex" />
+		<view class="contents">
+			<view class="content sites">
+				<view class="title ctitles fz35">计划信息</view>	
+				<view class="icenter">
+				<view :class="{
+					'register_account_input':true
+					}">
+					<view class="unamecss">
+						<m-input class="m-input fz30" type="text" clearable focus v-model="uname" placeholder="学生姓名"></m-input>
 					</view>
-					<view class="radio_text">{{item.name}}</view>
-					</label>
-					<view class="clear"></view>
-				</radio-group>
-			</view>
-			<view class="clear"></view>
-			<view class="register_account_input">
-				<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
-					<view class="uni-input">{{cList[cindex]}}</view>
-				</picker>
-			</view>
-			<view class="register_account_input">
-				<picker @change="categoryPickerChange($event)" :value="category_index" :range="category_dataList">
-					<view class="uni-input">{{category_dataList[category_index]}}</view>
-				</picker>
-			</view>			
-			<view class="register_account_input">
-				<picker @change="SchoolPickerChange($event)" :value="school_index" :range="school_dataList">
-					<view class="uni-input">{{school_dataList[school_index]}}</view>
-				</picker>
-			</view>	
-			<view class="register_account_input">
-				<picker @change="GradePickerChange($event)" :value="grade_index" :range="grade_dataList">
-					<view class="uni-input">{{grade_dataList[grade_index]}}</view>
-				</picker>
-			</view>	
-			<view class="register_account_input">
-				<picker @change="ClassPickerChange($event)" :value="class_index" :range="class_dataList">
-					<view class="uni-input">{{class_dataList[class_index]}}</view>
-				</picker>
-			</view>
-			<view class="register_account_input">
-				<view class="uni-list-cell-left">
-				    上课时间
-				</view>		
-			</view>			
-			<view  class="register_account_input week-list">				
-				<view class="week-list-time">
-					<view class="left_txt">星期：</view>
-					<view class="cell-right">
-						<checkbox-group @change="weekcheckboxChange">
-							<label class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in week_dataList" :index="index" :key="item.weekid">
-								<checkbox :value="item.weekid" :checked="item.shower" /><text>{{item.weektext}}</text>
-							</label>
-						</checkbox-group>
-					</view>	
-				</view>
-				<view class="week-list-time">
-					<view class="left_txt">上课时间:</view>
-					<view class="cell-right">
-						<!-- <input class="m-input t2" type="text" :value="_self.studentsutime_list" placeholder="所选接时间"></input> -->
-						<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
-							<view :class="{
-								'texts':true,
-								'hidden':!item2.shower
-								}">周{{item2.weektext}}
-								</view>
-								<picker mode="time" :value="item2.utime" start="00:01" end="23:59"  @change="bindTimeChange($event,item2.weekid)" :class="{
-									'awidth':true,
-										'hidden':!item2.shower
-									}">
-									<view class="uni-input">{{item2.utime}}</view>
-								</picker>	
-							</view>
-						<view class="clear"></view>
-						
-					</view>
-				</view>
-				<view class="week-list-time address">
-					<view class="left_txt">上课教室：</view>
-					<view class="cell-right">
-						<!-- <input class="m-input t2" type="text" :value="_self.studentsclassroom_list" placeholder="上课教室"></input> -->
-						<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
-							<view :class="{
-								'texts':true,
-								'hidden':!item2.shower
-								}">周{{item2.weektext}}
-								</view>
-								<picker @change="bindClassRoomChange($event,item2.weekid)" :value="item2.classroom_index" :range="classroom_dataList"  :class="{
-									'awidth':true,
-										'hidden':!item2.shower
-									}">
-									<view class="uni-input">{{classroom_dataList[item2.classroom_index]}}</view>
-								</picker>
-							</view>
-						<view class="clear"></view>
-					</view>
-				</view>
-				<view class="week-list-time address">
-					<view class="left_txt">接的地址：</view>
-					<view class="cell-right">
-						<!-- <input class="m-input t2" type="text" :value="_self.studentsuaddress_list" placeholder="接的地址"></input> -->
-						<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
-							<view :class="{
-								'texts':true,
-								'hidden':!item2.shower
-								}">周{{item2.weektext}}
-							</view>
-							<view :class="{
-								'awidth':true,
-								'hidden':!item2.shower
-							}">
-							<input class="m-input t2" type="text" :value="item2.uaddress" placeholder="接的地址" @blur="bindaddress($event,item2.weekid)"></input>
-							</view>	
-						</view>
-						<view class="clear"></view>
-					</view>
-					<view class="clear"></view>
-				</view>
-				<view class="week-list-time">
-					<view class="left_txt">送的时间:</view>
-					<view class="cell-right">
-						<!-- <input class="m-input t2" type="text" :value="_self.studentsgivetime_list" placeholder="送的时间"></input> -->
-						<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
-							<view :class="{
-								'texts':true,
-								'hidden':!item2.shower
-								}">周{{item2.weektext}}
-							</view>							
-								<picker mode="time" :value="item2.givetime" start="00:01" end="23:59"  @change="bindgiveTimeChange($event,item2.weekid)" :class="{'awidth':true,'hidden':!item2.shower}">
-									<view class="uni-input">{{item2.givetime}}</view>
-								</picker>
-						</view>
-						<view class="clear"></view>	
-					</view>	
-				</view>
-				<view class="week-list-time address">
-					<view class="left_txt">送的地址：</view>
-					<view class="cell-right">
-						<!-- <input class="m-input t2" type="text" :value="_self.studentsgiveaddress_list" placeholder="送的地址"></input> -->
-						<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
-							<view :class="{
-								'texts':true,
-								'hidden':!item2.shower
-							}">周{{item2.weektext}}</view>
-							<view :class="{
-								'awidth':true,
-								'hidden':!item2.shower
-							}">
-								<input class="m-input t2" type="text" :value="item2.giveaddress" placeholder="送的地址" @blur="bindgiveaddress($event,item2.weekid)"></input>
-							</view>	
-						</view>
-						<view class="clear"></view>
-					</view>	
-					<view class="clear"></view>
-				</view>
-				<view class="week-list-time">
-					<view class="left_txt">接回时间:</view>
-					<view class="cell-right">
-						<!-- <input class="m-input t2" type="text" :value="_self.studentsbacktime_list" placeholder="接回的时间"></input> -->
-						<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
-							<view :class="{
-								'texts':true,
-								'hidden':!item2.shower
-								}">周{{item2.weektext}}
-							</view>
-							<picker mode="time" :value="item2.backtime" start="00:01" end="23:59"  @change="bindbackTimeChange($event,item2.weekid)" :class="{'awidth':true,'hidden':!item2.shower}">
-								<view class="uni-input">{{item2.backtime}}</view>
-							</picker>
-						</view>
-						<view class="clear"></view>	
-					</view>					
-				</view>
-				<view class="week-list-time address">
-					<view class="left_txt">是否吃饭：</view>
-					<view class="cell-right">
-						<!-- <input class="m-input t2" type="text" :value="_self.studentsfanstatus_list" placeholder="吃饭状态"></input> -->
-						<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
-							<view :class="{
-								'texts':true,
-								'hidden':!item2.shower
-							}">周{{item2.weektext}}</view>
-							<view :class="{
-								'awidth':true,
-								'hidden':!item2.shower
-							}">
-							<radio-group @change="radiofanChange($event,item2.weekid)">
-								<label class="uni-list-cell uni-list-cell-pd" v-for="(fan_item, fan_index) in fan_items" :key="fan_item.value">
-								<view>
-									<radio class="radios" :value="fan_item.value" :checked="parseInt(fan_item.value) === item2.fan_status" />
-								</view>
-								<view class="radio_text">{{fan_item.name}}</view>
-								</label>
-							</radio-group>	
-							
-							
-							</view>	
-						</view>
-						<view class="clear"></view>
-					</view>	
-					<view class="clear"></view>
 				</view>
 				<view class="clear"></view>
-			</view>	
-			<view class="clear"></view>
+				<view class="register_account_input form">
+					<radio-group @change="sexChange">
+						<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in sex_items" :index="index" :key="item.value">
+						<view>
+							<radio class="radios" :value="item.value" :checked="parseInt(item.value) == sex" />
+						</view>
+						<view class="radio_text fz30">{{item.name}}</view>
+						</label>
+						<view class="clear"></view>
+					</radio-group>
+				</view>
+				<view class="clear"></view>
+				<view class="register_account_input">
+					<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
+						<view class="uni-input fz30">{{cList[cindex]}}</view>
+					</picker>
+				</view>
+				<view class="register_account_input">
+					<picker @change="categoryPickerChange($event)" :value="category_index" :range="category_dataList">
+						<view class="uni-input fz30">{{category_dataList[category_index]}}</view>
+					</picker>
+				</view>			
+				<view class="register_account_input">
+					<picker @change="SchoolPickerChange($event)" :value="school_index" :range="school_dataList">
+						<view class="uni-input fz30">{{school_dataList[school_index]}}</view>
+					</picker>
+				</view>	
+				<view class="register_account_input">
+					<picker @change="GradePickerChange($event)" :value="grade_index" :range="grade_dataList">
+						<view class="uni-input fz30">{{grade_dataList[grade_index]}}</view>
+					</picker>
+				</view>	
+				<view class="register_account_input">
+					<picker @change="ClassPickerChange($event)" :value="class_index" :range="class_dataList">
+						<view class="uni-input fz30">{{class_dataList[class_index]}}</view>
+					</picker>
+				</view>
+				<view class="register_account_input">
+					<view class="uni-list-cell-left fz35">
+						上课时间
+					</view>		
+				</view>			
+				<view  class="register_account_input week-list">				
+					<view class="week-list-time">
+						<view class="left_txt">星期：</view>
+						<view class="cell-right">
+							<checkbox-group @change="weekcheckboxChange">
+								<label class="uni-list-cell uni-list-cell-pd" v-for="(item,index) in week_dataList" :index="index" :key="item.weekid">
+									<checkbox :value="item.weekid" :checked="item.shower" /><text>{{item.weektext}}</text>
+								</label>
+							</checkbox-group>
+						</view>	
+					</view>
+					<view class="week-list-time">
+						<view class="left_txt">上课时间:</view>
+						<view class="cell-right">
+							<!-- <input class="m-input t2" type="text" :value="_self.studentsutime_list" placeholder="所选接时间"></input> -->
+							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
+								<view :class="{
+									'texts':true,
+									'hidden':!item2.shower
+									}">周{{item2.weektext}}
+									</view>
+									<picker mode="time" :value="item2.utime" start="00:01" end="23:59"  @change="bindTimeChange($event,item2.weekid)" :class="{
+										'awidth':true,
+											'hidden':!item2.shower
+										}">
+										<view class="uni-input">{{item2.utime}}</view>
+									</picker>	
+								</view>
+							<view class="clear"></view>
+							
+						</view>
+					</view>
+					<view class="week-list-time address">
+						<view class="left_txt">上课教室：</view>
+						<view class="cell-right">
+							<!-- <input class="m-input t2" type="text" :value="_self.studentsclassroom_list" placeholder="上课教室"></input> -->
+							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
+								<view :class="{
+									'texts':true,
+									'hidden':!item2.shower
+									}">周{{item2.weektext}}
+									</view>
+									<picker @change="bindClassRoomChange($event,item2.weekid)" :value="item2.classroom_index" :range="classroom_dataList"  :class="{
+										'awidth':true,
+											'hidden':!item2.shower
+										}">
+										<view class="uni-input">{{classroom_dataList[item2.classroom_index]}}</view>
+									</picker>
+								</view>
+							<view class="clear"></view>
+						</view>
+					</view>
+					<view class="week-list-time address">
+						<view class="left_txt">接的地址：</view>
+						<view class="cell-right">
+							<!-- <input class="m-input t2" type="text" :value="_self.studentsuaddress_list" placeholder="接的地址"></input> -->
+							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
+								<view :class="{
+									'texts':true,
+									'hidden':!item2.shower
+									}">周{{item2.weektext}}
+								</view>
+								<view :class="{
+									'awidth':true,
+									'hidden':!item2.shower
+								}">
+								<input class="m-input t2" type="text" :value="item2.uaddress" placeholder="接的地址" @blur="bindaddress($event,item2.weekid)"></input>
+								</view>	
+							</view>
+							<view class="clear"></view>
+						</view>
+						<view class="clear"></view>
+					</view>
+					<view class="week-list-time">
+						<view class="left_txt">送的时间:</view>
+						<view class="cell-right">
+							<!-- <input class="m-input t2" type="text" :value="_self.studentsgivetime_list" placeholder="送的时间"></input> -->
+							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
+								<view :class="{
+									'texts':true,
+									'hidden':!item2.shower
+									}">周{{item2.weektext}}
+								</view>							
+									<picker mode="time" :value="item2.givetime" start="00:01" end="23:59"  @change="bindgiveTimeChange($event,item2.weekid)" :class="{'awidth':true,'hidden':!item2.shower}">
+										<view class="uni-input">{{item2.givetime}}</view>
+									</picker>
+							</view>
+							<view class="clear"></view>	
+						</view>	
+					</view>
+					<view class="week-list-time address">
+						<view class="left_txt">送的地址：</view>
+						<view class="cell-right">
+							<!-- <input class="m-input t2" type="text" :value="_self.studentsgiveaddress_list" placeholder="送的地址"></input> -->
+							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
+								<view :class="{
+									'texts':true,
+									'hidden':!item2.shower
+								}">周{{item2.weektext}}</view>
+								<view :class="{
+									'awidth':true,
+									'hidden':!item2.shower
+								}">
+									<input class="m-input t2" type="text" :value="item2.giveaddress" placeholder="送的地址" @blur="bindgiveaddress($event,item2.weekid)"></input>
+								</view>	
+							</view>
+							<view class="clear"></view>
+						</view>	
+						<view class="clear"></view>
+					</view>
+					<view class="week-list-time">
+						<view class="left_txt">接回时间:</view>
+						<view class="cell-right">
+							<!-- <input class="m-input t2" type="text" :value="_self.studentsbacktime_list" placeholder="接回的时间"></input> -->
+							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
+								<view :class="{
+									'texts':true,
+									'hidden':!item2.shower
+									}">周{{item2.weektext}}
+								</view>
+								<picker mode="time" :value="item2.backtime" start="00:01" end="23:59"  @change="bindbackTimeChange($event,item2.weekid)" :class="{'awidth':true,'hidden':!item2.shower}">
+									<view class="uni-input">{{item2.backtime}}</view>
+								</picker>
+							</view>
+							<view class="clear"></view>	
+						</view>					
+					</view>
+					<view class="week-list-time address">
+						<view class="left_txt">是否吃饭：</view>
+						<view class="cell-right">
+							<!-- <input class="m-input t2" type="text" :value="_self.studentsfanstatus_list" placeholder="吃饭状态"></input> -->
+							<view v-for="(item2,index2) in week_dataList" :index="index2" :key="item2.weekid">
+								<view :class="{
+									'texts':true,
+									'hidden':!item2.shower
+								}">周{{item2.weektext}}</view>
+								<view :class="{
+									'awidth':true,
+									'hidden':!item2.shower
+								}">
+								<radio-group @change="radiofanChange($event,item2.weekid)">
+									<label class="uni-list-cell uni-list-cell-pd" v-for="(fan_item, fan_index) in fan_items" :key="fan_item.value">
+									<view>
+										<radio class="radios" :value="fan_item.value" :checked="parseInt(fan_item.value) === item2.fan_status" />
+									</view>
+									<view class="radio_text">{{fan_item.name}}</view>
+									</label>
+								</radio-group>	
+								
+								
+								</view>	
+							</view>
+							<view class="clear"></view>
+						</view>	
+						<view class="clear"></view>
+					</view>
+					<view class="clear"></view>
+				</view>	
+				<view class="clear"></view>
+				</view>
+				<view class="btn-row clear">
+					<button type="primary" class="primary btn" @tap="bindmodify">{{btntxt}}</button>
+				</view>	
 			</view>
-			<view class="btn-row clear">
-				<button type="primary" class="primary" @tap="bindmodify">{{btntxt}}</button>
-			</view>	
 		</view>
-		
+		<view class="footer">
+			<footerNav :msg="footer"></footerNav>
+		</view>
 	</view>
 </template>
 <style>	
-	.register_account_input.form{
-		/* height: 60upx;
-		line-height: 60upx; */
-	}
-	.form image{
-		width:80upx;
-		height: 80upx;
+	.ctitles{
+		background:url(../../../static/img/plan.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
 	}	
-	.form label view{
-		float: left;
-		margin-bottom: 10upx;	
-		font-size: 30upx;
-		height: 60upx;
-		line-height: 60upx;
+	.icenter{
+		width: 95%;
+		margin: 0 auto;
 	}	
-	.radio_text{
-		margin-right: 40upx;
-	}
 	.texts{
 		font-size: 25upx;
 		margin-right: 10upx;
@@ -271,7 +267,7 @@
 		border-radius: 25upx;		
 		margin-top: 20upx;
 	}		
-	picker,.studentslist,.unamecss{
+	picker,.studentslist{
 		font-size: 30upx;
 	}
 	.awidth{
@@ -354,58 +350,33 @@
 	}
 	.weeklist{
 		height: 110upx;
-	}
+	}	
 	
-	.content{
-		width:92%;
-		margin: 0 auto;
-	}
-	
-	.clear{
-		clear: both;
-	}
-	
-	.btn-row{
-		margin: 40upx 0;	
-		padding: 0upx;
-	}
-	
-	uni-button{
-		border-radius: 25upx;	
-		width: 96%;
-		margin: 0 auto;;
-	}
-	uni-button:after{
-		border: 0px;		
-	}
-	
-	.content{
-		background-color: #fff;		
-		padding-top: 10upx;
-	}
 	.register_account_input{
 		padding-top: 20upx;
 		padding-bottom: 10px;
 		border-bottom: 1px solid #eeeeee;
 		line-height: 60upx;	
 		text-align: left;
-	}
-	.register_account{
-		font-size: 42upx;
-		font-family: '黑体';
-		margin-top: 30upx;
-		margin-bottom: 20upx;
-	}
-	.m-input{
-		border: 0upx;
-		font-size: 28upx;
-	}
-	.register-input{		
-		width:90%;
+	}		
+	
+	.form label view{
+		float: left;
+		margin-bottom: 10upx;	
+		font-size: 30upx;
+		height: 60upx;
 		line-height: 60upx;
-		height: 110upx;
-		padding-left: 90upx;
 	}	
+	.radio_text{
+		margin-right: 40upx;
+	}
+	.texts{
+		font-size: 25upx;
+		margin-right: 10upx;
+		/* border: 1px solid #f00; */
+	}
+	
+	
 </style>
 <script>
 	import service from '../../../service.js';
@@ -524,7 +495,8 @@
 				
 				ptime:"15:00",
 				headermsg:'',
-				btntxt:''
+				btntxt:'',
+				footer:''
 			}
 		},
 		methods:{

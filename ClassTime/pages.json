@@ -261,6 +261,129 @@
 			"style": {
 				"navigationBarTitleText": "生日提醒"
 			}
+		},
+		{
+			"path": "pages/company/site/index",
+			"style": {
+				"navigationBarTitleText": "公司设置"
+			}
+		},
+		{
+			"path": "pages/company/site/company",
+			"style": {
+				"navigationBarTitleText": "公司管理"
+			}
+		},{
+			"path": "pages/company/site/companyedit",
+			"style": {
+				"navigationBarTitleText": "公司管理"
+			}
+		},
+		{
+			"path": "pages/company/site/category",
+			"style": {
+				"navigationBarTitleText": "课程分类"
+			}
+		},
+		{
+			"path": "pages/company/site/categoryedit",
+			"style": {
+				"navigationBarTitleText": "编辑分类"
+			}
+		},
+		{
+			"path": "pages/company/site/classroom",
+			"style": {
+				"navigationBarTitleText": "所有教室"
+			}
+		},{
+			"path": "pages/company/site/classroomedit",
+			"style": {
+				"navigationBarTitleText": "教室编辑"
+			}
+		},
+		{
+			"path": "pages/company/site/school",
+			"style": {
+				"navigationBarTitleText": "所在学校"
+			}
+		},{
+			"path": "pages/company/site/schooledit",
+			"style": {
+				"navigationBarTitleText": "编辑学校"
+			}
+		},
+		{
+			"path": "pages/company/site/grade",
+			"style": {
+				"navigationBarTitleText": "年级管理"
+			}
+		},{
+			"path": "pages/company/site/gradeedit",
+			"style": {
+				"navigationBarTitleText": "年级管理"
+			}
+		},{
+			"path": "pages/company/site/classs",
+			"style": {
+				"navigationBarTitleText": "班级管理"
+			}
+		},{
+			"path": "pages/company/site/classsedit",
+			"style": {
+				"navigationBarTitleText": "班级管理"
+			}
+		},
+		{
+			"path": "pages/company/site/students",
+			"style": {
+				"navigationBarTitleText": "全体学生"
+			}
+		},
+		{
+			"path": "pages/company/site/studentsedit",
+			"style": {
+				"navigationBarTitleText": "编辑学生信息"
+			}
+		},
+		{
+			"path": "pages/company/site/companyplan",
+			"style": {
+				"navigationBarTitleText": "上课安排"
+			}
+		},		
+		{
+			"path": "pages/company/site/companyplanedit",
+			"style": {
+				"navigationBarTitleText": "上课安排编辑"
+			}
+		},{
+			"path": "pages/company/site/companyplanadd",
+			"style": {
+				"navigationBarTitleText": "上课安排添加"
+			}
+		},
+		{
+			"path": "pages/company/site/member",
+			"style": {
+				"navigationBarTitleText": "员工管理"
+			}
+		},{
+			"path": "pages/company/site/memberedit",
+			"style": {
+				"navigationBarTitleText": "员工编辑"
+			}
+		},
+		{
+			"path": "pages/company/site/help",
+			"style": {
+				"navigationBarTitleText": "帮助文档"
+			}
+		},{
+			"path": "pages/company/site/helpshow",
+			"style": {
+				"navigationBarTitleText": "帮助文档"
+			}
 		}
 		
 	],
