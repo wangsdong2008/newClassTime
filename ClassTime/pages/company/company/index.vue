@@ -2,6 +2,11 @@
 	<view class="content">
 		<view>
 			<view class="icenter">
+				<view class="gglist" v-if="gonggaonum>0">
+					<ul>
+						<li class="ggitem fz25" v-for="(item3,ggindex) in gonggaoList" :index="ggindex" :key="item3.article_id" @tap="showgg(item3.guid)">{{item3.article_title}}</li>
+					</ul>
+				</view>
 				<view class="title">今日上课 </view>
 				<view class="studentlist">
 					<!-- 包含图片 -->					
@@ -90,7 +95,9 @@
 				dataList:[],
 				isBrithday: 0,
 				is_brithday:0,
-				footer: 'company'
+				footer: 'company',
+				gonggaoList:[],
+				gonggaonum:0
 			}
 		},
 		onLoad:function() {	
@@ -101,6 +108,9 @@
 			_self.show();
 		},
 		methods: {
+			showgg:function(guid){
+				_self.navigateTo('../../users/main/showgonggao?id='+guid);
+			},
 			bindsystem(){
 				_self.navigateTo('../site/index');
 			},
@@ -172,7 +182,17 @@
 										_self.dataList = list;
 									}
 									_self.isBrithday = res.isBrithday; 
-								}					    	
+								}	
+								
+								//公告内容
+								let list = [];
+								data = res.gonggaolist;
+								_self.gonggaonum = res.gonggaonum;
+								for (var i = 0; i < data.length; i++) {
+									var item = data[i];
+									list.push(item);								
+								}								
+								_self.gonggaoList = list;
 							}
 						}
 					},"1","");
@@ -184,6 +204,29 @@
 </script>
 
 <style>
+	.gglist{
+		background:url(../../../static/img/gonggao.png) 0upx 10upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+		height: 45upx;
+		line-height: 45upx;
+		padding:10upx 50upx;
+		overflow: hidden;
+		color:#666;
+		border-bottom: 1upx solid #eee;
+	}
+	.gglist ul{
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		color:#666;
+	}
+	.gglist ul li{
+		padding: 0;
+		margin: 0;
+	}
+	
+	
 	.studentsclass{
 		padding-left: 20upx;
 	}

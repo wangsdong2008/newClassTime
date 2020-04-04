@@ -3,12 +3,12 @@
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="contents">
 			<view class="content sites">
-				<view class="title ctitles fz35">我的消息</view>	
+				<view class="title ctitles fz35">公告</view>
 				<view class="icenter">					
 					<view class="main-body write lists">
-						<view class="titles ll">{{message_title}}</view>
-						<view class="contents ll" >{{message_content}}</view>
-						<view class="times ll">{{message_time}}</view>
+						<view class="titles ll fz35">{{message_title}}</view>
+						<view class="contents ll fz30" v-html="message_content"></view>
+						<view class="times ll fz30">{{message_time}}</view>
 					</view>	
 					
 					<view class="footer">
@@ -33,19 +33,19 @@
 		onLoad(options){
 			_self = this;
 			this.checkLogin(0);
-			_self.message_id = options['id'];
+			_self.guid = options['id'];
 		},
 		onReady() {
 			this.show();
 		},
 		data(){
 			return{
-				message_id:0,
 				message_title:'',
 				message_content:'',
 				message_time:'',
 				headermsg:'会员中心,Member Center',
 				footer:'',
+				guid:''
 			}
 		},
 		methods:{			
@@ -54,22 +54,22 @@
 				const data = {
 				    guid: ret.guid,
 				    token: ret.token,
-					id:_self.message_id
+					id:_self.guid
 				};
 				this.getData(data);
 			},			
 			getData(data){
 				this.sendRequest({
-				    url : _self.MessageshowUrl,
+				    url : _self.GonggaoshowUrl,
 				    method : _self.Method,
 				    data : {"token":data.token,"guid":data.guid,"id":data.id,"t":Math.random()},
 				    hideLoading : true,
 				    success:function (res) {
 						if(res){
-							let data = res.messagelist;
+							let data = res.articlelist;
 							if(res.status == 3){
-								_self.message_title = data.message_title;
-								_self.message_content = data.message_content;
+								_self.message_title = data.article_title;
+								_self.message_content = data.article_content;
 								_self.message_time = data.addtime;
 							}
 						}
@@ -78,10 +78,9 @@
 			}		
 		}
 	}
-		
 </script>
 
-<style>	
+<style>
 	.titles{
 		border-bottom: 1upx solid #ccc;
 		padding-bottom: 20upx;
@@ -94,9 +93,8 @@
 		text-align: right;
 		margin-right: 20upx;
 	}
-	
 	.ctitles{
-		background:url(../../../static/img/message.png) 10upx 25upx no-repeat;
+		background:url(../../../static/img/gonggao.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
 		background-size: 40upx 40upx;
 	}	
@@ -104,24 +102,17 @@
 		width: 95%;
 		margin: 0 auto;
 	}
-	.contents{
-		padding: 40upx 0upx 0upx 0upx;
+	
+	.statuslist{
+		position:absolute;
+		right: 30upx;
 		font-size: 30upx;
-		line-height: 50upx;
+		margin-top: 10upx;
 	}
-	.times{
-		padding: 20upx 0upx 40upx 0upx;		
-		font-size: 30upx;
-		text-align: left;
+	.statuslist span{
+		margin-right: 10upx;
 	}
 	
-	.titles{
-		padding-bottom: 20upx;
-		border-bottom:1px solid #ccc;
-		font-size: 35upx;
-	}
-	
-
-
 	
 </style>
+

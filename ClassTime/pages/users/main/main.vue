@@ -188,23 +188,29 @@
 	.titles{
 		line-height: 40upx;
 		margin-top: 20upx;
-		text-align: center;
-		
+		text-align: left;
 	}
+	
 	.header-title{
 		background:url(../../../static/img/login_title.png) #ffffff center 0 no-repeat;
 	    background-size:100% 100%;
-	    padding-bottom:20%
+	    padding-bottom:20%;
+		padding-left: 50upx;
 	}
+	
+	.login_title_txt{
+		padding-top: 55upx;
+	}
+	
 	.header-img{
 		width:150upx;
 		height: 150upx;
-		margin: 0 auto;
 		overflow: hidden;
 		border-radius: 90upx;	
 		border:1upx solid #fff;
 		background-color: #fff;
 	}
+	
 	.login_center image{
 		width:150upx;
 		height: 150upx;

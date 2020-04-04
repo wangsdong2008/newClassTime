@@ -12,7 +12,7 @@
 			</view>
 			<view class="login_account_input">
 				<view class="remeber">
-					<checkbox value="1" checked="checked" />记住密码
+					<checkbox value="1" checked="checked" />自动登录
 				</view>
 			</view>
 			<view class="btn-row">
@@ -197,11 +197,39 @@
 				    },"1","");
 				//debugger;
 			},			
+			autoLogin(){
+				let url = "users/login/login";
+				let Storage = this.getUserInfo();
+				if(Storage != "[]"){
+					switch(parseInt(Storage.identity))
+					{
+						case 1:{
+							url = 'parents/parents/index';
+							break;
+						}
+						case 2:{
+							url = 'company/company/index';
+							break;
+						}
+						case 3:{
+							url = 'teacher/teacher/index';
+							break;
+						}
+					}
+				}			
+				url = '../../' + url;
+				this.navigateTo(url);
+			}
 		},
+		
         onReady() {
             _self.initPosition();
             /* _self.initProvider(); */
 			_self.getsession();
+			let ret = _self.getUserInfo();
+			if(ret){
+				_self.autoLogin();
+			}
         }
 	}
 </script>

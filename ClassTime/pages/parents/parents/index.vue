@@ -2,6 +2,11 @@
 	<view class="main_content">
 		<headerNav :msg="headermsg"></headerNav>
 		<view class="content">
+			<view class="gglist" v-if="gonggaonum>0">
+				<ul>
+					<li class="ggitem fz25" v-for="(item3,ggindex) in gonggaoList" :index="ggindex" :key="item3.article_id" @tap="showgg(item3.guid)">{{item3.article_title}}</li>
+				</ul>
+			</view>
 			<view class="title waring">				
 				<view class="title2">
 					<image src="../../../static/img/clock.png" mode=""></image>
@@ -34,26 +39,27 @@
 <script>
 	import headerNav from "@/components/header/company_header.vue"
 	import footerNav from "@/components/footer/footer_nav.vue"
-	import uniSection from '@/components/uni-section/uni-section.vue'
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	import uniCollapse from '@/components/uni-collapse/uni-collapse.vue'
-	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'	
+	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'
+	
 	var _self;
 	
 	export default {
 	    components: {
-			uniSection,
 			uniList,
 			uniListItem,
-			uniCollapse,
-			uniCollapseItem,
 			footerNav,
-			headerNav
+			headerNav,
+			uniCollapse,
+			uniCollapseItem
 		},
 		data(){
 			return{
-				dataList:[],	
+				dataList:[],
+				gonggaoList:[],
+				gonggaonum:0,
 				headermsg:'今日提醒,Remind today',
 				footer: 'family',
 				currenttime:'',
@@ -89,6 +95,9 @@
 			},
 			getTime:function(){
 				  _self.getData();
+			},
+			showgg:function(guid){
+				_self.navigateTo('../../users/main/showgonggao?id='+guid);
 			},
 			getData() {
 				let ret = uni.getStorageSync(_self.USERS_KEY);
@@ -132,7 +141,7 @@
 										list.push(item);
 										num = num + item.num*1;
 									}								
-									_self.dataList = list;
+									_self.dataList = list;									
 									
 									if(num == 0){
 										uni.showToast({
@@ -144,7 +153,17 @@
 									break;
 								}
 							}
-					    }
+							
+							//公告内容
+							let list = [];
+							data = res.gonggaolist;
+							_self.gonggaonum = res.gonggaonum;
+							for (var i = 0; i < data.length; i++) {
+								var item = data[i];
+								list.push(item);								
+							}								
+							_self.gonggaoList = list;
+						}
 					},"1","");
 				}			
 			}
@@ -153,6 +172,28 @@
 </script>
 
 <style>	
+	.gglist{
+		background:url(../../../static/img/gonggao.png) 0upx 0upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+		height: 45upx;
+		line-height: 45upx;
+		padding-left: 50upx;
+		overflow: hidden;
+		color:#666;
+	}
+	.gglist ul{
+		list-style-type: none;
+		padding: 0;
+		margin: 0;
+		color:#666;
+	}
+	.gglist ul li{
+		padding: 0;
+		margin: 0;
+	}
+	
+	
 	.title2{
 		
 	}

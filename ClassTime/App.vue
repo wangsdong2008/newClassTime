@@ -71,6 +71,14 @@
 		margin-bottom: 20upx;
 	}
 	
+	.gg{
+		color:#666;
+	}
+	
+	.fz25{
+		font-size: 25upx;
+	}
+	
 	.fz30{
 		font-size: 30upx;
 	}

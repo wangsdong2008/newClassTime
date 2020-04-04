@@ -85,6 +85,11 @@
 				"navigationBarTitleText": "消息详情"
 			}
 		},{
+			"path": "pages/users/main/showgonggao",
+			"style": {				
+				"navigationBarTitleText": "公告详情"
+			}
+		},{
 			"path": "pages/parents/parents/index",
 			"style": {
 				"navigationBarTitleText": "今日提醒",
