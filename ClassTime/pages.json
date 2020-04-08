@@ -107,7 +107,15 @@
 				"app-plus": {
 				    "titleNView": {
 						"autoBackButton":"false",
-				        "buttons": [ 							
+				        "buttons": [
+							{
+							    "text": "北京",
+							    "fontSize":"16",
+							    "float": "left",
+							    "color":"#fff",
+								"right":"50upx",
+								"width":"150upx"
+							},
 				            {
 				                "text": "搜索", 
 				                "fontSize":"16",
@@ -122,6 +130,7 @@
 				            "placeholder": "请输入课程名",
 				            "borderRadius":"50upx",
 				            "backgroundColor": "#fff"
+							
 				        }
 				    }					
 				} 

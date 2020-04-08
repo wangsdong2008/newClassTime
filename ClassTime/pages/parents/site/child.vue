@@ -135,22 +135,24 @@
 						"t":Math.random()
 					   },
 				       hideLoading : true,
-				       success:function (res) {
-						if(res){
+				       success:function (res) {						
+						if(res){							
 							var data = res.list; 
-							if(parseInt(res.status)==0){
-								/* uni.showToast({
-									title: '无数据',
-									icon: 'none',
-								});		 */
-							}else{	
-								let list = [];
-								for (var i = 0; i < data.length; i++) {
-									var item = data[i];
-									list.push(item);
-								}								
-								_self.dataList = list;
-							}					    	
+							if(data != undefined){
+								if(parseInt(res.status)==0){
+									/* uni.showToast({
+										title: '无数据',
+										icon: 'none',
+									});		 */
+								}else{	
+									let list = [];
+									for (var i = 0; i < data.length; i++) {
+										var item = data[i];
+										list.push(item);
+									}								
+									_self.dataList = list;
+								}	
+							}
 						}
 				       }
 				   },"1","");

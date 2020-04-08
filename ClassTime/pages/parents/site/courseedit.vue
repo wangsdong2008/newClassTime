@@ -5,16 +5,16 @@
 			<view class="content sites">
 				<view class="title ctitles fz35">课程管理</view>
 				<view class="register_account_input">				
-					<m-input class="m-input" type="text" clearable focus v-model="c_name" placeholder="填写课程名"></m-input>
+					<m-input class="m-input fz30" type="text" clearable focus v-model="c_name" placeholder="填写课程名"></m-input>
 				</view>
 				<view class="register_account_input">				
-					<m-input class="m-input" type="text" clearable focus v-model="organname" placeholder="填写机构名"></m-input>
+					<m-input class="m-input fz30" type="text" clearable focus v-model="organname" placeholder="填写机构名"></m-input>
 				</view>
 				<view class="register_account_input">				
-					<m-input class="m-input" type="text" clearable focus v-model="c_address" placeholder="机构地点"></m-input>
+					<m-input class="m-input fz30" type="text" clearable focus v-model="c_address" placeholder="机构地点"></m-input>
 				</view>
 				<view class="register_account_input">
-					<m-input class="m-input" type="text" clearable v-model="c_order" placeholder="填写顺序"></m-input>
+					<m-input class="m-input fz30" type="text" clearable v-model="c_order" placeholder="填写顺序"></m-input>
 				</view>
 				<view class="register_account_input form">
 					<radio-group @change="radioChange">
@@ -22,7 +22,7 @@
 						<view>
 							<radio class="radios" :value="item.value" :checked="parseInt(item.value) === is_show" />
 						</view>
-						<view class="radio_text">{{item.name}}</view>
+						<view class="radio_text fz30">{{item.name}}</view>
 						</label>
 						
 					</radio-group>	

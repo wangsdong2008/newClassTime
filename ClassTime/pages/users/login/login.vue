@@ -50,8 +50,8 @@
 				headermsg:'登录,login',
 	            providerList: [],
 				hasProvider: false,
-	            account: '',
-	            password: '',
+	            account: '13816141685',
+	            password: '123123',
 	            positionTop: 0
 	        }
 	    },		
@@ -226,10 +226,10 @@
             _self.initPosition();
             /* _self.initProvider(); */
 			_self.getsession();
-			let ret = _self.getUserInfo();
+			/* let ret = _self.getUserInfo();
 			if(ret){
 				_self.autoLogin();
-			}
+			} */
         }
 	}
 </script>

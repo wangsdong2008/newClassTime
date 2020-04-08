@@ -19,8 +19,8 @@ Vue.prototype.STUDYTIME = "2019-06-01";
 Vue.prototype.Method = "get"; //请求方式
 
 //服务器
-//Vue.prototype.WebUrl = "http://968293.ichengyun.net/";
-Vue.prototype.WebUrl = "http://192.168.1.103/";
+Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
+//Vue.prototype.WebUrl = "http://192.168.1.103/";
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;

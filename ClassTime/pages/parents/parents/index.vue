@@ -16,19 +16,19 @@
 				<view class="clear"></view>
 			</view>
 			<view class="studentlist">
-					<view>
-						<!-- 一般用法 -->
-						<uni-collapse>					
-						    <uni-collapse-item v-for="(item,index) in dataList" v-if="item.num > 0" :title="item.child_name" :index="index" :key="item.child_id" :open="true" :show-arrow="false" :thumb="'../../../static/img/'+(item.sex == '1'?'p_boy.png':'p_gril.png')" :showAnimation="true" class="classlist"  >
-								<uni-list>
-									<uni-list-item v-for="(item2,index2) in item.courselist" :index="index2" :key="item2.cat_id" :show-arrow="false" :title="'【' + item2.c_name + '】--'+item2.organname+'--'+item2.c_address" :show-badge="true" :badge-text="item2.p_time" :show-extra-icon="item2.class_status" :extra-icon="extra1">
-									</uni-list-item>
-									
-								</uni-list>	
-						    </uni-collapse-item>
-						</uni-collapse>
-					</view>
-				</view>
+				
+				<!-- 一般用法 -->
+				<uni-collapse>					
+				    <uni-collapse-item v-for="(item,index) in dataList" v-if="item.num > 0" :title="item.child_name" :index="index" :key="item.child_id" :open="true" :show-arrow="false" :thumb="'../../../static/img/'+(item.sex == '1'?'p_boy.png':'p_gril.png')" :showAnimation="true" class="classlist fz35"  >
+						<uni-list>
+							<uni-list-item v-for="(item2,index2) in item.courselist" :index="index2" :key="item2.cat_id" :show-arrow="false" :title="'【' + item2.c_name + '】--'+item2.organname+'--'+item2.c_address" :show-badge="true" :badge-text="item2.p_time" :show-extra-icon="item2.class_status" :extra-icon="extra1">
+							</uni-list-item>
+							
+						</uni-list>	
+				    </uni-collapse-item>
+				</uni-collapse>
+					
+			</view>
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>
@@ -125,44 +125,48 @@
 					    hideLoading : true,
 					    success:function (res) {
 							var data = res.list;
-							switch(parseInt(res.status)){
-								case 1:{
-									/* uni.showToast({
-										title: '无数据',
-										icon: 'none',
-									});	*/	
-									break; 
+							if(data != undefined){
+								switch(parseInt(res.status)){
+									case 1:{
+										/* uni.showToast({
+											title: '无数据',
+											icon: 'none',
+										});	*/	
+										break; 
+									}
+									case 3:{
+										let num = 0;
+										let list = [];
+										for (var i = 0; i < data.length; i++) {
+											var item = data[i];
+											list.push(item);
+											num = num + item.num*1;
+										}								
+										_self.dataList = list;									
+										
+										if(num == 0){
+											uni.showToast({
+												title: '今天的课已上完',
+												icon: 'none',
+											});	
+										}
+										
+										break;
+									}
 								}
-								case 3:{
-									let num = 0;
-									let list = [];
+								
+								//公告内容
+								let list = [];
+								data = res.gonggaolist;
+								if(data != undefined){
+									_self.gonggaonum = res.gonggaonum;
 									for (var i = 0; i < data.length; i++) {
 										var item = data[i];
-										list.push(item);
-										num = num + item.num*1;
+										list.push(item);								
 									}								
-									_self.dataList = list;									
-									
-									if(num == 0){
-										uni.showToast({
-											title: '今天的课已上完',
-											icon: 'none',
-										});	
-									}
-									
-									break;
+									_self.gonggaoList = list;
 								}
 							}
-							
-							//公告内容
-							let list = [];
-							data = res.gonggaolist;
-							_self.gonggaonum = res.gonggaonum;
-							for (var i = 0; i < data.length; i++) {
-								var item = data[i];
-								list.push(item);								
-							}								
-							_self.gonggaoList = list;
 						}
 					},"1","");
 				}			
@@ -220,14 +224,16 @@
 	}
 	.classlist{
 		margin-bottom: 40upx;
-		border-radius: 25upx;
+		border-radius: 25upx;		
+		padding: 10upx 0px 30upx 0upx;
+		background-color: #66ccff;
+		color:#fff;		
 		
-		padding: 10upx 0px;
 	}
 	.classlist .uni-list{
 		width:90%;
 		margin: 0 auto;
-		border: 2px solid #f00;
+		/* border: 2px solid #f00; */
 	}
 	.classlist .uni-list .uni-list-item{
 		border: none;

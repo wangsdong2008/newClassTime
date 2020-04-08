@@ -15,6 +15,7 @@
 				</uni-list>
 				
 				<uni-list>
+					<!-- <uni-list-item :title="longitude+'---'+latitude" thumb="../../../static/img/help.png" @tap="bindhelp" /> -->
 					<uni-list-item title="帮助文档"   thumb="../../../static/img/help.png" @tap="bindhelp" />
 				</uni-list>
 			</view>
@@ -52,13 +53,32 @@
 				course_name:'',
 				longitude:0,
 				latitude:0,
+				currentaddress:''
 			}
 		},
 		onLoad:function() {
 			_self = this;
-			this.checkLogin(1);
+			_self.checkLogin(1);
 		},
+		onReady:function(){
+			_self.show();
+		},		
 		methods:{
+			show:function(){
+				uni.getLocation({
+				    type: 'wgs84',
+				　　 geocode:true,
+				    success: function (res) {
+						_self.currentaddress = res.address.city;
+						_self.longitude = res.longitude;
+						_self.latitude = res.latitude;
+						var currentWebview = _self.$mp.page.$getAppWebview();  
+						currentWebview.setTitleNViewButtonStyle(0, {  
+						    text: res.address.province,
+						});  
+				    }
+				});
+			},
 			onNavigationBarButtonTap(e) {
 				_self.bindsearch();
 			},		
@@ -76,7 +96,7 @@
 				_self.navigateTo('tiaoke');
 			},
 			bindsearch(){
-				if(_self.longitude == 0){  //没有经纬度的时候，获取经纬度
+				/* if(_self.longitude == 0){  //没有经纬度的时候，获取经纬度
 					//获取经纬度
 					uni.getLocation({
 					  // 默认为 wgs84 返回 gps 坐标，
@@ -92,7 +112,7 @@
 						// this.$api.msg('获取定位失败');
 					  }
 					});
-				}
+				} */
 				if(!service.checkNull(this.course_name)){
 					uni.showToast({
 					    icon: 'none',

@@ -95,6 +95,7 @@
 		padding: 40upx 0upx 0upx 0upx;
 		font-size: 30upx;
 		line-height: 50upx;
+		overflow: hidden;
 	}
 	.times{
 		padding: 20upx 0upx 40upx 0upx;		
