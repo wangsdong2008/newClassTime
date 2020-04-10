@@ -18,11 +18,12 @@
 								</uni-collapse-item>
 							</uni-collapse>
 						</uni-collapse-item>
-					</uni-collapse>				
-					
+					</uni-collapse>	
 				</view>
+				<button type="primary" class="btn" @tap="planadd">添加上课安排</button>	
+				
 			</view>
-			<button type="primary" class="btn" plain="true" @tap="planadd">添加上课安排</button>			
+					
 		</view>
 		<view class="footer">
 			<footerNav :msg="footer"></footerNav>

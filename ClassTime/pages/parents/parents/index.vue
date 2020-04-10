@@ -15,19 +15,29 @@
 				<view class="date">{{currenttime}}</view>
 				<view class="clear"></view>
 			</view>
-			<view class="studentlist">
-				
-				<!-- 一般用法 -->
-				<uni-collapse>					
-				    <uni-collapse-item v-for="(item,index) in dataList" v-if="item.num > 0" :title="item.child_name" :index="index" :key="item.child_id" :open="true" :show-arrow="false" :thumb="'../../../static/img/'+(item.sex == '1'?'p_boy.png':'p_gril.png')" :showAnimation="true" class="classlist fz35"  >
-						<uni-list>
-							<uni-list-item v-for="(item2,index2) in item.courselist" :index="index2" :key="item2.cat_id" :show-arrow="false" :title="'【' + item2.c_name + '】--'+item2.organname+'--'+item2.c_address" :show-badge="true" :badge-text="item2.p_time" :show-extra-icon="item2.class_status" :extra-icon="extra1">
-							</uni-list-item>
-							
-						</uni-list>	
-				    </uni-collapse-item>
-				</uni-collapse>
-					
+			<view class="studentlist">			
+					<view v-for="(item,index) in dataList" v-if="item.num > 0" :index="index" :key="item.child_id" class="classlist fz35">
+						<view>
+							<view :class="{
+								'childname':true,
+								'fz35':true,
+								'imgs1':(item.sex == '1'),
+								'imgs0':(item.sex == '0')
+							}">{{item.child_name}}</view>
+						</view>
+						<view class="clear"></view>
+						<view class="courseList">
+							<ul>
+								<li :class="{
+									'txts':true,
+									'fz30':true,
+									'class_status0':(item2.class_status == '0'),
+									'class_status1':(item2.class_status == '1'),
+									'class_status3':(item2.class_status == '3')
+									}" v-for="(item2,index2) in item.courselist" :index="index2" :key="item2.cat_id">{{item2.p_time+' ' + '【' + item2.c_name + '】-'+item2.organname+'-'+item2.c_address}}</li>
+							</ul>
+						</view>	
+					</view>				
 			</view>
 		</view>
 		<view class="footer">
@@ -35,17 +45,14 @@
 		</view>
 	</view>	
 </template>
-
 <script>
 	import headerNav from "@/components/header/company_header.vue"
 	import footerNav from "@/components/footer/footer_nav.vue"
 	import uniList from '@/components/uni-list/uni-list.vue'
 	import uniListItem from '@/components/uni-list-item/uni-list-item.vue'
 	import uniCollapse from '@/components/uni-collapse/uni-collapse.vue'
-	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'
-	
-	var _self;
-	
+	import uniCollapseItem from '@/components/uni-collapse-item/uni-collapse-item.vue'	
+	var _self;	
 	export default {
 	    components: {
 			uniList,
@@ -149,12 +156,10 @@
 												title: '今天的课已上完',
 												icon: 'none',
 											});	
-										}
-										
+										}										
 										break;
 									}
-								}
-								
+								}								
 								//公告内容
 								let list = [];
 								data = res.gonggaolist;
@@ -176,6 +181,67 @@
 </script>
 
 <style>	
+	.classlist{
+		margin-bottom: 40upx;
+		border-radius: 25upx;		
+		padding: 20upx 0px 30upx 0upx;
+		background-color: #66ccff;
+		color:#fff;	
+		padding-bottom: 40upx;
+	}		
+	.classlist view{
+		width: 90%;
+		margin: 0 auto;
+		margin: 10upx 10upx;	
+		/* border: 1upx solid #f00; */
+	}	
+	.classlist view.childname{
+		width: 85%;
+		float: left;
+		padding-left: 55upx;		
+	}	
+	.classlist view.imgs1{
+		background:url(../../../static/img/p_boy.png) 0upx 0upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}	
+	.classlist view.imgs0{
+		background:url(../../../static/img/p_gril.png) 0upx 0upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}	
+	.classlist image{
+		width: 50upx;
+		height: 50upx;
+		float: left;
+		margin-right: 20upx;
+	}	
+	.classlist view.courseList{
+		width: 95%;
+		margin: 0 auto;
+		background-color: #fff;	
+		border-radius: 15upx;
+	}
+	.classlist view.courseList ul{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	.txts{
+		padding-left: 20upx;
+		color:#999;
+		line-height: 65upx;
+	}
+	
+	.class_status0{
+		color:#666;		
+	}
+	.class_status1{
+		color:#66ccff;
+	}
+	.class_status3{
+		color:#ccc;
+	}
 	.gglist{
 		background:url(../../../static/img/gonggao.png) 0upx 0upx no-repeat;
 		-webkit-background-size: 45upx 45upx;
@@ -196,8 +262,6 @@
 		padding: 0;
 		margin: 0;
 	}
-	
-	
 	.title2{
 		
 	}
@@ -221,19 +285,6 @@
 		font-size: 25upx;
 		height: 60upx;
 		line-height: 60upx;
-	}
-	.classlist{
-		margin-bottom: 40upx;
-		border-radius: 25upx;		
-		padding: 10upx 0px 30upx 0upx;
-		background-color: #66ccff;
-		color:#fff;		
-		
-	}
-	.classlist .uni-list{
-		width:90%;
-		margin: 0 auto;
-		/* border: 2px solid #f00; */
 	}
 	.classlist .uni-list .uni-list-item{
 		border: none;
@@ -262,6 +313,4 @@
 		margin-bottom: 15upx;
 		border-radius: 15upx;
 	}
-	
-	
 </style>

@@ -65,7 +65,7 @@
 		onLoad(){
 			_self = this;
 			_self.checkLogin(1);
-			_self.headermsg = "请假";
+			_self.headermsg = "请假,Ask for leave";
 		},
 		onReady(){
 			_self.show();

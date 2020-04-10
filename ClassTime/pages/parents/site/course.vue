@@ -19,8 +19,8 @@
 				   
 				</uni-collapse>
 			</view>
-			<view class="button-sp-area">
-				<button type="primary" plain="true" @tap="showorganadd">添加课程</button>
+			<view class="btn-row">
+				<button type="primary" class="btn" @tap="showorganadd">添加课程</button>
 			</view>
 		</view>
 	   </view>

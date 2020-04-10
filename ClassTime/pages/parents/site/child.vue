@@ -12,8 +12,8 @@
 					</uni-list>
 					
 				</view>
-				<view class="button-sp-area">
-					<button type="primary" plain="true" @tap="childadd">添加孩子</button>
+				<view class="btn-row">
+					<button type="primary" class="btn"  @tap="childadd">添加孩子</button>
 				</view>
 			</view>
 		</view>

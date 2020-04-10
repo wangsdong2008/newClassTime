@@ -23,7 +23,7 @@
 						<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="recommend" placeholder="推荐人手机号码"></m-input>
 					</view>
 					<view class="btn-row">
-						<button class="btn" type="primary" @tap="register">注册</button>
+						<button class="btn" type="primary" @tap="register">注册新用户</button>
 					</view>	
 				</view>
 			</view>

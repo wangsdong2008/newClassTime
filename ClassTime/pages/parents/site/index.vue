@@ -8,10 +8,10 @@
 				<uni-list>				
 					<uni-list-item title="课程设置"   thumb="../../../static/img/couse.png" @tap="bindCourse" />
 					<uni-list-item title="孩子管理" thumb="../../../static/img/userHL.png" @tap="bindChild" />
-					<uni-list-item title="上课安排" thumb="../../../static/img/plan.png" @tap="bindPlan" />
-					<uni-list-item title="统计" thumb="../../../static/img/etj.png" @tap="bindStatics" />
+					<uni-list-item title="上课安排" thumb="../../../static/img/plan.png" @tap="bindPlan" />					
 					<uni-list-item title="调课" thumb="../../../static/img/tiaoke.png" @tap="bindTiaoke" />
 					<uni-list-item title="请假" thumb="../../../static/img/qingjia.png" @tap="bindQingjia" />
+					<uni-list-item title="统计" thumb="../../../static/img/etj.png" @tap="bindStatics" />
 				</uni-list>
 				
 				<uni-list>
