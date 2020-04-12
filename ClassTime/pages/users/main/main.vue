@@ -5,6 +5,7 @@
 				<view class="header-img"><image :src="childface" mode=""  @click="upload"></image></view>
 				<view class="titles"> <span>{{userinfo.nick_name}}</span></view>	
 			</view>
+			<view class="logo"> </view>
 		</view>	
 		<view class="content">
 			<view class="title">
@@ -52,8 +53,9 @@
 					{"image":"power.png","url":"account","text":"个人资料"},
 					{"image":"password.png","text":"修改密码","url":"modifypassword"},
 					{"image":"mobile5.png","text":"更换手机","url":"modifymobile"},					
-					{image:'message.png',text:'我的消息(0)',url:"messagelist"},
+					{image:'message.png',text:'我的消息(0)',url:"messagelist"},					
 					{image:'system.png',text:'系统升级',url:"download"},
+					{image:'xf.png',text:'续费',url:"pay"},
 				],
 				headermsg:'',
 				footer: 'mine',
@@ -196,10 +198,24 @@
 	    background-size:100% 100%;
 	    padding-bottom:20%;
 		padding-left: 50upx;
+		position: relative;
 	}
 	
 	.login_title_txt{
 		padding-top: 55upx;
+		z-index: 100;
+		position: relative;
+	}
+	
+	.logo{
+		background:url(../../../static/img/logo.png) 0upx 0upx no-repeat;
+		-webkit-background-size: 320upx 320upx;
+		background-size: 320upx 320upx;
+		width:320upx;
+		height: 320upx;
+		position:absolute;
+		top:90upx;
+		left:400upx;
 	}
 	
 	.header-img{
@@ -209,6 +225,7 @@
 		border-radius: 90upx;	
 		border:1upx solid #fff;
 		background-color: #fff;
+		margin-top: 40upx;
 	}
 	
 	.login_center image{

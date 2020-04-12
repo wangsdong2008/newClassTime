@@ -7,13 +7,12 @@
 			</view>		
 			<view class="main-body write lists">
 				<view class="register_account_input">
-					<m-input class="m-input" type="text" clearable v-model="true_name" placeholder="请输入姓名"></m-input>
-				</view>
-				<view class="register_account_input">
 					<m-input class="m-input" type="text" clearable v-model="nick_name" placeholder="请输入昵称"></m-input>
 				</view>
-				
-				<view>
+				<view class="register_account_input">
+					<m-input class="m-input" type="text" clearable v-model="true_name" placeholder="请输入姓名"></m-input>
+				</view>
+				<view class="btn-row">
 					<button type="primary" class="btn" @tap="bindsaveuserinfo">保存</button>
 				</view>
 			</view>	
@@ -71,7 +70,7 @@
 				footer:''
 			}
 		},
-		methods:{
+		methods:{			
 			bindsaveuserinfo(){
 				if(_self.nick_name.trim() == '' || _self.nick_name.trim().length == 0){
 					uni.showToast({

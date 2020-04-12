@@ -1,11 +1,7 @@
 <template>
-	<view class="header-title">
-	    <view class="login_center login_title_txt">
-			<view>
-				{{name}}<br />
-				<span>{{en_name}}</span>
-			</view>			
-		</view>
+	<view class="header-title">		
+		<view class="login_center login_title_txt">{{name}}<br /><span>{{en_name}}</span></view>
+		<view class="logo"> </view>
 	</view>	
 </template>
 
@@ -40,37 +36,36 @@
 
 <style>
 	.header-title{
-		background:url('../../static/img/login_title.png') #ffffff center 0 no-repeat;
-	    background-size:100% 100%;
-	    padding-bottom:20%
-	}
-	.header-img{
-		width:150upx;
-		height: 150upx;
-		margin: 0 auto;
-		overflow: hidden;
-		border-radius: 90upx;	
-		border:1px solid #f00;
-		background-color: #fff;
-		/* background: url(../../static/img/{{_self.face}}.png) 20upx 15upx no-repeat #fff; 
-		background-size: 120upx 120upx;*/
-	}
-	.login_center{
-		width:85%;			
-		margin: 0 auto;
-	}
-	.login_center image{
-		width:150upx;
-		height: 120upx;
-		margin: 0 auto;
+		position: relative;
 	}
 	.login_title_txt{
-	    color:#fff;
-	    font-family:'微软雅黑';
-	    font-size:60upx;
-	    padding-top:90upx;
+		z-index: 100;
+		position: relative;
 	}
-	.login_title_txt span{
-	    font-size: 48upx;
+	.logo{
+		background:url(../../static/img/logo.png) 0upx 0upx no-repeat;
+		-webkit-background-size: 320upx 320upx;
+		background-size: 320upx 320upx;
+		width:320upx;
+		height: 320upx;
+		position:absolute;
+		top:90upx;
+		left:400upx;
+		/* animation:mymove 2s infinite;
+		-webkit-animation:mymove 2s infinite; */ /*Safari and Chrome*/
+		animation-iteration-count:1;
+		-webkit-animation-iteration-count:1;
+		
 	}
+	@keyframes mymove
+	{
+		from {left:0upx;}
+		to {left:400upx;}
+	}
+	
+	@-webkit-keyframes mymove /*Safari and Chrome*/
+	{
+		from {left:0upx;}
+		to {left:400upx;}
+	}	
 </style>

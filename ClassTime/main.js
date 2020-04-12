@@ -42,7 +42,7 @@ Vue.prototype.getSessionUrl = Vue.prototype.GeneralUrl + "getsessionid" //生成
 Vue.prototype.SendSmsUrl = Vue.prototype.GeneralUrl + "sendsms" //发短信
 Vue.prototype.SearchCourseUrl = Vue.prototype.GeneralUrl + "search" //查找机构
 Vue.prototype.showCourseUrl = Vue.prototype.GeneralUrl + "showcourse" //显示课程详情
-
+Vue.prototype.getMemberCostUrl = Vue.prototype.GeneralUrl + "getcost" //获取会员费用
 Vue.prototype.GonggaoshowUrl = Vue.prototype.GeneralUrl + "getarticleshow" //公告内容
 
 Vue.prototype.UpgradeUrl = Vue.prototype.GeneralUrl + "upgrade" //升级申请
