@@ -34,7 +34,13 @@
 									'class_status0':(item2.class_status == '0'),
 									'class_status1':(item2.class_status == '1'),
 									'class_status3':(item2.class_status == '3')
-									}" v-for="(item2,index2) in item.courselist" :index="index2" :key="item2.cat_id">{{item2.p_time+' ' + '【' + item2.c_name + '】-'+item2.organname+'-'+item2.c_address}}</li>
+									}" v-for="(item2,index2) in item.courselist" :index="index2" :key="item2.cat_id">
+									{{item2.p_time+' ' + '【' + item2.c_name + '】'}}
+									<span v-if="item2.organname">{{'-'+item2.organname}}</span>
+									<span v-if="item2.c_address">{{'-'+item2.c_address}}</span>
+									
+									
+									</li>
 							</ul>
 						</view>	
 					</view>				
@@ -78,7 +84,6 @@
 		onLoad(){
 			_self = this;
 			_self.checkLogin(1);
-			
 		},
 		onReady() {
 			var date = new Date();
@@ -87,7 +92,7 @@
 			_self.getData();
 		},
 		created() {
-		    //_self.currentTime();    
+		    _self.currentTime();    
 	    },		
 		methods: {
 			 // 销毁定时器
@@ -98,7 +103,7 @@
 			    }
 			},
 			currentTime(){
-			    setInterval(_self.getTime,60000);
+			    setInterval(_self.getTime,10*60*1000);
 			},
 			getTime:function(){
 				  _self.getData();

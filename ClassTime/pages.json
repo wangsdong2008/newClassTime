@@ -172,6 +172,11 @@
 				"navigationBarTitleText": "上课设置"
 			}
 		},{
+			"path": "pages/parents/site/enlist",
+			"style": {
+				"navigationBarTitleText": "我的报名"
+			}
+		},{
 			"path": "pages/parents/site/tongji",
 			"style": {
 				"navigationBarTitleText": "统计"

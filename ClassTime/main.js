@@ -20,7 +20,7 @@ Vue.prototype.Method = "get"; //请求方式
 
 //服务器
 Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
-//Vue.prototype.WebUrl = "http://192.168.1.103/";
+Vue.prototype.WebUrl = "http://192.168.1.103/";
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
@@ -69,6 +69,7 @@ Vue.prototype.ChildWeekUrl = Vue.prototype.ParentUrl + "childweeklist" //某一�
 Vue.prototype.ModifyChildPlanUrl = Vue.prototype.ParentUrl + "childplanmodify" //某一孩子修改或者添加计划
 Vue.prototype.DelChildPlanUrl = Vue.prototype.ParentUrl + "childplandel" //删除某一孩子的计划
 Vue.prototype.ShowChildPlanUrl = Vue.prototype.ParentUrl + "childplanshow" //显示某一计划 
+Vue.prototype.AllEnlistUrl = Vue.prototype.ParentUrl + "getallenlist" //获取所有报名课程
 
 Vue.prototype.GetDayChildCourseUrl = Vue.prototype.ParentUrl + "getdaychildcourselist" //获取某个孩子某天的课程
 Vue.prototype.updateChildCourseTiaokeSignUrl = Vue.prototype.ParentUrl + "updatechildcoursetiaokesign" //更新调课内容
@@ -261,6 +262,7 @@ Vue.prototype.checkLogin = function(identity){
 		});
 	}
 	let status = 1;
+	//检查身份,1为家长 2为机构 3为老师
 	if(parseInt(identity) > 0){ //检查此人身份能否查看这个栏目里面的内容
 		if(parseInt(identity) == parseInt(ret.identity)) {
 			status = 1;

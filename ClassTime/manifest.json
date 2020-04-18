@@ -1,6 +1,6 @@
 {
-    "name" : "ClassTime",
-    "appid" : "__UNI__3FB3BF0",
+    "name" : "学时",
+    "appid" : "__UNI__com.xueshi.xueshi",
     "description" : "",
     "versionName" : "1.0.0",
     "versionCode" : "100",
@@ -25,6 +25,7 @@
             /* android打包配置 */
             "android" : {
                 "permissions" : [
+                    "<uses-permission android:name=\"android.permission.CHANGE_COMPONENT_ENABLED_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
                     "<uses-permission android:name=\"android.permission.CONTROL_LOCATION_UPDATES\"/>"
                 ]
