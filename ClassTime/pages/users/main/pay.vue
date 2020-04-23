@@ -194,6 +194,7 @@
 				_self.payid = evt.detail.value;
 			},
 			bindpay(){
+				let alipay = _self.payAccount.alipaylist;
 				let payid = parseInt(_self.payid);
 				let nums = parseInt(_self.num);	
 				let cguid = _self.dataList[nums].c_guid;
@@ -274,7 +275,7 @@
 								price = res.membercostlist.c_price;
 								order_sn = res.membercostlist.order_sn;
 								currentday = res.membercostlist.currentday;
-								var orderInfo = 'app_id=2016101800715949&biz_content=shike&charset=utf-8&method=alipay.trade.app.pay&notify_url=http://www.a.com/index/notify/notifyy&out_trade_no='+order_sn+'&product_code=QUICK_MSECURITY_PAY&sign_type=RSA2&subject=mysql&timestamp='+currentday+'&total_amount='+price+'&version=1.0&sign=';
+								var orderInfo = 'app_id='+alipay.app_id+'&biz_content='+alipay.biz_content+'&charset='+alipay.charset+'&method='+alipay.method+'&notify_url='+alipay.notify_url+'&out_trade_no='+order_sn+'&product_code='+alipay.product_code+'&sign_type='+alipay.sign_type+'&subject=mysql&timestamp='+currentday+'&total_amount='+price+'&version=1.0&sign=';
 								uni.requestPayment({
 									provider: 'alipay',
 									orderInfo: orderInfo, // 订单数据

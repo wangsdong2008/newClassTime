@@ -6,7 +6,7 @@
 				<view class="pinyin">xueshi</view>
 			</view>
 			<view class="center mainpic">
-				<image src="../../../static/img/indeximg.png" mode=""></image>
+				<view class="biglogo" :style="'background:url('+biglogo+') 0upx 0upx no-repeat;-webkit-background-size: 556upx 466upx;background-size: 556upx 466upx;'"></view>
 			</view>
 			<view class="center detail">
 				轻松掌握<br />孩子每天的学习课程和时间
@@ -27,13 +27,25 @@
 		onLoad(){
 			_self = this;
 			_self.checkLogin(0);
+			_self.init();
 		},
+			
 		data(){
 			return{
-				
+				biglogo:''				
 			}
 		},
 		methods:{
+			init(){
+				debugger;
+				let ret = _self.getUserInfo();
+				if(!ret){					
+					return false;
+				}
+				else{
+					_self.biglogo = ret.biglogo;
+				}
+			},
 			bindLogin(){
 				let url = "users/login/login";
 				let Storage = this.getUserInfo();
@@ -62,6 +74,11 @@
 </script>
 
 <style>
+	.biglogo{
+		width:556upx;
+		height: 466upx;
+		margin: 0 auto;
+	}
 	.btn{
 		border: 1upx #007AFF solid;
 		height: 85upx;

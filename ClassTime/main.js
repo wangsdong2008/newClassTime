@@ -18,9 +18,24 @@ Vue.prototype.temp_status = 0; //临时状态,调试用,=1时,debugger起作用
 Vue.prototype.STUDYTIME = "2019-06-01";
 Vue.prototype.Method = "get"; //请求方式
 
+Vue.prototype.payAccount = {
+	"alipaylist":{
+		"app_id":"2016041201288514",
+		"biz_content":"会员续费",
+		"method":"alipay.trade.app.pay",
+		"charset":"utf-8",
+		"notify_url":"http://crm.yigugu.cn/alipay.trade.page.pay-PHP-UTF-8/return_url.php",
+		"product_code":"QUICK_MSECURITY_PAY",
+		"sign_type":"RSA2"		
+	},
+	"wxlist":{
+		"app_id":"12345678"
+	}
+}; //支付帐号
+
 //服务器
 Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
-Vue.prototype.WebUrl = "http://192.168.1.103/";
+//Vue.prototype.WebUrl = "http://192.168.1.103/";
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
@@ -838,12 +853,12 @@ Vue.prototype.sendRequest = function(param, backtype,backpage){
     var timestamp = Date.parse(new Date());//时间戳
     data["timestamp"] = timestamp;
     // #ifdef MP-WEIXIN
-    data["device"] = "wxapp";
-    data["ver"] = "1.1.30";
+		data["device"] = "wxapp";
+		data["ver"] = "1.1.30";
     // #endif
     // #ifdef APP-PLUS || H5
-    data["device"] = "iosapp";
-    data["ver"] = "1.0.0";
+		data["device"] = "iosapp";
+		data["ver"] = "1.0.0";
     // #endif
     //请求方式:GET或POST(POST需配置header: {'content-type' : "application/x-www-form-urlencoded"},)
     if(method){

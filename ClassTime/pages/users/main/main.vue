@@ -5,7 +5,8 @@
 				<view class="header-img"><image :src="childface" mode=""  @click="upload"></image></view>
 				<view class="titles"> <span>{{userinfo.nick_name}}</span></view>	
 			</view>
-			<view class="logo"> </view>
+			<view class="logo" :style="'background:url('+logo+') 0upx 0upx / 320upx 320upx no-repeat;'"> </view>
+			
 		</view>	
 		<view class="content">
 			<view class="title">
@@ -60,7 +61,8 @@
 				headermsg:'',
 				footer: 'mine',
 				version_num:0,
-				version_url:''
+				version_url:'',
+				logo:''
 			}
 		},
 		methods:{
@@ -107,11 +109,16 @@
 			},
 			show(){
 				let ret = _self.getUserInfo();
+							
+				
+				if(!ret){					
+					return false;
+				}
 				const data = {
 				    guid: ret.guid,
 				    token: ret.token
-				};				
-				
+				};	
+				_self.logo = ret.logo;
 				_self.getData(data);
 			},
 			getData(data){
@@ -208,9 +215,6 @@
 	}
 	
 	.logo{
-		background:url(../../../static/img/logo.png) 0upx 0upx no-repeat;
-		-webkit-background-size: 320upx 320upx;
-		background-size: 320upx 320upx;
 		width:320upx;
 		height: 320upx;
 		position:absolute;

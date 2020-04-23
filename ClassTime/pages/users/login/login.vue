@@ -146,7 +146,9 @@
 				        				is_brithday:data.is_brithday, //是否显示生日功能
 										true_name:data.true_name,
 										pay_status:data.pay_status,
-										power:data.power //权限
+										power:data.power ,//权限
+										"logo":data.logo,
+										"biglogo":data.biglogo
 				        			}
 				        			
 				        			let url = '';

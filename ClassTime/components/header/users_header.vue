@@ -1,7 +1,7 @@
 <template>
 	<view class="header-title">		
 		<view class="login_center login_title_txt">{{name}}<br /><span>{{en_name}}</span></view>
-		<view class="logo"> </view>
+		<view class="logo" :style="'background:url('+logo+') 0upx 0upx no-repeat;-webkit-background-size: 320upx 320upx;background-size: 320upx 320upx;'"> </view>
 	</view>	
 </template>
 
@@ -29,6 +29,14 @@
 				let arr = this.msgarr.split(",");
 				this.name = arr[0];
 				this.en_name = arr[1];
+			
+				let ret = this.getUserInfo();
+				if(!ret){					
+					return false;
+				}
+				else{
+					this.logo = ret.logo;
+				}
 			}
 		}
 	}
@@ -43,9 +51,9 @@
 		position: relative;
 	}
 	.logo{
-		background:url(../../static/img/logo.png) 0upx 0upx no-repeat;
+		/* background:url(../../static/img/logo.png) 0upx 0upx no-repeat; 
 		-webkit-background-size: 320upx 320upx;
-		background-size: 320upx 320upx;
+		background-size: 320upx 320upx;*/
 		width:320upx;
 		height: 320upx;
 		position:absolute;
