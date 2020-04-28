@@ -37,7 +37,6 @@
 		},
 		methods:{
 			init(){
-				debugger;
 				let ret = _self.getUserInfo();
 				if(!ret){					
 					return false;

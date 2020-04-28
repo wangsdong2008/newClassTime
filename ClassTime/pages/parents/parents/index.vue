@@ -37,10 +37,8 @@
 									}" v-for="(item2,index2) in item.courselist" :index="index2" :key="item2.cat_id">
 									{{item2.p_time+' ' + '【' + item2.c_name + '】'}}
 									<span v-if="item2.organname">{{'-'+item2.organname}}</span>
-									<span v-if="item2.c_address">{{'-'+item2.c_address}}</span>
-									
-									
-									</li>
+									<span v-if="item2.c_address">{{'-'+item2.c_address}}</span>									
+								</li>
 							</ul>
 						</view>	
 					</view>				
@@ -153,15 +151,15 @@
 											var item = data[i];
 											list.push(item);
 											num = num + item.num*1;
-										}								
+										}		
 										_self.dataList = list;									
 										
-										if(num == 0){
+										/* if(num == 0){
 											uni.showToast({
 												title: '今天的课已上完',
 												icon: 'none',
 											});	
-										}										
+										}			 */							
 										break;
 									}
 								}								
@@ -189,7 +187,7 @@
 	.classlist{
 		margin-bottom: 40upx;
 		border-radius: 25upx;		
-		padding: 20upx 0px 30upx 0upx;
+		padding: 4upx 0px 30upx 0upx;
 		background-color: #66ccff;
 		color:#fff;	
 		padding-bottom: 40upx;
@@ -197,7 +195,7 @@
 	.classlist view{
 		width: 90%;
 		margin: 0 auto;
-		margin: 10upx 10upx;	
+		margin: 6upx 10upx 10upx 10upx;	
 		/* border: 1upx solid #f00; */
 	}	
 	.classlist view.childname{
@@ -239,7 +237,7 @@
 	}
 	
 	.class_status0{
-		color:#666;		
+		color:#333;		
 	}
 	.class_status1{
 		color:#66ccff;
