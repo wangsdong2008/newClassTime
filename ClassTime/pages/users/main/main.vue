@@ -132,7 +132,10 @@
 							let data = res;
 							if(data.status == 3){
 								_self.userinfo = data.userinfo;
-								_self.childface = _self.PicUrl + 'users' + data.userinfo.face;
+								let face = data.userinfo.face;
+								if(face != null ){
+									_self.childface = _self.PicUrl + 'users' + data.userinfo.face;
+								}								
 								_self.dataList[3].text = "我的消息("+data.messagenum+")";
 								
 								let vlist = data.versionlist; //获取最新版本信息

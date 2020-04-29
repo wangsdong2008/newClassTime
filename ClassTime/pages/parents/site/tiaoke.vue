@@ -41,7 +41,7 @@
 					</view>
 				</view>
 				
-				<view class="register_account_input clear">
+				<view class="register_account_input clear" v-if="time_status == 1">
 					<view class="uni-list-cell-left fz30">选择时间：</view>
 					<view class="searchinput input-txt">
 						<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">
@@ -98,6 +98,7 @@
 				date:'==请选择日期==',
 				date1:'==请选择日期==',
 				time:'==请选择时间==',
+				time_status:1,
 				dateid:'',
 				dateid1:'',
 				
@@ -163,6 +164,11 @@
 								let idlist = [];
 								list.push("==请选择课程==");
 								idlist.push(0);
+								if(courselist.length > 0){
+									list.push("当天全部课程");
+									idlist.push(999);
+								}
+								
 								for (var i = 0; i < courselist.length; i++) {
 									var item = courselist[i];
 									list.push(item.c_name+"("+item.p_time+")");
@@ -189,7 +195,13 @@
 			},
 			CoursePickerChange:function(e){
 				console.log('picker发送选择改变，携带值为', e.target.value+"===="+_self.course_dataList[e.target.value] + _self.course_dataIDList[e.target.value]);
-				_self.course_id = _self.course_dataIDList[e.target.value];
+				let courseid = _self.course_dataIDList[e.target.value];
+				_self.course_id = courseid;
+				if(courseid == 999){
+					_self.time_status = 0;
+				}else{
+					_self.time_status = 1;
+				}				
 				_self.course_index = e.target.value;
 			},
 			bindmodify(){
@@ -221,12 +233,15 @@
 					});
 					return;
 				}
-				if(_self.time == '' || _self.time == undefined){
-					uni.showToast({
-					    icon: 'none',
-					    title: '请选择调上课时间'
-					});
-					return;
+				
+				if(_self.time_status == 1){
+					if(_self.time == '' || _self.time == undefined){
+						uni.showToast({
+							icon: 'none',
+							title: '请选择调上课时间'
+						});
+						return;
+					}
 				}
 				
 				let ret = _self.getUserInfo();

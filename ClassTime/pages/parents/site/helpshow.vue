@@ -6,7 +6,7 @@
 				<view class="title ctitles fz35">帮助文档</view>		
 				<view class="main-body write lists">
 					<view class="titles ll fz30">{{article_title}}</view>
-					<view class="contents ll fz30" v-html="article_content"></view>
+					<view class="hcontents ll fz30" v-html="article_content"></view>
 					<view class="times ll fz30">{{article_time}}</view>
 				</view>
 				
@@ -85,13 +85,13 @@
 		
 </script>
 
-<style>	
+<style>		
 	.ctitles{
 		background:url(../../../static/img/help.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
-		background-size: 40upx 40upx;
+		background-size: 40upx 40upx;		
 	}
-	.contents{
+	.hcontents{
 		padding: 40upx 0upx 0upx 0upx;
 		font-size: 30upx;
 		line-height: 50upx;
@@ -113,7 +113,7 @@
 	}
 	.lists{
 		border:1upx solid #eaeaea;
-		width:96%;
+		width:100%;
 		margin: 0 auto;
 		margin-top: 40upx;
 		padding-top: 30upx;

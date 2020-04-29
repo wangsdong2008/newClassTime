@@ -59,7 +59,7 @@
 		data(){
 			return{
 				dataList:[],				
-				headermsg:'上课安排,Class Plan',
+				headermsg:'学习时间安排,Study Plan',
 				footer: ''
 			}
 		},

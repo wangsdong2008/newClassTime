@@ -90,11 +90,11 @@
 				items: [
 					{
 						value: '1',
-						name: '开启'
+						name: '启用'
 					},
 					{
 						value: '0',
-						name: '关闭'
+						name: '禁用'
 					}
 				],
 				footer: ''
