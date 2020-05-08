@@ -16,7 +16,7 @@ Vue.prototype.Temp_KEY = "tempinfo";
 Vue.prototype.temp_status = 0; //临时状态,调试用,=1时,debugger起作用
 
 Vue.prototype.STUDYTIME = "2019-06-01";
-Vue.prototype.Method = "get"; //请求方式
+Vue.prototype.Method = "post"; //请求方式
 
 Vue.prototype.payAccount = {
 	"alipaylist":{
@@ -26,7 +26,7 @@ Vue.prototype.payAccount = {
 		"charset":"utf-8",
 		"notify_url":"http://crm.yigugu.cn/alipay.trade.page.pay-PHP-UTF-8/return_url.php",
 		"product_code":"QUICK_MSECURITY_PAY",
-		"sign_type":"RSA2"		
+		"sign_type":"RSA2"
 	},
 	"wxlist":{
 		"app_id":"12345678"
@@ -35,7 +35,7 @@ Vue.prototype.payAccount = {
 
 //服务器
 Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
-Vue.prototype.WebUrl = "http://192.168.1.103/";
+//Vue.prototype.WebUrl = "http://192.168.1.103/";
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;
@@ -836,7 +836,8 @@ Vue.prototype.sendRequest = function(param, backtype,backpage){
 	data = param.data || {}, 
 	token = "",
 	hideLoading = param.hideLoading || false;        
-        
+    
+	//console.log("当前url:" + url);
     //拼接完整请求地址
     var requestUrl = url;
     //固定参数:仅仅在小程序绑定页面通过code获取token的接口默认传递了参数token = login
@@ -878,7 +879,7 @@ Vue.prototype.sendRequest = function(param, backtype,backpage){
         uni.showLoading({title:'加载中...'});
     }
     
-    console.log("网络请求start");
+    //console.log("网络请求start");
     //网络请求
     uni.request({
         url: requestUrl,
@@ -915,7 +916,7 @@ Vue.prototype.sendRequest = function(param, backtype,backpage){
             typeof param.success == "function" && param.success(res.data);
         },
         fail: (e) => {
-            console.log("网络请求fail:" + JSON.stringify(e));
+            //console.log("网络请求fail:" + JSON.stringify(e));
             uni.showModal({
                 //content:"" + e.errMsg + "==" +requestUrl
 				content:"" + e.errMsg
@@ -923,7 +924,7 @@ Vue.prototype.sendRequest = function(param, backtype,backpage){
             typeof param.fail == "function" && param.fail(e.data);
         },
         complete: () => {
-            console.log("网络请求complete");
+            //console.log("网络请求complete");
             if (!hideLoading) {
                 uni.hideLoading();
             }
