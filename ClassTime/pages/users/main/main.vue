@@ -54,8 +54,7 @@
 					{"image":"power.png","url":"account","text":"个人资料"},
 					{"image":"password.png","text":"修改密码","url":"modifypassword"},
 					{"image":"mobile5.png","text":"更换手机","url":"modifymobile"},					
-					{image:'message.png',text:'我的消息(0)',url:"messagelist"},					
-					{image:'system.png',text:'系统升级',url:"download"},
+					{image:'message.png',text:'我的消息(0)',url:"messagelist"},
 					{image:'xf.png',text:'续费',url:"pay"},
 				],
 				headermsg:'',
@@ -138,13 +137,13 @@
 								}								
 								_self.dataList[3].text = "我的消息("+data.messagenum+")";
 								
-								let vlist = data.versionlist; //获取最新版本信息
+								/* let vlist = data.versionlist; //获取最新版本信息
 								let soft_Version = parseFloat(_self.version); //此软件版本号
 								let version_num = parseFloat(vlist.v_num);
 								if(version_num > soft_Version){
 									_self.dataList[4].text = "系统升级(new)";
 									_self.version_url = vlist.v_url;
-								}
+								} */
 								
 								
 							}

@@ -1,7 +1,7 @@
 {
     "name" : "学时",
     "appid" : "__UNI__com.xueshi.xueshi",
-    "description" : "",
+    "description" : "安排孩子的学习时间",
     "versionName" : "1.0.0",
     "versionCode" : "100",
     "transformPx" : false,
@@ -25,15 +25,18 @@
             /* android打包配置 */
             "android" : {
                 "permissions" : [
-                    "<uses-permission android:name=\"android.permission.CHANGE_COMPONENT_ENABLED_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
-                    "<uses-permission android:name=\"android.permission.CONTROL_LOCATION_UPDATES\"/>"
-                ]
+                    "<uses-permission android:name=\"android.permission.INSTALL_LOCATION_PROVIDER\"/>"
+                ],
+                "targetSdkVersion" : 26
             },
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {},
+            "sdkConfigs" : {
+                "payment" : {
+                    "alipay" : {}
+                }
+            },
             "icons" : {
                 "android" : {
                     "hdpi" : "unpackage/res/icons/72x72.png",
@@ -66,7 +69,8 @@
                     }
                 }
             }
-        }
+        },
+        "nvueLaunchMode" : "fast"
     },
     /* 快应用特有相关 */
     "quickapp" : {},

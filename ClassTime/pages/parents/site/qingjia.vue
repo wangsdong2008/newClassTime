@@ -32,6 +32,14 @@
 					</view>
 				</view>
 				
+				<view class="register_account_input clear">
+					<view class="uni-list-cell-left fz30">请假原因：</view>
+					<view class="searchinput input-txt">
+						<m-input class="m-textarea" type="text" clearable focus v-model="reason" placeholder="请假原因"></m-input>
+					</view>
+				</view>
+				
+				
 				<view class="btn-row">
 					<button type="primary" class="primary btn" @tap="bindmodify">{{btntxt}}</button>
 				</view>
@@ -87,6 +95,8 @@
 				course_index:0,
 				course_dataList:[],
 				course_dataIDList:[],
+				
+				reason:'',
 				
 				btntxt:"请假",
 				footer: ''
@@ -213,6 +223,7 @@
 							"cid":_self.course_id,
 							"dateid1":_self.dateid1,
 							"time":_self.time,
+							"reason":_self.reason,
 							"t":Math.random()
 					   },
 				       hideLoading : false,
@@ -298,7 +309,9 @@
 							list.push("==请选择课程==");
 							idlist.push(0);												
 							_self.course_dataList = list;
-							_self.course_dataIDList = idlist;				
+							_self.course_dataIDList = idlist;	
+										
+							_self.reason = "";
 							
 						}
 				    }
@@ -309,6 +322,14 @@
 </script>
 
 <style>	
+	.m-textarea{
+		border:1px solid #ccc;				
+		border-radius: 50upx;
+		width:400upx;
+		height: 75upx;
+		line-height: 75upx;
+		padding-left: 40upx;
+	}
 	.ctitles{
 		background:url(../../../static/img/qingjia.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
