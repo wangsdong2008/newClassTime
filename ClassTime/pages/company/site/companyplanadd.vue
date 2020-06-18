@@ -771,13 +771,13 @@
 						
 				if(_self.uid == 0){
 					_self.week_dataList = [					
-						{"weektext":'一',"weekid":'1',"shower":true,"utime":_self.ptime,"uaddress":'','givetime':'18:01','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-						{"weektext":'二',"weekid":'2',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:02','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-						{"weektext":'三',"weekid":'3',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:03','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-						{"weektext":'四',"weekid":'4',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:04','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-						{"weektext":'五',"weekid":'5',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:05','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-						{"weektext":'六',"weekid":'6',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:06','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
-						{"weektext":'日',"weekid":'0',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:07','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
+						{"weektext":'一',"weekid":'1',"shower":true,"utime":_self.ptime,"uaddress":'','givetime':'00:00:00','giveaddress':'','backtime':'00:00:00',"classroom_index":0,"fan_status":0},
+						{"weektext":'二',"weekid":'2',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'00:00:00','giveaddress':'','backtime':'00:00:00',"classroom_index":0,"fan_status":0},
+						{"weektext":'三',"weekid":'3',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'00:00:00','giveaddress':'','backtime':'00:00:00',"classroom_index":0,"fan_status":0},
+						{"weektext":'四',"weekid":'4',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'00:00:00','giveaddress':'','backtime':'00:00:00',"classroom_index":0,"fan_status":0},
+						{"weektext":'五',"weekid":'5',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'00:00:00','giveaddress':'','backtime':'00:00:00',"classroom_index":0,"fan_status":0},
+						{"weektext":'六',"weekid":'6',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'00:00:00','giveaddress':'','backtime':'00:00:00',"classroom_index":0,"fan_status":0},
+						{"weektext":'日',"weekid":'0',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'00:00:00','giveaddress':'','backtime':'00:00:00',"classroom_index":0,"fan_status":0},
 					];
 				}
 				else{

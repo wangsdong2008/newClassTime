@@ -19,7 +19,7 @@
 				<button class="btn" type="submit" cursor @tap="bindLogin" >登录</button>
 			</view>
 			<view class="action-row">
-			    <navigator url="../reg/reg" @tap="bindRegister">注册账号</navigator>
+			    <navigator url="../reg/reg">注册账号</navigator>
 			    <text>|</text>
 			    <navigator url="../pwd/pwd">取回密码</navigator>
 			</view>
@@ -60,19 +60,16 @@
 		    ...mapMutations(['login']),
 			getsession(){
 				_self.getcurrentsession();	
-			},
-			bindRegister(){
-				_self.navigateTo('../reg/reg');
-			},
+			},			
 			bindLogin() {
                 /**
                  * 客户端对账号信息进行一些必要的校验。
                  * 实际开发中，根据业务需要进行处理，这里仅做示例。
                  */
-                if (_self.account.length < 5) {
+                if (_self.account.length != 11) {
                     uni.showToast({
                         icon: 'none',
-                        title: '账号最短为 5 个字符'
+                        title: '请输入手机号码'
                     });
                     return;
                 }

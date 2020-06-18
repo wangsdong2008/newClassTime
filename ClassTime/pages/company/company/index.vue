@@ -33,7 +33,7 @@
 				<view class="piclist">
 					<!-- 一般用法 -->
 					<uni-grid :column="3" :show-border="false"  :square="false">
-						<uni-grid-item>											
+						<uni-grid-item>	
 							<image src="../../../static/img/usign.png" @tap="bindsksign"></image>
 							<text class="text" @tap="bindsksign">上课签到</text>
 						</uni-grid-item>				    
