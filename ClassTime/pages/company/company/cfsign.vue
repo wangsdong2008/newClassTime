@@ -11,7 +11,7 @@
 						<uni-list-item :show-arrow="false" :show-badge="true">
 							<uni-list v-if="parseInt(item2.students_num) > 0" v-for="(item2,index2) in item.categorylist" :index="index2" :key="item2.cat_id"> 
 								<uni-list-item class="list-title2" :show-arrow="false" :show-badge="true" :title="'【'+item2.cat_name+'】'"></uni-list-item>
-								<uni-list-item v-for="(item3,index3) in item2.studentslist" :index="index3" :key="item3.uid" :show-arrow="false" :show-badge="true" :scroll-y="true">
+								<uni-list-item class="studentsclass" v-for="(item3,index3) in item2.studentslist" :index="index3" :key="item3.uid" :show-arrow="false" :show-badge="true" :scroll-y="true">
 									<view>
 										<label class="checkbox">
 											<checkbox :value="item.com_id.toString()+'-'+item2.cat_id.toString()+'-'+item3.uid.toString()" :checked="ulist.indexOf(item.com_id+'-'+item2.cat_id+'-'+item3.uid)>=0" />
@@ -222,6 +222,10 @@
 
 
 <style>	
+	.studentsclass image{
+		width:50upx;
+		height: 50upx;
+	}
 	.ctitles{
 		background:url(../../../static/img/eat.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;

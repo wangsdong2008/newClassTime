@@ -269,6 +269,7 @@ Vue.prototype.quit = function(){
 
 //检查用户登录状态
 Vue.prototype.checkLogin = function(identity){
+	//debugger;
 	let that = this;
 	let ret = that.getUserInfo();
 	if(ret == undefined || ret == "" || ret.identity == undefined || ret.identity == ""){
@@ -287,7 +288,7 @@ Vue.prototype.checkLogin = function(identity){
 	}
 	
 	if(status == 1){		
-		/* var now = new Date();
+		var now = new Date();
 		var year = now.getFullYear(); //得到年份
 		var month = now.getMonth();//得到月份
 		var date = now.getDate();//得到日期
@@ -339,7 +340,7 @@ Vue.prototype.checkLogin = function(identity){
 					}
 				
 			},"1",""); 
-		}*/
+		}
 	}else{
 		try {
 			uni.removeStorageSync(that.USERS_KEY);
