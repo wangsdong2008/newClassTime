@@ -26,17 +26,19 @@
 		},	
 		methods:{
 			init(){
+				//debugger;
 				let arr = this.msgarr.split(",");
 				this.name = arr[0];
 				this.en_name = arr[1];
 			
-				let ret = this.getUserInfo();
+				/* let ret = this.getUserInfo();
 				if(!ret){					
 					return false;
 				}
 				else{
-					this.logo = ret.logo;
-				}
+					this.logo = _self.logo;
+				} */
+				
 			}
 		}
 	}

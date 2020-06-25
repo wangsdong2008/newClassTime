@@ -135,8 +135,8 @@
 					return false;
 				}
 				
-				this.sendRequest({
-				       url : this.ModifyChildrenUrl,
+				_self.sendRequest({
+				       url : _self.ModifyChildrenUrl,
 				       method : _self.Method,
 				       data : {
 							"guid": ret.guid,
@@ -212,8 +212,8 @@
 				}
 			},
 			getData(data){
-				this.sendRequest({
-				       url : this.ShowChildrenUrl,
+				_self.sendRequest({
+				       url : _self.ShowChildrenUrl,
 				       method : _self.Method,
 				       data : {
 						"guid": data.guid,

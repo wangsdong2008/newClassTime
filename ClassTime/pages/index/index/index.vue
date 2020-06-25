@@ -32,22 +32,22 @@
 			
 		data(){
 			return{
-				biglogo:''				
+				//biglogo:''				
 			}
 		},
 		methods:{
 			init(){
-				let ret = _self.getUserInfo();
+				/* let ret = _self.getUserInfo();
 				if(!ret){					
 					return false;
 				}
 				else{
 					_self.biglogo = ret.biglogo;
-				}
+				} */
 			},
 			bindLogin(){
 				let url = "users/login/login";
-				let Storage = this.getUserInfo();
+				let Storage = _self.getUserInfo();
 				if(Storage != "[]"){
 					switch(parseInt(Storage.identity))
 					{

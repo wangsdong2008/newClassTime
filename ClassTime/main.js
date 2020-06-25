@@ -16,7 +16,7 @@ Vue.prototype.Temp_KEY = "tempinfo";
 Vue.prototype.temp_status = 0; //临时状态,调试用,=1时,debugger起作用
 
 Vue.prototype.STUDYTIME = "2019-06-01";
-Vue.prototype.Method = "post"; //请求方式
+Vue.prototype.Method = "get"; //请求方式
 
 Vue.prototype.payAccount = {
 	"alipaylist":{
@@ -35,7 +35,9 @@ Vue.prototype.payAccount = {
 
 //服务器
 Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
-//Vue.prototype.WebUrl = "http://192.168.1.103/";
+//Vue.prototype.WebUrl = "http://192.168.1.104/";
+Vue.prototype.biglogo = "../../../static/img/indeximg.png";
+Vue.prototype.logo = "../../../static/img/logo.png";
 
 //图片地址
 Vue.prototype.PicUrl = Vue.prototype.WebUrl + "uploadfile/" ;

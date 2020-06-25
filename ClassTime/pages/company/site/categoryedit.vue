@@ -32,6 +32,20 @@
 						</view>
 					</view>
 					
+					<view class="register_account_input form">
+						<view class="left_txt">状态：</view>
+						<view class="cell-right">
+							<radio-group @change="radioChange">
+								<label class="uni-list-cell uni-list-cell-pd" v-for="(item, index) in items" :key="item.value">
+								<view>
+									<radio class="radios" :value="item.value" :checked="parseInt(item.value) == is_show" />
+								</view>
+								<view class="radio_text fz30">{{item.name}}</view>
+								</label>							
+							</radio-group>
+						</view>
+					</view>
+					
 					<view class="register_account_input">
 						<m-input class="m-input" type="text" clearable v-model="cat_order" placeholder="填写顺序"></m-input>
 					</view>
@@ -101,10 +115,25 @@
 						value: '1',
 						name: '托班'
 					}
-				]
+				],
+				is_show:'1',
+				items: [
+					{
+						value: '1',
+						name: '启用'
+					},
+					{
+						value: '0',
+						name: '禁用'
+					}
+				],
 			}
 		},
 		methods:{
+			radioChange: function(evt) {
+				var current = evt.detail.value;
+				_self.is_show = current;	
+			},
 			wtChange: function(evt) {
 				var current = evt.detail.value;
 				_self.wt_status = current;	
@@ -152,6 +181,7 @@
 							"sorder":_self.cat_order,
 							"comid":_self.com_id,
 							"wt_status":_self.wt_status,
+							"is_show":_self.is_show,
 							"t":Math.random()
 						},
 				        hideLoading : false,
@@ -246,12 +276,13 @@
 				        					idlist.push(item.com_id);
 				        				}								
 				        				_self.cList = list;
-				        				_self.cIDList = idlist;
+				        				_self.cIDList = idlist;										
 				        				
 				        				if(_self.cat_id > 0){
 				        					data = res.categorylist;									
 				        					_self.cat_name = data.cat_name;									
 				        					_self.cat_order = data.cat_order.toString();
+											_self.is_show = data.is_show.toString();
 											
 											let content = data.cat_content;
 											if(content != ''){

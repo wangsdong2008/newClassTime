@@ -62,14 +62,15 @@
 				let arr = this.msgarr.split(",");
 				this.name = arr[0];
 				this.en_name = arr[1];
-				
+				//debugger;
+				/* 
 				let ret = this.getUserInfo();
 				if(!ret){					
 					return false;
 				}
 				else{
 					this.logo = ret.logo;
-				}
+				} */
 			}
 		}
 	}
