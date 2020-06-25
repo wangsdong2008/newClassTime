@@ -231,6 +231,9 @@
 		width:50upx;
 		height: 50upx;
 	}
+	.list-title2{
+		background-color: #eee;
+	}
 	.ctitles{
 		background:url(../../../static/img/clock.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
