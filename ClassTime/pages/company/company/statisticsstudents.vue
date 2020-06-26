@@ -201,6 +201,7 @@
 				    				_self.c_id = catid;
 				    				_self.cList = list;
 				    				_self.cIDList = idlist;
+									_self.cindex = 0;
 				    			}else{
 				    				uni.showToast({
 				    					title: '无数据2',
@@ -236,7 +237,7 @@
 				_self.dindex = e.target.value; 
 			},
 			pickerCourseChange:function(e){
-				console.log('picker发送选择改变，携带值为', e.target.value+"===="+_self.cList[e.target.value] + _self.cIDList[e.target.value]);
+				console.log('课程picker发送选择改变，携带值为', e.target.value+"===="+_self.cList[e.target.value] + _self.cIDList[e.target.value]);
 				_self.c_id = _self.cIDList[e.target.value];
 				_self.cindex = e.target.value; 
 			}

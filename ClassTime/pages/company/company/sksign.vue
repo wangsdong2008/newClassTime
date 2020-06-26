@@ -176,7 +176,6 @@
 				var str = '';
 				var num = 0;				
 				let companylist = items;
-				//debugger;
 				_self.ulist = [];
 				for (var i = 0; i < companylist.length; i++) {
 					let item = companylist[i];
