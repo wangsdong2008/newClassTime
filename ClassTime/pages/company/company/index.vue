@@ -9,21 +9,31 @@
 				</view>
 				<view class="title">今日上课 </view>
 				<view class="studentlist">
-					<!-- 包含图片 -->					
-					<uni-list v-for="(item,index) in dataList" :index="index" :key="item.com_id">
-						<uni-list-item v-if="parseInt(item.category_num) > 0" class="list-title" :title="item.com_name" :show-arrow="false" :show-badge="true" thumb="../../../static/img/company.png" ></uni-list-item>
-						<uni-list-item :show-arrow="false" :show-badge="true">
-							<uni-list v-if="parseInt(item2.students_num) > 0" v-for="(item2,index2) in item.categorylist" :index="index2" :key="item2.cat_id"> 
-								<uni-list-item class="list-title2" :show-arrow="false" :show-badge="true" :title="'【'+item2.cat_name+'】'" thumb="../../../static/img/course.png"></uni-list-item>
-								<uni-list-item :show-arrow="false" :show-badge="false" >
-									<uni-list>
-										<uni-list-item class="studentsclass" v-for="(item3,index3) in item2.studentslist" :title="item3.uname" :note="item3.detail" :show-arrow="false" :show-badge="true" :scroll-y="true" :badge-text="item3.time" :thumb="item3.sex_img" :index="index3" :key="item3.uid">
-										</uni-list-item> 
-									</uni-list>
-								</uni-list-item>
-							</uni-list>
-						</uni-list-item>
-					</uni-list>
+					<ul v-for="(item,index) in dataList" :index="index" :key="item.com_id">
+						<li v-if="parseInt(item.category_num) > 0" class="list-title list">
+						{{item.com_name}}
+							<ul v-if="parseInt(item2.students_num) > 0" v-for="(item2,index2) in item.categorylist" :index="index2" :key="item2.cat_id">							
+								<li class="list-title2 list">{{item2.cat_name}}
+									<ul>
+										<li v-for="(item3,index3) in item2.studentslist" :index="index3" :key="item3.uid" :class="{
+											'studentsclass':true,
+											 'xb1':(item3.sex==1),
+											 'xb0':(item3.sex==0),
+											 'xblist':true
+											}">{{item3.uname}} <span class="time0">{{item3.time}}</span>
+											<view class="times">
+												<ul>
+													<li>体温记录</li>
+												</ul>												
+											</view>
+											
+										</li>
+									</ul>
+									
+								</li>
+							</ul>
+						</li>
+					</ul>
 				</view>
 			</view>		
 		</view>
@@ -204,8 +214,71 @@
 </script>
 
 <style>
+	.studentlist ul{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	.list{
+		line-height: 45upx;
+		padding-left:50upx;		
+		margin-bottom: 40upx;
+	}
+	.list-title{
+		font-weight: bold;
+		background: url(../../../static/img/company.png) no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}
+	.list-title2{		
+		font-weight: normal;
+		background: url(../../../static/img/course.png) no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+		margin-top: 10upx;
+	}
+	.studentsclass{
+		padding-left: 20upx;
+		font-size: 35upx;
+		line-height: 50upx;
+		height: 50upx;
+	}
+	.xb1{
+		background:url(../../../static/img/boy.png) 0upx 10upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}
+	.xb0{
+		background:url(../../../static/img/gril.png) 0upx 10upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}
+	.xblist{
+		line-height: 60upx;
+		height: 60upx;
+		padding-left: 60upx;
+		position: relative;
+	}
+	.time0{
+		margin-left: 20upx;
+	}
+	
+	.times{
+		position: absolute;
+		right: 20upx;
+		top:2upx;
+		/* border: 1px solid #f00; */
+		width:auto;
+		padding: 0upx 10upx;
+		font-size: 30upx;
+	}	
+	.times ul li{
+		float: left;
+		margin-right: 10upx;
+	}
 	.gglist{
 		background:url(../../../static/img/gonggao.png) 0upx 10upx no-repeat;
+		padding-left:40upx;
 		-webkit-background-size: 45upx 45upx;
 		background-size: 45upx 45upx;
 		height: 45upx;
@@ -226,16 +299,6 @@
 		margin: 0;
 	}
 	
-	
-	.studentsclass{
-		padding-left: 20upx;
-	}
-	.list-title2{
-		/* border-bottom:#0FAEFF 1rpx solid; */
-	}
-    .list-title{
-		font-weight: bold;
-	}
 	.systempiclist image{
 		width: 80upx;
 		height: 80upx;
