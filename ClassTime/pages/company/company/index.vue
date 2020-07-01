@@ -23,10 +23,9 @@
 											}">{{item3.uname}} <span class="time0">{{item3.time}}</span>
 											<view class="times">
 												<ul>
-													<li>体温记录</li>
+													<li><span @tap="bindtw(item3.uid,item.com_id)">体温记录</span></li>
 												</ul>												
-											</view>
-											
+											</view>											
 										</li>
 									</ul>
 									
@@ -35,6 +34,10 @@
 						</li>
 					</ul>
 				</view>
+				<!-- 提交信息 -->
+				<uni-popup ref="dialogInput" type="dialog" @change="change">
+					<uni-popup-dialog mode="input" title="记录学生体温" value="" placeholder="请输入学生体温" @confirm="dialogInputConfirm"></uni-popup-dialog>
+				</uni-popup>
 			</view>		
 		</view>
 		<view>
@@ -93,12 +96,21 @@
 	import uniListItem from "@/components/uni-list-item/uni-list-item.vue"
 	import uniGrid from "@/components/uni-grid/uni-grid.vue"
 	import uniGridItem from "@/components/uni-grid-item/uni-grid-item.vue"
+	
+	import uniPopupMessage from '@/components/uni-popup/uni-popup-message.vue'
+	import uniPopupDialog from '@/components/uni-popup/uni-popup-dialog.vue'
+	import uniPopupShare from '@/components/uni-popup/uni-popup-share.vue'
+	
     import footerNav from "@/components/footer/footer_nav.vue"
+	
 	var _self;
 	
 	export default {
 	    components: {
-			uniList,uniListItem,uniGrid,uniGridItem,footerNav
+			uniList,uniListItem,uniGrid,uniGridItem,footerNav,
+			uniPopupMessage,
+			uniPopupDialog,
+			uniPopupShare
 		},
 		data(){
 			return{
@@ -107,7 +119,9 @@
 				is_brithday:0,
 				footer: 'company',
 				gonggaoList:[],
-				gonggaonum:0
+				gonggaonum:0,
+				com_id:0, //公司id
+				sid:0 //学生id
 			}
 		},
 		onLoad:function() {	
@@ -120,6 +134,61 @@
 		methods: {
 			showgg:function(guid){
 				_self.navigateTo('../../users/main/showgonggao?id='+guid);
+			},
+			/**
+			 * popup 状态发生变化触发
+			 * @param {Object} e
+			 */
+			change(e) {
+				console.log('popup ' + e.type + ' 状态', e.show)
+			},
+			/**
+			 * 输入对话框的确定事件
+			 */
+			dialogInputConfirm(done, val) {				
+				/* uni.showLoading({
+					title: '3秒后会关闭'
+				})
+				//console.log(val);
+				//this.value = val;
+				setTimeout(() => {
+					uni.hideLoading()
+					// 关闭窗口后，恢复默认内容
+					done()
+				}, 2000); */
+				let ret = uni.getStorageSync(_self.USERS_KEY);
+				if(!ret){
+					return false;
+				}
+				const data = {
+				    guid: ret.guid,
+				    token: ret.token,
+					"comid":_self.com_id,
+					"temperature":val,
+					"sid":_self.sid,
+					"t":Math.random()
+				};
+				_self.sendRequest({
+					url : _self.SetStudentsTemperatureUrl,
+					method : _self.Method,
+					data : data,
+					hideLoading : false,
+					success:function (res) {
+						if(res){
+							var data = res.list;
+							if(parseInt(res.status) == 3){
+								done();
+							}
+						}
+					}
+				},"1","");
+				
+				
+			},
+			bindtw(sid,comid){
+				_self.sid = sid;
+				_self.com_id = comid;
+				_self.$refs.dialogInput.open();
 			},
 			bindsystem(){
 				_self.navigateTo('../site/index');
@@ -221,8 +290,8 @@
 	}
 	.list{
 		line-height: 45upx;
-		padding-left:50upx;		
-		margin-bottom: 40upx;
+		padding-left:50upx;	
+		margin-bottom: 20upx;
 	}
 	.list-title{
 		font-weight: bold;
@@ -235,13 +304,14 @@
 		background: url(../../../static/img/course.png) no-repeat;
 		-webkit-background-size: 45upx 45upx;
 		background-size: 45upx 45upx;
-		margin-top: 10upx;
+		margin-top: 20upx;
 	}
 	.studentsclass{
 		padding-left: 20upx;
 		font-size: 35upx;
 		line-height: 50upx;
 		height: 50upx;
+		margin-top: 20upx;
 	}
 	.xb1{
 		background:url(../../../static/img/boy.png) 0upx 10upx no-repeat;

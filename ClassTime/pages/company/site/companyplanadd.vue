@@ -574,7 +574,7 @@
 				},"1","");
 			},
 			radiofanChange:function(e,num){
-				debugger;
+				//debugger;
 				num = parseInt(num);
 				if(num == 0) num = 7;
 				_self.week_dataList[num-1].fan_status = e.target.value;

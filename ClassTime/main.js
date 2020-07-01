@@ -35,7 +35,7 @@ Vue.prototype.payAccount = {
 
 //服务器
 Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
-//Vue.prototype.WebUrl = "http://192.168.1.104/";
+//Vue.prototype.WebUrl = "http://www.a.com/";
 Vue.prototype.biglogo = "../../../static/img/indeximg.png";
 Vue.prototype.logo = "../../../static/img/logo.png";
 
@@ -105,8 +105,9 @@ Vue.prototype.GetAllStudents = Vue.prototype.CompanyUrl + "getallstudents"  //�
 Vue.prototype.GetStudentsDetail = Vue.prototype.CompanyUrl + "getstudentsdetail" //学生的详细资料
 Vue.prototype.GetStudentsCategory = Vue.prototype.CompanyUrl + "getstudentscategory"//学生所报的课程分类
 Vue.prototype.GetStudentssign = Vue.prototype.CompanyUrl + "getstudentssign" //学生签到查询
-Vue.prototype.SetsignUrl = Vue.prototype.CompanyUrl + "setsign"
+Vue.prototype.SetsignUrl = Vue.prototype.CompanyUrl + "setsign" //设置签到
 Vue.prototype.GetBirthdaytStudentsUrl = Vue.prototype.CompanyUrl + "getbirthdaystudents"  //获取一周内过生日的学生
+Vue.prototype.SetStudentsTemperatureUrl = Vue.prototype.CompanyUrl + "savestudentstemperature"  //保存体温
 
 Vue.prototype.GetAllSubCompanyUrl = Vue.prototype.CompanyUrl + "getsubcompanylist"  //获取子公司
 Vue.prototype.GetCompanyCategory = Vue.prototype.CompanyUrl + "getcompanycategory"  //获取子公司的培训课程

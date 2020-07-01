@@ -501,7 +501,7 @@
 		},
 		methods:{
 			sexChange: function(evt) {
-				debugger;
+				//debugger;
 				var current = evt.detail.value;
 				_self.sex = current;	
 			},

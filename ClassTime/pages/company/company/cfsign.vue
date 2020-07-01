@@ -148,24 +148,29 @@
 				
 			},			
 			bindSelectAll:function(){
-				//debugger;
-				_self.isCheckedAll = !_self.isCheckedAll
-				if (_self.isCheckedAll) {
-					// 全选时
-					_self.ulist = [];					
-				    _self.dataList.forEach(function (item) {						
-						var categorylist = item.categorylist;
-						for(var j = 0; j < categorylist.length; j++ ){
-							var studentslist = categorylist[j].studentslist;
-							for(var k = 0; k < studentslist.length; k++){
-								var value = item.com_id + '-' + categorylist[j].cat_id + '-' + studentslist[k].uid;
-								_self.ulist.push(value);
-							}
-						}
-					}, _self);				  
-				} else {
-				  _self.ulist = [];
-				}
+			   let str = ''
+			   _self.isCheckedAll = !_self.isCheckedAll
+			   if (_self.isCheckedAll) {
+			   	// 全选时
+			   	_self.ulist = [];					
+			       _self.dataList.forEach(function (item) {						
+			   		var categorylist = item.categorylist;
+			   		for(var j = 0; j < categorylist.length; j++ ){
+			   			var studentslist = categorylist[j].studentslist;
+			   			for(var k = 0; k < studentslist.length; k++){
+			   				var value = item.com_id + '-' + categorylist[j].cat_id + '-' + studentslist[k].uid;
+			   				str += value + ",";
+			   				_self.ulist.push(value);
+			   			}
+			   		}
+			   	}, _self);				  
+			   } else {
+			     _self.ulist = [];
+			   }
+			   if(str != ''){
+			   	str = str.substr(0,str.length-1);					
+			   }
+			   _self.selectid = str;
 			},
 			checkboxChange: function (e) {
 				var items = _self.dataList;

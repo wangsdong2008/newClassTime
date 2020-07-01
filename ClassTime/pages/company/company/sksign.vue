@@ -145,7 +145,6 @@
 				},"1","");
 			},
 			bindSelectAll:function(){
-				//debugger;
 				let str = ''
 				_self.isCheckedAll = !_self.isCheckedAll
 				if (_self.isCheckedAll) {
