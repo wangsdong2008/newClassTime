@@ -135,6 +135,7 @@
 					    hideLoading : true,
 					    success:function (res) {
 							var data = res.list;
+							debugger;
 							if(data != undefined){
 								switch(parseInt(res.status)){
 									case 1:{
@@ -152,14 +153,7 @@
 											list.push(item);
 											num = num + item.num*1;
 										}		
-										_self.dataList = list;									
-										
-										/* if(num == 0){
-											uni.showToast({
-												title: '今天的课已上完',
-												icon: 'none',
-											});	
-										}			 */							
+										_self.dataList = list;
 										break;
 									}
 								}								
@@ -168,11 +162,13 @@
 								data = res.gonggaolist;
 								if(data != undefined){
 									_self.gonggaonum = res.gonggaonum;
-									for (var i = 0; i < data.length; i++) {
-										var item = data[i];
-										list.push(item);								
-									}								
-									_self.gonggaoList = list;
+									if(res.gonggaonum*1 > 0){
+										for (var i = 0; i < data.length; i++) {
+											var item = data[i];
+											list.push(item);								
+										}								
+										_self.gonggaoList = list;
+									}
 								}
 							}
 						}

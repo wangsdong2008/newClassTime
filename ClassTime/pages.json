@@ -279,6 +279,16 @@
 			"style": {
 				"navigationBarTitleText": "员工统计"
 			}
+		},{
+			"path": "pages/company/company/statisticstw",
+			"style": {
+				"navigationBarTitleText": "体温统计"
+			}
+		},{
+			"path": "pages/company/company/statisticstwresult",
+			"style": {
+				"navigationBarTitleText": "体温统计"
+			}
 		},
 		{
 			"path": "pages/company/company/birthday",

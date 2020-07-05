@@ -36,6 +36,18 @@
 			        </view>
 			    </uni-collapse-item>
 			</uni-collapse>
+			
+			<uni-collapse>
+			    <uni-collapse-item title="体温查询" thumb="../../../static/img/tw.png">
+			        <view style="padding: 30rpx;">
+			           <uni-list>
+						   <uni-list-item title="单人查询"  @tap="bindtw" :show-arrow="true" /></uli-list-item>
+						   <!-- <uni-list-item title="整体查询" @tap="" :show-arrow="true" /></uli-list-item> -->
+					   </uni-list>
+			        </view>
+			    </uni-collapse-item>
+			</uni-collapse>
+			
 		</view>
 			
 		</view>
@@ -73,6 +85,9 @@
 			}
 		},
 		methods:{
+			bindtw(){
+				_self.navigateTo('statisticstw');
+			},
 			bindtj(id){
 				if(id == 3){
 					_self.navigateTo('statisticsmember?id='+id);	

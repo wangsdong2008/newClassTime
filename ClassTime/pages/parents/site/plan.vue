@@ -4,21 +4,45 @@
 		<view class="contents">
 			<view class="content sites">
 				<view class="title ctitles fz35">一周学习时间安排</view>
-				<view>
-					<!-- 一般用法 -->
-					<uni-collapse accordion="true">					
-						<uni-collapse-item v-for="(item,index) in dataList" :title="item.child_name" :open="item.open" :thumb="'../../../static/img/'+(item.sex==1?'p_boy':'p_gril')+'.png'" :show-arrow="true" :index="index" :key="item.child_id" class="colbg">
-							<uni-collapse>
-								<uni-collapse-item :open="true" :option="true" v-for="(item2,index2) in item.weeklist" :title="item2.weekname" :show-arrow="true" class="colweek" :index="index2" :key="item2.weekid">
-									<uni-list>
-										<uni-list-item :show-arrow="false" v-for="(item3,index3) in item2.list" :title="item3.c_name + '（'+item3.p_time +'）' " :index="index3" :key="item3.cat_id">
-											<view class="statuslist"><span @tap="showplan(item3.p_id)">修改</span><span @tap="delplan(item3.p_id)">删除</span></view>
-										</uni-list-item>
-									</uni-list>
-								</uni-collapse-item>
-							</uni-collapse>
-						</uni-collapse-item>
-					</uni-collapse>	
+				<view class="contentslist">
+					<ul class="childlist">
+						<li v-for="(item,index) in dataList" :show-arrow="true" :index="index" :key="item.child_id"  :class="{'xb1':(item.sex==1),
+						'xb0':(item.sex==0),
+						'xblist':true,
+						'clist':true,
+						'activer':item.open
+						}" v-on:click = "changeweek(index)">
+						<span class="childname">{{item.child_name}}</span>
+						<ul :class="{
+							'weeklists':true,
+							'showchild':item.open,
+							'hidechild':!item.open
+						}">
+							<li :open="true" :option="true" v-for="(item2,index2) in item.weeklist" :index="index2" :show-arrow="true" :class="{
+								'colweek':true,
+								'activer2':item.open
+							}"  v-on:click = "changeweek2(item.child_id,index2)" @click.stop="doSomething($event)">
+								<span class="weekname">{{item2.weekname}}
+									<view :class="{
+										'activer_list':true,
+										'activer_icon_channel':!item2.open,
+										'activer_icon':item2.open
+									}"></view>
+								</span>
+								<ul class="plsit" :class="{
+										'showchild':item2.open,
+										'hidechild':!item2.open
+									}">
+									<li :show-arrow="false" v-for="(item3,index3) in item2.list" :index="index3" :key="item3.p_id">
+										<view class="courselistname">{{item3.c_name + '（'+item3.p_time +'）'}}</view>
+										<view class="modi">修改</view>
+										<view class="clear"></view>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						</li>
+					</ul>
 				</view>
 				<button type="primary" class="btn" @tap="planadd">添加上课安排</button>	
 				
@@ -64,6 +88,20 @@
 			}
 		},
 		methods:{
+			doSomething(e){
+				 try{
+				        e.stopPropagation();//非IE浏览器
+				    }
+				    catch(e){
+				        window.event.cancelBubble = true;//IE浏览器
+				    }   
+			},
+			changeweek(id){
+				_self.dataList[id*1].open = !_self.dataList[id*1].open;
+			},
+			changeweek2(childid,weekid){
+				_self.dataList[childid*1-1]['weeklist'][weekid].open = !_self.dataList[childid*1-1]['weeklist'][weekid].open;
+			},
 			show(){
 				let ret = _self.getUserInfo();
 				if(!ret){
@@ -76,16 +114,16 @@
 				_self.getData(data);
 			},
 			getData(data){
-				this.sendRequest({
-			       url : this.ChildWeekUrl,
+				_self.sendRequest({
+			       url : _self.ChildWeekUrl,
 			       method : _self.Method,
 			       data : {
 						"guid": data.guid,
 						"token":data.token,
 						"t":Math.random()
 					},
-			       hideLoading : true,
-			       success:function (res) {
+			       hideLoading : false,
+			       success:function (res) {					  
 					if(res){
 						var data = res.childlist; 
 						if(parseInt(res.status) == 3){
@@ -118,8 +156,8 @@
 				    guid: ret.guid,
 				    token: ret.token
 				};
-				this.sendRequest({
-				       url : this.DelChildPlanUrl,
+				_self.sendRequest({
+				       url : _self.DelChildPlanUrl,
 				       method : _self.Method,
 				       data : {
 						"guid": data.guid,
@@ -152,7 +190,7 @@
 				   },"1","");
 			},
 			showplan(id){
-				this.navigateTo('./planshow?id='+id);
+				_self.navigateTo('./planshow?id='+id);
 			}
 		}
 	}
@@ -160,6 +198,82 @@
 </script>
 
 <style>	
+	.weekname{
+		font-size: 30upx;
+	}
+	.showchild{
+		display: block;
+	}
+	.hidechild{
+		display: none;
+	}
+	ul{
+		list-style-type: none;
+		margin: 0px;
+		padding: 0;
+	}
+	.childname{
+		margin-left: 40upx;
+	}
+	ul.weeklists{
+		background-color: #fff;
+		border-radius: 20upx;
+		padding:0px;
+		margin: 0;
+		padding-left: 40upx;
+		margin-bottom: 20upx;
+	}
+	ul.plsit{
+		padding:0px;
+		margin: 0;
+		padding-left: 40upx;
+		background-color: #fff;
+	}
+	.courselistname{
+		float: left;
+		font-size: 30upx;
+	}
+	.modi{
+		float: right;
+		margin-right: 20upx;
+		font-size: 30upx;
+	}
+	.clist{
+		background-color: #EAEAEA;
+		color: #000;
+		padding:15upx 20upx;
+		border-radius: 25upx;
+		margin-bottom: 40upx;
+		line-height: 65upx;		
+	}
+	.activer{
+		background-color: #66CCFF;
+		color: #fff;
+	}
+	.activer2{
+		border-radius: 5upx;
+		padding-left: 20upx;
+		color: #fff;	
+		position: relative;
+	}	
+	.activer_icon{
+		background:url(../../../static/img/down.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;		
+	}
+	.activer_icon_channel{
+		background:url(../../../static/img/up.png) 10upx 25upx no-repeat;
+		-webkit-background-size: 40upx 40upx;
+		background-size: 40upx 40upx;
+	}
+	.activer_list{
+		width:60upx;
+		height: 60upx;
+		float: right;
+		top:0upx;
+		margin-right: 20upx;
+	}
+	
 	.ctitles{
 		background:url(../../../static/img/plan.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;

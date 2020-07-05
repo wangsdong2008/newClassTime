@@ -23,7 +23,7 @@
 											}">{{item3.uname}} <span class="time0">{{item3.time}}</span>
 											<view class="times">
 												<ul>
-													<li><span @tap="bindtw(item3.uid,item.com_id)">体温记录</span></li>
+													<li><span @tap="bindtw(item3.uid,item2.cat_id,item.com_id)">体温记录</span></li>
 												</ul>												
 											</view>											
 										</li>
@@ -166,6 +166,7 @@
 					"comid":_self.com_id,
 					"temperature":val,
 					"sid":_self.sid,
+					"catid":_self.cat_id,
 					"t":Math.random()
 				};
 				_self.sendRequest({
@@ -185,8 +186,9 @@
 				
 				
 			},
-			bindtw(sid,comid){
+			bindtw(sid,cat_id,comid){
 				_self.sid = sid;
+				_self.cat_id = cat_id;
 				_self.com_id = comid;
 				_self.$refs.dialogInput.open();
 			},

@@ -7,15 +7,15 @@
 			<view>
 				<!-- 一般用法 -->
 				<uni-collapse>					
-				    <uni-collapse-item v-for="(item,index) in dataList" :index="index" :key="item.cat_id" :title="'【'+item.c_name+'】'" thumb="../../../static/img/course.png" :open="false" :class="{
-						'showclass':(item.is_show == 0)						
-					}">
-						<uni-list>
-							<uni-list-item :show-arrow="false" :title="item.organname" thumb="../../../static/img/mechanismHL.png"></uni-list-item>
-							<uni-list-item :show-arrow="false" :title="'地址：'+item.c_address" thumb="../../../static/img/addressHL.png">	</uni-list-item>
-							<uni-list-item :show-arrow="false"><view class="statuslist"><span @tap="showorgan(item.c_id)">修改</span><span @tap="delorgan(item.c_id)">删除</span></view></uni-list-item>
-						</uni-list>	
-				    </uni-collapse-item>
+				   <uni-collapse-item v-for="(item,index) in dataList" :index="index" :key="item.c_id" :title="'【'+item.c_name+'】'" thumb="../../../static/img/course.png" :open="false" :class="{
+				   						'showclass':(item.is_show == 0)						
+				   					}">
+				   						<uni-list>
+				   							<uni-list-item :show-arrow="false" :title="item.organname" thumb="../../../static/img/mechanismHL.png"></uni-list-item>
+				   							<uni-list-item :show-arrow="false" :title="'地址：'+item.c_address" thumb="../../../static/img/addressHL.png">	</uni-list-item>
+				   							<uni-list-item :show-arrow="false"><view class="statuslist"><span @tap="showorgan(item.c_id)">修改</span><span @tap="delorgan(item.c_id)">删除</span></view></uni-list-item>
+				   						</uni-list>	
+				   				    </uni-collapse-item>
 				   
 				</uni-collapse>
 			</view>
@@ -153,10 +153,10 @@
 						   "token":data.token,
 						   "t":Math.random()
 					   },
-				       hideLoading : true,
+				       hideLoading : false,
 				       success:function (res) {
 							if(res){
-								var data = res.list; 
+								var data = res.list;
 								if(parseInt(res.status) == 3){
 									let list = [];
 									for (var i = 0; i < data.length; i++) {
@@ -164,7 +164,7 @@
 										list.push(item);
 									}								
 									_self.dataList = list;
-								}					    	
+								}    	
 							}
 				       }
 				   },"1","");

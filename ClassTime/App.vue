@@ -154,5 +154,19 @@
 		padding-top: 20upx;
 		background-color: #fff;
 	}
-	
+	.xb1{
+		background:url(./static/img/boy.png) 10upx 20upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}
+	.xb0{
+		background:url(./static/img/gril.png) 10upx 20upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}
+	.xblist{
+		line-height: 60upx;
+		padding-left: 60upx;
+		position: relative;
+	}
 </style>

@@ -172,7 +172,9 @@ Vue.prototype.GetAllSubCompanyMemberlistUrl = Vue.prototype.CompanyUrl + "getsub
 Vue.prototype.GetAllSubCompanyMemberStatisticsUrl = Vue.prototype.CompanyUrl + "getsubcompanymemberstatistics" //员工统计数据
 
 
+Vue.prototype.GetTwtatisticsUrl = Vue.prototype.CompanyUrl + "gettwtatistics" //某学生的体温数据查询
 Vue.prototype.GetAllSubCompanyCategoryByComidUrl = Vue.prototype.CompanyUrl + "getsubcompanycategory"  //通过com_id获取子公司所有分类
+Vue.prototype.GetAllStudentsByComidCatidUrl = Vue.prototype.CompanyUrl + "getstudentsbycategory"  //通过com_id，catid获取所有学生
 //常用函数
 //获取年份
 Vue.prototype.GetStudyYear = function () {	
