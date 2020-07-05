@@ -5,21 +5,24 @@
 			<view class="content sites">
 				<view class="title ctitles fz35">体温查询</view>
 				<view class="icenter bg">
-					
-					<view class="register_account_input">
+					<view class="input2 fz35">公司：</view>
+					<view class="searchinput input-txt">
 						<picker @change="pickerCompanyChange($event)" :value="cindex" :range="cList">
 							<view class="uni-input fz35">{{cList[cindex]}}</view>
 						</picker>
 					</view>
 					<view class="clear"></view>
-					<view class="register_account_input">
+					
+					<view class="input2 fz35">课程：</view>
+					<view class="searchinput input-txt">
 						<picker @change="categoryPickerChange($event)" :value="category_index" :range="category_dataList">
 							<view class="uni-input fz35">{{category_dataList[category_index]}}</view>
 						</picker>
 					</view>
 					<view class="clear"></view>
 					
-					<view class="register_account_input">
+					<view class="input2 fz35">学生：</view>
+					<view class="searchinput input-txt">
 						<picker @change="studentsPickerChange($event)" :value="students_index" :range="students_dataList">
 							<view class="uni-input fz35">{{students_dataList[students_index]}}</view>
 						</picker>
@@ -27,7 +30,8 @@
 					<view class="clear"></view>
 					
 					
-					<view class="register_account_input">
+					<view class="input2 fz35">月份：</view>
+					<view class="searchinput input-txt">
 						<picker @change="pickerDateChange($event)" :value="dindex" :range="dateList">
 							<view class="uni-input fz35">{{dateList[dindex]}}</view>
 						</picker>
@@ -321,10 +325,12 @@
 	}
 	.icenter .input2{
 		width:20%;
+		line-height: 60upx;
+		height: 60upx;
 	}
 	.icenter .input-txt{		
 		width: 65%;
-		border:1upx solid #eeeeee;
+		border:1upx solid #ccc;
 		line-height: 55upx;
 		height: 55upx;
 		padding-left: 60upx;
