@@ -14,11 +14,21 @@
 						<button type="primary" class="searchbtn fz30 bdr" plain="true" @tap="searchstudents">搜索</button>
 				</view>
 				<view class="searchlist">
-					<uni-list>
-						<uni-list-item v-for="(item,index) in dataList" :show-arrow="false" :title="item.uname" :index="index" :key="item.uid" :thumb="'../../../static/img/'+(item.sex==1?'boy':'gril')+'.png'" >
+					<ul>
+						<li v-for="(item,index) in dataList" :index="index" :key="item.uid" :class="{
+											'slist':true,
+											 'xb1':(item.sex==1),
+											 'xb0':(item.sex==0),
+											 'xblist':true
+											}">
+							<view :class="{
+								'sname':true,
+								'shows':(item.is_show == 0)
+								}">{{item.uname}}</view>
 							<view class="statuslist fz30"><span @tap="studentsedit(item.uid)">修改</span><span @tap="studentsdel(item.uid)">删除</span></view>
-							</uni-list-item>
-					</uni-list>	
+							<view class="clear"></view>
+						</li>
+					</ul>					
 				</view>			
 				<view class="example-body">
 					<uni-pagination @change="handlePage" :show-icon="true" :total="total" :current="page" :pageSize="pagesize" title="标题文字" />
@@ -235,6 +245,52 @@
 </script>
 
 <style>
+	.shows{
+		color:#ccc;
+	}
+	.xb1{
+		background:url(../../../static/img/boy.png) 0upx 10upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}
+	.xb0{
+		background:url(../../../static/img/gril.png) 0upx 10upx no-repeat;
+		-webkit-background-size: 45upx 45upx;
+		background-size: 45upx 45upx;
+	}
+	.xblist{
+		line-height: 60upx;
+		height: 60upx;
+		padding-left: 60upx;
+		position: relative;
+	}
+	.time0{
+		margin-left: 20upx;
+	}
+	
+	.searchlist ul{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		padding-left: 20upx;
+		padding-top: 40upx;
+	}
+	li.slist{
+		line-height: 60upx;
+		margin-bottom: 40upx;
+		padding-bottom: 20upx;
+		position: relative;
+		border-bottom:1upx #ccc solid;
+	}
+	.sname{
+		float: left;
+	}
+	.statuslist{
+		position: absolute;
+		right: 20upx;
+		top:0upx
+	}
+	
 	.ctitles{
 		background:url(../../../static/img/students.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;

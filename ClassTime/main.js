@@ -16,7 +16,7 @@ Vue.prototype.Temp_KEY = "tempinfo";
 Vue.prototype.temp_status = 0; //临时状态,调试用,=1时,debugger起作用
 
 Vue.prototype.STUDYTIME = "2019-06-01";
-Vue.prototype.Method = "get"; //请求方式
+Vue.prototype.Method = "post"; //请求方式
 
 Vue.prototype.payAccount = {
 	"alipaylist":{

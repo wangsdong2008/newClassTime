@@ -196,8 +196,8 @@
 				if(!ret){
 					return false;
 				}	
-					this.sendRequest({
-				        url : this.UpdateStudentsInfoUrl,
+					_self.sendRequest({
+				        url : _self.UpdateStudentsInfoUrl,
 				        method : _self.Method,
 				        data : {
 							"guid": ret.guid,
@@ -480,11 +480,12 @@
 								_self.class_dataIDList = idlist;
 								if(_self.uid == 0)	_self.class_index = 0;
 								
-								var data = res.studentslist;
+								var data = res.studentslist;								
 				    			if(parseInt(res.status) == 3){
 				    				_self.uname = data.uname;
 									_self.sex = data.sex;
 									_self.teacher = data.teacher;
+									_self.is_show = data.is_show;
 									
 									
 									var birthday1 = data.birthday;
