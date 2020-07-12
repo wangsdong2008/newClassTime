@@ -19,11 +19,14 @@
 											'studentsclass':true,
 											 'xb1':(item3.sex==1),
 											 'xb0':(item3.sex==0),
+											 'qj':(item3.sign_status == 2),
+											 'green':(item3.sign_status == 1),
 											 'xblist':true
 											}">{{item3.uname}} <span class="time0">{{item3.time}}</span>
-											<view class="times">
+											<view class="times" v-if="(item3.sign_status == 0 || item3.sign_status == 1)">
+												
 												<ul>
-													<li><span @tap="bindtw(item3.uid,item2.cat_id,item.com_id)">体温记录</span></li>
+													<li><span @tap="bindtw(item3.uid,item2.cat_id,item.com_id)">体温</span></li>
 												</ul>												
 											</view>											
 										</li>
@@ -285,6 +288,12 @@
 </script>
 
 <style>
+	.green{
+		color:green;
+	}
+	.qj{
+		color:#ccc;
+	}
 	.studentlist ul{
 		list-style-type: none;
 		margin: 0;

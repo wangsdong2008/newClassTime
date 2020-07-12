@@ -15,8 +15,13 @@ Vue.prototype.USERS_KEY = "userinfo";
 Vue.prototype.Temp_KEY = "tempinfo";
 Vue.prototype.temp_status = 0; //临时状态,调试用,=1时,debugger起作用
 
-Vue.prototype.STUDYTIME = "2019-06-01";
-Vue.prototype.Method = "post"; //请求方式
+Vue.prototype.STUDYTIME = "2020-06-01";
+
+//服务器
+Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
+Vue.prototype.WebUrl = "http://www.a.com/";
+Vue.prototype.Method = "get"; //请求方式
+Vue.prototype.errorinfo = 1 ; //是否显示错误
 
 Vue.prototype.payAccount = {
 	"alipaylist":{
@@ -33,9 +38,7 @@ Vue.prototype.payAccount = {
 	}
 }; //支付帐号
 
-//服务器
-Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
-//Vue.prototype.WebUrl = "http://www.a.com/";
+
 Vue.prototype.biglogo = "../../../static/img/indeximg.png";
 Vue.prototype.logo = "../../../static/img/logo.png";
 
@@ -101,6 +104,8 @@ Vue.prototype.GetChildStatisticsUrl = Vue.prototype.ParentUrl + "getchildstatist
 Vue.prototype.GetCurrentStudents = Vue.prototype.CompanyUrl + "getcurrentstudents" //要接送的学生
 Vue.prototype.GetCurrentCFStudents = Vue.prototype.CompanyUrl + "getcurrentcfstudents" //吃饭的学生
 Vue.prototype.GetCurrentYgStudents = Vue.prototype.CompanyUrl + "getcurrentygchildren" //员工
+Vue.prototype.GetNoSignStudents = Vue.prototype.CompanyUrl + "getnosignstudents" //获取未签到的学生
+
 Vue.prototype.GetAllStudents = Vue.prototype.CompanyUrl + "getallstudents"  //某一用户的所有企业下的学生
 Vue.prototype.GetStudentsDetail = Vue.prototype.CompanyUrl + "getstudentsdetail" //学生的详细资料
 Vue.prototype.GetStudentsCategory = Vue.prototype.CompanyUrl + "getstudentscategory"//学生所报的课程分类
@@ -274,7 +279,6 @@ Vue.prototype.quit = function(){
 
 //检查用户登录状态
 Vue.prototype.checkLogin = function(identity){
-	//debugger;
 	let that = this;
 	let ret = that.getUserInfo();
 	if(ret == undefined || ret == "" || ret.identity == undefined || ret.identity == ""){
@@ -305,7 +309,7 @@ Vue.prototype.checkLogin = function(identity){
 		
 		var ret_time = ret.time
 		if(ret_time != time){ //去服务器上验证一次
-			that.sendRequest({
+			/* that.sendRequest({
 			url : that.CheckTokenUrl,
 				method :that.Method,
 				data : {
@@ -344,7 +348,7 @@ Vue.prototype.checkLogin = function(identity){
 						}				
 					}
 				
-			},"1",""); 
+			},"1",""); */
 		}
 	}else{
 		try {
@@ -895,9 +899,11 @@ Vue.prototype.sendRequest = function(param, backtype,backpage){
         success: res => {
             //console.log("网络请求success:" + JSON.stringify(res));
             if (res.statusCode && res.statusCode != 200) {//api错误
-                uni.showModal({
-                    content:"" + res.errMsg
-                });
+				if(_self.errorinfo == 1){
+					uni.showModal({
+						content:"" + res.errMsg
+					});
+				}
                 return;
             }
             if (res.data.code) {//返回结果码code判断:0成功,1错误,-1未登录(未绑定/失效/被解绑)
@@ -906,10 +912,12 @@ Vue.prototype.sendRequest = function(param, backtype,backpage){
                     return;
                 }
                 if (res.data.code != "0") { //错误
-                    uni.showModal({
-                        showCancel:false,
-                        content:"" + res.data.msg
-                    });
+					if(_self.errorinfo == 1){
+						uni.showModal({
+							showCancel:false,
+							content:"" + res.data.msg
+						});
+					}
                     return;
                 }
             } /* else{
@@ -923,10 +931,12 @@ Vue.prototype.sendRequest = function(param, backtype,backpage){
         },
         fail: (e) => {
             //console.log("网络请求fail:" + JSON.stringify(e));
-            uni.showModal({
-                //content:"" + e.errMsg + "==" +requestUrl
-				content:"" + e.errMsg
-            });
+			if(_self.errorinfo == 1){
+				uni.showModal({
+					//content:"" + e.errMsg + "==" +requestUrl
+					content:"" + e.errMsg
+				});
+			}
             typeof param.fail == "function" && param.fail(e.data);
         },
         complete: () => {

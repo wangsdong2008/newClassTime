@@ -101,7 +101,7 @@
 			},
 			getData(data){
 				_self.sendRequest({
-				    url : _self.GetCurrentStudents,
+				    url : _self.GetNoSignStudents,
 				    method : _self.Method,
 				    data : {
 						"guid": data.guid,
@@ -213,7 +213,7 @@
 						icon: 'none'
 					});
 					return false;
-				}
+				}				
 				//调用签到函数
 				_self.setSign(1,sid,_self.selectid.toString(),'sksign');
 				_self.selectid = '';
