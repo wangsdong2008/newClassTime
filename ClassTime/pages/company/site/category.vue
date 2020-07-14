@@ -6,12 +6,22 @@
 				<view class="title ctitles fz35">课程分类</view>	
 				<view class="icenter">
 				<uni-collapse>					
-				    <uni-collapse-item v-for="(item,index) in dataList" :title="item.com_name" :open="true" thumb="../../../static/img/company.png" :index="index" :key="item.com_id" >
-						<uni-list>
-							<uni-list-item v-for="(item2,index2) in item.categorylist" :show-arrow="false" :title="item2.cat_name" :index="index2" :key="item2.cat_id" >
-								<view class="statuslist"><span @tap="categoryedit(item2.cat_id)">修改</span><span @tap="categorydel(item2.cat_id)">删除</span></view>
-								</uni-list-item>
-						</uni-list>	
+				    <uni-collapse-item v-for="(item,index) in dataList" :title="item.com_name" :open="true" thumb="../../../static/img/company.png" :index="index" :key="item.com_id" >						
+						<ul>
+							<li v-for="(item2,index2) in item.categorylist" :title="item2.cat_name" :index="index2" :key="item2.cat_id" :class="{
+												'slist':true,
+												 'xblist':true
+												}">
+								<view :class="{
+									'sname':true,
+									'shows':(item2.is_show == 0)
+									}">{{item2.cat_name}}</view>
+								<view class="statuslist fz30"><span @tap="categoryedit(item2.cat_id)">修改</span><span @tap="categorydel(item2.cat_id)">删除</span></view>
+								<view class="clear"></view>
+							</li>
+						</ul>	
+									
+									
 				    </uni-collapse-item>				   
 				</uni-collapse>
 			</view>
@@ -157,6 +167,42 @@
 </script>
 
 <style>
+	.shows{
+		color:#ccc;
+	}
+	.xblist{
+		line-height: 60upx;
+		height: 60upx;
+		padding-left: 60upx;
+		position: relative;
+	}
+	.time0{
+		margin-left: 20upx;
+	}
+	
+	.icenter ul{
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+		padding-left: 20upx;
+		padding-top: 40upx;
+	}
+	li.slist{
+		line-height: 40upx;
+		margin-bottom: 10upx;
+		padding-bottom: 20upx;
+		position: relative;
+	}
+	.sname{
+		float: left;
+		font-size: 35upx;
+	}
+	.statuslist{
+		position: absolute;
+		right: 20upx;
+		top:0upx
+	}
+	
 	.ctitles{
 		background:url(../../../static/img/category.png) 10upx 25upx no-repeat;
 		-webkit-background-size: 40upx 40upx;
