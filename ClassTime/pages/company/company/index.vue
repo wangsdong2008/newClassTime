@@ -23,10 +23,11 @@
 											 'green':(item3.sign_status == 1),
 											 'xblist':true
 											}">{{item3.uname}} <span class="time0">{{item3.time}}</span>
-											<view class="times" v-if="(item3.sign_status == 0 || item3.sign_status == 1)">
-												
+											<view class="times" v-if="(item3.sign_status == 0 || item3.sign_status == 1)">				
 												<ul>
-													<li><span @tap="bindtw(item3.uid,item2.cat_id,item.com_id)">体温</span></li>
+													<li>														
+														<span v-if="item3.tw_time > 2" @tap="bindtw(item3.uid,item2.cat_id,item.com_id,index,index2,index3)">体温</span>
+													</li>
 												</ul>												
 											</view>											
 										</li>
@@ -124,7 +125,10 @@
 				gonggaoList:[],
 				gonggaonum:0,
 				com_id:0, //公司id
-				sid:0 //学生id
+				sid:0 ,//学生id
+				index_1:-1,
+				index_2:-1,
+				index_3:-1
 			}
 		},
 		onLoad:function() {	
@@ -148,7 +152,8 @@
 			/**
 			 * 输入对话框的确定事件
 			 */
-			dialogInputConfirm(done, val) {				
+			dialogInputConfirm(done, val) {
+				//debugger;
 				/* uni.showLoading({
 					title: '3秒后会关闭'
 				})
@@ -181,6 +186,10 @@
 						if(res){
 							var data = res.list;
 							if(parseInt(res.status) == 3){
+								_self.dataList[_self.index_1]['categorylist'][_self.index_2]['studentslist'][_self.index_3]['tw_time'] = 0;
+								_self.index_1 = -1;
+								_self.index_2 = -1;
+								_self.index_3 = -1;
 								done();
 							}
 						}
@@ -189,10 +198,13 @@
 				
 				
 			},
-			bindtw(sid,cat_id,comid){
+			bindtw(sid,cat_id,comid,index,index2,index3){
 				_self.sid = sid;
 				_self.cat_id = cat_id;
 				_self.com_id = comid;
+				_self.index_1 = index;
+				_self.index_2 = index2;
+				_self.index_3 = index3;
 				_self.$refs.dialogInput.open();
 			},
 			bindsystem(){

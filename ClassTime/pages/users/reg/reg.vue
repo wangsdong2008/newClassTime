@@ -6,11 +6,11 @@
 				<view class="title ctitles fz35">注册新用户</view>	
 				<view class="icenter">
 					<view class="register_account_input">				
-						<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="mobile" placeholder="填写手机号码"></m-input>
+						<m-input class="m-input register-input register-input-mobile" type="number" clearable focus v-model="mobile" placeholder="填写手机号码"></m-input>
 					</view>
-					<view class="register_account_input fz30">
-						<m-input class="m-input register-input register-input-mail" type="text" clearable v-model="code" placeholder="填写验证码"></m-input>
-						<button class="btn fz30 btn1" @tap="send_sms">获取验证码</button>
+					<view class="register_account_input fz30 sms">
+						<m-input class="m-input register-input register-input-mail" type="number" clearable v-model="code" placeholder="填写验证码"></m-input>
+						<button class="fz30 btn1" @tap="send_sms">获取验证码</button>
 					</view>
 					<view class="clear"></view>
 					<view class="register_account_input fz30">
@@ -19,8 +19,8 @@
 					<view class="register_account_input fz30">
 						<m-input class="m-input register-input register-input-password" displayable type="password" clearable v-model="againpassword" placeholder="再次确认密码"></m-input>
 					</view>
-					<view class="register_account_input fz30">
-						<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="recommend" placeholder="推荐人手机号码"></m-input>
+					<view class="register_account_input fz30" style="display: none;">
+						<m-input class="m-input register-input register-input-mobile" type="number" clearable focus v-model="recommend" placeholder="推荐人手机号码"></m-input>
 					</view>
 					<view class="btn-row">
 						<button class="btn" type="primary" @tap="register">注册新用户</button>
@@ -42,6 +42,10 @@
 		margin: 0 auto;
 	}
 	
+	.sms{
+		position: relative;
+	}
+	
      .register_account{
 		margin-top: 30upx;
 		margin-bottom: 20upx;
@@ -56,7 +60,7 @@
 	.register-input{		
 		width:90%;
 		height: 70upx;
-		padding-left: 90upx;
+		text-indent: 80upx;
 	}
 	.register-input-username{
 		background:url(../../../static/img/user.png) no-repeat;
@@ -70,9 +74,15 @@
 	}
 	.register-input-mail{
 		background:url(../../../static/img/mail.png) no-repeat;	
-		width:48%;
+		width:100%;
 		float: left;
-	}	
+		position: absolute;
+	}
+	.btn1{
+		width:40%;		
+		top:10upx;
+		margin-right: 0upx;
+	}
 	
 	.register-input-password{
 		background:url(../../../static/img/password.png) no-repeat;		

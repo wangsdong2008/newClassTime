@@ -4,7 +4,7 @@
 		<view class="login_center content">
 			<view class="login_account">帐号</view>
 			<view class="login_account_input">
-				<m-input class="m-input login-input" type="text" clearable focus v-model="account" placeholder="请输入手机号码"></m-input>
+				<m-input class="m-input login-input" type="number" clearable focus v-model="account" placeholder="请输入手机号码"></m-input>
 			</view>
 			<view class="login_account">密码</view>
 			<view class="login_account_input">

@@ -8,7 +8,7 @@
 					<view class="register_account_input fz30">				
 						<m-input class="m-input register-input register-input-mobile" type="text" clearable focus v-model="mobile" placeholder="填写注册的手机号码"></m-input>
 					</view>
-					<view class="register_account_input fz30">
+					<view class="register_account_input fz30 sms">
 						<m-input class="m-input register-input register-input-mail" type="text" clearable v-model="code" placeholder="填写验证码"></m-input>
 						<button class="btn fz30 btn1" @tap="send_sms">获取验证码</button>
 					</view>
@@ -53,7 +53,7 @@
 	.register-input{		
 		width:90%;
 		height: 70upx;
-		padding-left: 90upx;
+		text-indent: 80upx;
 	}
 	.register-input-username{
 		background:url(../../../static/img/user.png) no-repeat;
@@ -66,13 +66,24 @@
 		background-size:50upx 62upx ;
 	}
 	.register-input-mail{
-		background:url(../../../static/img/mail.png) no-repeat;	
-		width:48%;
+		background:url(../../../static/img/mail.png) no-repeat;
+		width:100%;
 		float: left;
+		position: absolute;
 	}	
 	
 	.register-input-password{
 		background:url(../../../static/img/password.png) no-repeat;		
+	}
+	
+	.btn1{
+		width:40%;		
+		top:10upx;
+		margin-right: 0upx;
+	}
+	
+	.sms{
+		position: relative;
 	}
 	
 	.login_content{
