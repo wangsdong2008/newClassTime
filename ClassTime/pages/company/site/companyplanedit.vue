@@ -921,7 +921,7 @@
 				
 				
 				_self.week_dataList = [
-					{"weektext":'一',"weekid":'1',"shower":true,"utime":_self.ptime,"uaddress":'','givetime':'18:01','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
+					{"weektext":'一',"weekid":'1',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:01','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
 					{"weektext":'二',"weekid":'2',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:02','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
 					{"weektext":'三',"weekid":'3',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:03','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
 					{"weektext":'四',"weekid":'4',"shower":false,"utime":_self.ptime,"uaddress":'','givetime':'18:04','giveaddress':'','backtime':'19:00',"classroom_index":0,"fan_status":0},
@@ -946,7 +946,7 @@
 				} */
 				_self.getData(data);
 			},
-			getData(data){			
+			getData(data){
 				this.sendRequest({
 				    url : this.GetCompanyplanInfoUrl,
 				    method : _self.Method,
@@ -1114,12 +1114,11 @@
 										_self.week_dataList[week_id].fan_status = weeklist[i].fan_status;
 										_self.week_dataList[week_id].shower = true;
 										
-										//debugger;
+										
 										_self.classroom_id = weeklist[i].classroom_id;
 										j = _self.classroom_dataIDList.findIndex(i => i == _self.classroom_id);
 										_self.classroom_index = j;
 										_self.week_dataList[week_id].classroom_index = j;
-										
 										
 										_self.getWeekList();
 										
