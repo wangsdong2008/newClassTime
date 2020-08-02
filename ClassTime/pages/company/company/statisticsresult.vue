@@ -10,6 +10,7 @@
 					:selected="selected"
 					:start-date="'2019-3-2'"
 					:end-date="'2059-5-20'"
+					:date = "d"
 					@change="change"
 				></uni-calendar>		
 		</view>
@@ -50,20 +51,25 @@
 			_self.cid = options['cid'];  //课程id
 			_self.uid = options['uid']; //学生
 			_self.d = options['d']; //日期
+			var strname = "";
 			switch(parseInt(_self.id)){
 				case 1:{
+					strname = "上课统计";
 					_self.headermsg = '上课统计,Statistics';
 					break;
 				}
 				case 2:{
+					strname = "吃饭统计";
 					_self.headermsg = '吃饭统计,Statistics';
 					break;
 				}
 				case 3:{
+					strname = "员工统计";
 					_self.headermsg = '员工统计,Statistics';
 					break;
 				}
 			}
+			_self.cat_name = strname;
 		},
 		onReady(){
 			_self.show();
@@ -94,7 +100,7 @@
 				        success: (res) => {
 				        	    if(res){					    	
 				        			if(parseInt(res.status) == 3){								
-				        				_self.cat_name = res.categorylist.cat_name;
+				        				//_self.cat_name = res.categorylist.cat_name;
 				        				var data = res;
 				        				if(parseInt(res.status) == 3){
 				        					//所有签到记录

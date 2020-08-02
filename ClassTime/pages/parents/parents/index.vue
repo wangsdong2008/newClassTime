@@ -135,7 +135,6 @@
 					    hideLoading : true,
 					    success:function (res) {
 							var data = res.list;
-							debugger;
 							if(data != undefined){
 								switch(parseInt(res.status)){
 									case 1:{

@@ -21,7 +21,7 @@
 							<li :open="true" :option="true" v-for="(item2,index2) in item.weeklist" :index="index2" :show-arrow="true" :class="{
 								'colweek':true,
 								'activer2':item.open
-							}"  v-on:click = "changeweek2(item.child_id,index2)" @click.stop="doSomething($event)">
+							}"  v-on:click = "changeweek2(index,index2)" @click.stop="doSomething($event)">
 								<span class="weekname">{{item2.weekname}}
 									<view :class="{
 										'activer_list':true,
@@ -98,9 +98,15 @@
 			},
 			changeweek(id){
 				_self.dataList[id*1].open = !_self.dataList[id*1].open;
-			},
-			changeweek2(childid,weekid){
-				_self.dataList[childid*1-1]['weeklist'][weekid].open = !_self.dataList[childid*1-1]['weeklist'][weekid].open;
+			},		
+			changeweek2(item2,weekid){
+				var status = _self.dataList[item2*1]['weeklist'][weekid].open;
+				if(status){
+					status = false;
+				}else{
+					status = true;
+				}
+				_self.dataList[item2*1]['weeklist'][weekid]['open'] = status;
 			},
 			show(){
 				let ret = _self.getUserInfo();

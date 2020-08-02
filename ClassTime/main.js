@@ -20,7 +20,7 @@ Vue.prototype.STUDYTIME = "2020-06-01";
 //服务器
 Vue.prototype.WebUrl = "http://www.yuwenjiaoyu.net/";
 //Vue.prototype.WebUrl = "http://www.a.com/";
-Vue.prototype.Method = "post"; //请求方式
+Vue.prototype.Method = "get"; //请求方式
 Vue.prototype.errorinfo = 0 ; //是否显示错误
 
 Vue.prototype.payAccount = {
